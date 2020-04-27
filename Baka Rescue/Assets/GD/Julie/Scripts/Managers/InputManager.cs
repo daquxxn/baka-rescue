@@ -40,8 +40,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action _onJumpKeyOne = null;
-    public event Action OnJumpKeyOne
+    private event Action<bool> _onJumpKeyOne = null;
+    public event Action<bool> OnJumpKeyOne
     {
         add
         {
@@ -118,6 +118,11 @@ public class InputManager : Singleton<InputManager>
         if (_moveX2 != null)
         {
             _moveX2(Input.GetAxis("Horizontal2"));
+        }
+
+        if (_onJumpKeyOne != null)
+        {
+            _onJumpKeyOne(Input.GetButtonDown("Jump"));
         }
     }
 

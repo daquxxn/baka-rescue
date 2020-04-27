@@ -69,20 +69,20 @@ public class CharacController : MonoBehaviour
             _rb.velocity = newVelocity;*/
     }
 
-    /*private void Jump1()
+    private void Jump(bool jumpDir)
     {
         Vector3 newVelocity = _rb.velocity;
         RaycastHit raycastHit;
 
         _isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, _rayDistance, _ground);
 
-        if (_isGrounded)
+        if (_isGrounded & jumpDir)
         {
             newVelocity.y = _jumpForce;
         }
         if (newVelocity != Vector3.zero)
             _rb.velocity = newVelocity;
-    }*/
+    }
     
     private void Move(float horizontalDir)
     {
@@ -101,6 +101,7 @@ public class CharacController : MonoBehaviour
         if (_isPlayerOne == true)
         {
             InputManager.Instance.MoveX1 += Move;
+            InputManager.Instance.OnJumpKeyOne += Jump;
         }
         else
         {
