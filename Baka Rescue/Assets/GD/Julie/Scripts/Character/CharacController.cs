@@ -13,6 +13,7 @@ public class CharacController : MonoBehaviour
     [SerializeField] private LayerMask _ground = 0;
 
     [SerializeField] private bool _isPlayerOne = true;
+    
 
     private EElementalType _eType = EElementalType.NONE;
 
@@ -34,39 +35,17 @@ public class CharacController : MonoBehaviour
         }
     }
     #endregion Properties
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         GameLoopManager.Instance.GameLoop += GameLoop;
         PlayerManager.Instance.Charac = this;
         GetInputs();
     }
-
-    // Update is called once per frame
+    
     void GameLoop()
-    {  /* Vector3 newVelocity = _rb.velocity;
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector3 newDirection = new Vector3(moveHorizontal, 0, 0);
-
-        if (moveHorizontal != 0 )
-        {
-            newVelocity.x = moveHorizontal * _speedCharac * Time.deltaTime;
-            _charaTrans.transform.right = newDirection;
-        }
+    {
         
-
-        RaycastHit raycastHit;
-
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, _rayDistance, _ground);
-
-        if (_isGrounded && Input.GetButtonDown("Jump"))
-        {
-            Debug.Log("juju");
-            newVelocity.y = _jumpForce;
-        }
-        if (newVelocity != Vector3.zero)
-            _rb.velocity = newVelocity;*/
     }
 
     private void Jump(bool jumpDir)
