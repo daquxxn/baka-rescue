@@ -68,10 +68,13 @@ public class CharacController : MonoBehaviour
         Vector3 newVelocity = _rb.velocity;
         Vector3 newDirection = new Vector3(horizontalDir, 0, 0);
 
-        newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
-      _charaTrans.transform.right = newDirection;
-        
+        if(horizontalDir != 0)
+        {
+            Debug.Log(_isPlayerOne);
+            newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
+            _charaTrans.transform.right = newDirection;
             _rb.velocity = newVelocity;
+        }
     }
     
     
