@@ -70,7 +70,6 @@ public class CharacController : MonoBehaviour
 
         if(horizontalDir != 0)
         {
-            Debug.Log(_isPlayerOne);
             newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
             _charaTrans.transform.right = newDirection;
             _rb.velocity = newVelocity;
@@ -88,6 +87,7 @@ public class CharacController : MonoBehaviour
         else
         {
             InputManager.Instance.MoveX2 += Move;
+            InputManager.Instance.OnJumpKeyTwo += Jump;
         }
     }
 }
