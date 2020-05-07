@@ -13,7 +13,30 @@ public class CharacController : MonoBehaviour
     [SerializeField] private LayerMask _ground = 0;
 
     [SerializeField] private bool _isPlayerOne = true;
-    
+
+    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _currentHealth;
+
+    [SerializeField] private Healthbar _healthBar = null;
+
+    [SerializeField] private int _damageTaken = 20;
+
+
+    public int CurrentHealth
+    {
+        get
+        { return _currentHealth; }
+        set
+        { _currentHealth = value; }
+    }
+
+    public int MaxHealth
+    {
+        get
+        { return _maxHealth; }
+        set
+        { _maxHealth = value; }
+    }
 
     private EElementalType _eType = EElementalType.NONE;
 
@@ -41,11 +64,17 @@ public class CharacController : MonoBehaviour
         GameLoopManager.Instance.GameLoop += GameLoop;
         PlayerManager.Instance.Charac = this;
         GetInputs();
+
+        _currentHealth = _maxHealth;
+        _healthBar.SetMaxHealth(_maxHealth);
     }
     
     void GameLoop()
     {
-        
+        if(Input.GetButtonDown("damage"))
+            {
+                TakeDamage(_damageTaken);
+            }
     }
 
     private void Jump(bool jumpDir)
@@ -89,5 +118,11 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
         }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        _healthBar.SetHealth(_currentHealth);
     }
 }
