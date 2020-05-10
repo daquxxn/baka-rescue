@@ -1,3 +1,6 @@
+// Amplify Shader Editor - Visual Shader Editing Tool
+// Copyright (c) Amplify Creations, Lda <info@amplify.pt>
+
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -47,6 +50,7 @@ namespace AmplifyShaderEditor
 			m_popContent.image = UIUtils.PopupIcon;
 
 			m_availableAttribs.Clear();
+			//Need to maintain this because of retrocompatibility reasons
 			m_availableAttribs.Add( new PropertyAttributes( "Toggle", "[Toggle]" ) );
 
 			m_drawAttributes = false;
@@ -57,6 +61,8 @@ namespace AmplifyShaderEditor
 
 			m_allowPropertyDuplicates = true;
 			m_showAutoRegisterUI = false;
+
+			m_srpBatcherCompatible = true;
 		}
 
 		protected override void OnUniqueIDAssigned()
@@ -156,6 +162,7 @@ namespace AmplifyShaderEditor
 				m_currentSelectedInput = EditorGUIIntPopup( m_varRect, m_currentSelectedInput, AvailableInputsLabels, AvailableInputsValues, UIUtils.SwitchNodePopUp );
 				if ( EditorGUI.EndChangeCheck() )
 				{
+					PreviewIsDirty = true;
 					UpdateConnection();
 					m_requireMaterialUpdate = true;
 					m_editing = false;
@@ -199,7 +206,7 @@ namespace AmplifyShaderEditor
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
 			base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalvar );
-			m_precisionString = UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType );
+			m_precisionString = UIUtils.PrecisionWirePortToCgType( CurrentPrecisionType, m_outputPorts[ 0 ].DataType );
 
 			string resultA = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, m_mainDataType, ignoreLocalvar, true );
 			string resultB = m_inputPorts[ 1 ].GenerateShaderForOutput( ref dataCollector, m_mainDataType, ignoreLocalvar, true );
@@ -221,21 +228,23 @@ namespace AmplifyShaderEditor
 		public override void RefreshExternalReferences()
 		{
 			base.RefreshExternalReferences();
+			m_selectedAttribs.Clear();
 			UpdateConnection();
 		}
 		public override string GetPropertyValue()
 		{
-			return "[Toggle]" + m_propertyName + "(\"" + m_propertyInspectorName + "\", Float) = " + m_currentSelectedInput;
+			return PropertyAttributes + "[Toggle]" + m_propertyName + "(\"" + m_propertyInspectorName + "\", Float) = " + m_currentSelectedInput;
 		}
 
 		public override string GetUniformValue()
 		{
-			return string.Format( Constants.UniformDec, UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT ), m_propertyName );
+			int index = m_containerGraph.IsSRP ? 1 : 0;
+			return string.Format( Constants.UniformDec[ index ], UIUtils.PrecisionWirePortToCgType( CurrentPrecisionType, WirePortDataType.FLOAT ), m_propertyName );
 		}
 
-		public override bool GetUniformData( out string dataType, out string dataName )
+		public override bool GetUniformData( out string dataType, out string dataName, ref bool fullValue )
 		{
-			dataType = UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT );
+			dataType = UIUtils.PrecisionWirePortToCgType( CurrentPrecisionType, WirePortDataType.FLOAT );
 			dataName = m_propertyName;
 			return true;
 		}

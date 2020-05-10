@@ -35,7 +35,10 @@ namespace AmplifyShaderEditor
 			m_previewShaderGUID = "a5e7295278a404175b732f1516fb68a6";
 
 			if( UIUtils.CurrentWindow != null && UIUtils.CurrentWindow.CurrentGraph != null && UIUtils.CurrentShaderVersion() <= 2400 )
+			{
 				m_outputTypeInt = 1;
+				m_previewMaterialPassId = m_outputTypeInt;
+			}
 
 			ConfigureHeader();
 		}
@@ -66,6 +69,7 @@ namespace AmplifyShaderEditor
 		void ConfigureHeader()
 		{
 			SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_outputTypeStr[ m_outputTypeInt ] ) );
+			m_previewMaterialPassId = m_outputTypeInt;
 		}
 
 		public override void Reset()
@@ -94,27 +98,25 @@ namespace AmplifyShaderEditor
 			{
 				if( dataCollector.IsTemplate )
 				{
-					screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPosNormalized();
+					screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPosNormalized( CurrentPrecisionType );
 				}
 				else
 				{
-					screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, m_currentPrecisionType, false );
+					screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, CurrentPrecisionType, false );
 				}
 			}
 			else
 			{
 				if( dataCollector.IsTemplate )
 				{
-					screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
+					screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPos( CurrentPrecisionType );
 				}
 				else
 				{
-					screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, false );
+					screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, CurrentPrecisionType, false );
 				}
 			}
 			
-			
-
 			m_outputPorts[ 0 ].SetLocalValue( screenPos, dataCollector.PortCategory );
 			return GetOutputVectorItem( 0, outputId, screenPos );
 

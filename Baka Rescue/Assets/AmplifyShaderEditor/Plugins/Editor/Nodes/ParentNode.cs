@@ -27,7 +27,11 @@ namespace AmplifyShaderEditor
 	[Serializable]
 	public class ParentNode : UndoParentNode, ISerializationCallbackReceiver
 	{
-		private readonly string[] PrecisionLabels = { "Float", "Half" };
+		public const int PreviewWidth = 128;
+		public const int PreviewHeight = 128;
+
+		protected readonly string[] PrecisionLabels = { "Float", "Half" };
+		protected readonly string[] PrecisionLabelsExtra = { "Float", "Half", "Inherit" };
 
 		private const double NodeClickTime = 0.2;
 		protected GUIContent PrecisionContent = new GUIContent( "Precision", "Changes the precision of internal calculations, using lower types saves some performance\nDefault: Float" );
@@ -41,11 +45,13 @@ namespace AmplifyShaderEditor
 		public delegate void OnNodeGenericEvent( ParentNode node );
 		public delegate void OnNodeReOrder( ParentNode node, int index );
 		public delegate void DrawPropertySection();
-
-
+		public delegate void OnSRPAction( int outputId, ref MasterNodeDataCollector dataCollector );
 
 		[SerializeField]
-		protected PrecisionType m_currentPrecisionType = PrecisionType.Float;
+		protected PrecisionType m_currentPrecisionType = PrecisionType.Inherit;
+
+		[SerializeField]
+		protected bool m_customPrecision = false;
 
 		[SerializeField]
 		protected InteractionMode m_defaultInteractionMode = InteractionMode.Other;
@@ -54,6 +60,8 @@ namespace AmplifyShaderEditor
 		public OnNodeGenericEvent OnNodeChangeSizeEvent;
 		public OnNodeGenericEvent OnNodeDestroyedEvent;
 		public event OnNodeReOrder OnNodeReOrderEvent;
+		public OnSRPAction OnLightweightAction;
+		public OnSRPAction OnHDAction;
 
 		[SerializeField]
 		private int m_uniqueId;
@@ -158,8 +166,12 @@ namespace AmplifyShaderEditor
 
 		[SerializeField]
 		protected int m_previewMaterialPassId = -1;
-
+		
 		protected bool m_useSquareNodeTitle = false;
+
+		[SerializeField]
+		protected bool m_continuousPreviewRefresh = false;
+		private bool m_previewIsDirty = true;
 
 		// Error Box Messages
 		private Rect m_errorBox;
@@ -200,6 +212,7 @@ namespace AmplifyShaderEditor
 
 		protected Color m_headerColor;
 
+		[SerializeField] // needs to be serialized because of Undo
 		protected Color m_headerColorModifier = Color.white;
 
 		protected bool m_infiniteLoopDetected = false;
@@ -263,6 +276,8 @@ namespace AmplifyShaderEditor
 		private bool[] m_previewChannels = { true, true, true, false };
 
 		// Others
+		protected bool m_hasSubtitle = false;
+		protected bool m_showSubtitle = true;
 		protected bool m_hasLeftDropdown = false;
 		protected bool m_autoWrapProperties = false;
 		protected bool m_internalDataFoldout = true;
@@ -306,6 +321,10 @@ namespace AmplifyShaderEditor
 
 		private bool m_alive = true;
 
+		private double m_timedUpdateInitialValue;
+		private double m_timedUpdateInterval;
+		private bool m_fireTimedUpdateRequest = false;
+
 		public ParentNode()
 		{
 			m_position = new Rect( 0, 0, 0, 0 );
@@ -341,7 +360,6 @@ namespace AmplifyShaderEditor
 			}
 
 			m_tooltipTimestamp = Time.realtimeSinceStartup;
-
 			hideFlags = HideFlags.DontSave;
 		}
 
@@ -402,6 +420,9 @@ namespace AmplifyShaderEditor
 				OnNodeDestroyedEvent = null;
 			}
 
+			OnLightweightAction = null;
+			OnHDAction = null;
+
 			OnNodeStoppedMovingEvent = null;
 			OnNodeChangeSizeEvent = null;
 			OnNodeReOrderEvent = null;
@@ -440,7 +461,7 @@ namespace AmplifyShaderEditor
 				m_outputPortsDict.Clear();
 
 			m_outputPortsDict = null;
-			
+
 			if( m_previewMaterial != null )
 				DestroyImmediate( m_previewMaterial );
 			m_previewMaterial = null;
@@ -541,6 +562,16 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public void SwapInputPorts( int fromIdx, int toIdx )
+		{
+			InputPort port = m_inputPorts[ fromIdx ];
+			//if( toIdx > fromIdx )
+			//	toIdx--;
+			m_inputPorts.Remove( port );
+			m_inputPorts.Insert( toIdx, port );
+			RecalculateInputPortIdx();
+			SetSaveIsDirty();
+		}
 
 		public void RemoveInputPort( int idx )
 		{
@@ -931,9 +962,15 @@ namespace AmplifyShaderEditor
 			outSize.y = Mathf.Max( outSize.y, UIUtils.PortsSize.y );
 
 			if( m_additionalContent.text.Length > 0 )
+			{
 				m_extraHeaderHeight = (int)Constants.NODE_HEADER_EXTRA_HEIGHT;
+				m_hasSubtitle = true && m_showSubtitle;
+			}
 			else
+			{
 				m_extraHeaderHeight = 0;
+				m_hasSubtitle = false;
+			}
 
 			float headerWidth = Mathf.Max( UIUtils.UnZoomedNodeTitleStyle.CalcSize( m_content ).x + m_paddingTitleLeft + m_paddingTitleRight, UIUtils.UnZoomedPropertyValuesTitleStyle.CalcSize( m_additionalContent ).x + m_paddingTitleLeft + m_paddingTitleRight );
 			m_position.width = Mathf.Max( headerWidth, Mathf.Max( MinInsideBoxWidth, m_insideSize.x ) + inSize.x + outSize.x ) + Constants.NODE_HEADER_LEFTRIGHT_MARGIN * 2;
@@ -967,11 +1004,12 @@ namespace AmplifyShaderEditor
 				port.GetOutputNode().ActivateNode( m_activeNode, m_activePort, m_activeType );
 			}
 
+			PreviewIsDirty = true;
 			OnNodeChange();
 			SetSaveIsDirty();
 		}
 
-		public virtual void OnInputPortDisconnected( int portId ) { OnNodeChange(); }
+		public virtual void OnInputPortDisconnected( int portId ) { PreviewIsDirty = true; OnNodeChange(); }
 		public virtual void OnOutputPortDisconnected( int portId ) { }
 
 		public virtual void OnNodeChange()
@@ -1037,7 +1075,7 @@ namespace AmplifyShaderEditor
 					if( m_inputPorts[ i ].IsConnected )
 					{
 						ParentNode node = m_inputPorts[ i ].GetOutputNode();
-						if( node != null)
+						if( node != null )
 							node.DeactivateNode( deactivatedPort == -1 ? m_inputPorts[ i ].PortId : deactivatedPort, false );
 					}
 				}
@@ -1099,10 +1137,12 @@ namespace AmplifyShaderEditor
 			FireStoppedMovingEvent( true, m_defaultInteractionMode );
 		}
 
-		protected void DrawPrecisionProperty()
+		protected void DrawPrecisionProperty( bool withInherit = true )
 		{
-			//m_currentPrecisionType = (PrecisionType)EditorGUILayoutEnumPopup( PrecisionContante, m_currentPrecisionType );
-			m_currentPrecisionType = (PrecisionType)EditorGUILayoutPopup( PrecisionContent.text, (int)m_currentPrecisionType,PrecisionLabels );
+			if( withInherit )
+				m_currentPrecisionType = (PrecisionType)EditorGUILayoutPopup( PrecisionContent.text, (int)m_currentPrecisionType, PrecisionLabelsExtra );
+			else
+				m_currentPrecisionType = (PrecisionType)EditorGUILayoutPopup( PrecisionContent.text, (int)m_currentPrecisionType, PrecisionLabels );
 		}
 
 		public virtual void DrawTitle( Rect titlePos )
@@ -1251,21 +1291,26 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public void SetTimedUpdate( double timerInterval )
+		{
+			m_timedUpdateInitialValue = EditorApplication.timeSinceStartup;
+			m_timedUpdateInterval = timerInterval;
+			m_fireTimedUpdateRequest = true;
+		}
+
+		public virtual void FireTimedUpdate() { }
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="drawInfo"></param>
 		public virtual void OnNodeLogicUpdate( DrawInfo drawInfo )
 		{
+			if( m_fireTimedUpdateRequest && ( EditorApplication.timeSinceStartup - m_timedUpdateInitialValue ) > m_timedUpdateInterval )
+			{
+				m_fireTimedUpdateRequest = false;
+				FireTimedUpdate();
+			}
 
-		}
-
-		/// <summary>
-		/// This method should only be called to calculate layouts of elements to be draw later, only runs once per frame and before wires are drawn
-		/// </summary>
-		/// <param name="drawInfo"></param>
-		public virtual void OnNodeLayout( DrawInfo drawInfo )
-		{
 			if( m_repopulateDictionaries )
 			{
 				m_repopulateDictionaries = false;
@@ -1284,6 +1329,14 @@ namespace AmplifyShaderEditor
 					m_outputPortsDict.Add( m_outputPorts[ i ].PortId, m_outputPorts[ i ] );
 				}
 			}
+		}
+
+		/// <summary>
+		/// This method should only be called to calculate layouts of elements to be draw later, only runs once per frame and before wires are drawn
+		/// </summary>
+		/// <param name="drawInfo"></param>
+		public virtual void OnNodeLayout( DrawInfo drawInfo )
+		{
 
 			if( ContainerGraph.ChangedLightingModel )
 			{
@@ -1321,7 +1374,7 @@ namespace AmplifyShaderEditor
 			m_visibleInputs = 0;
 			m_visibleOutputs = 0;
 
-			if( m_additionalContent.text.Length > 0 )
+			if( m_hasSubtitle )
 				m_extraHeaderHeight = (int)Constants.NODE_HEADER_EXTRA_HEIGHT;
 			else
 				m_extraHeaderHeight = 0;
@@ -1339,7 +1392,7 @@ namespace AmplifyShaderEditor
 				// Title
 				m_titlePos = m_globalPosition;
 				m_titlePos.height = m_headerPosition.height;
-				if( m_additionalContent.text.Length > 0 )
+				if( m_hasSubtitle )
 					m_titlePos.yMin += ( 4 * drawInfo.InvertedZoom );
 				else
 					m_titlePos.yMin += ( 7 * drawInfo.InvertedZoom );
@@ -1347,7 +1400,7 @@ namespace AmplifyShaderEditor
 				m_titlePos.x += m_paddingTitleLeft * drawInfo.InvertedZoom;
 
 				// Additional Title
-				if( m_additionalContent.text.Length > 0 )
+				if( m_hasSubtitle )
 				{
 					m_addTitlePos = m_titlePos;
 					m_addTitlePos.y = m_globalPosition.y;
@@ -1527,6 +1580,7 @@ namespace AmplifyShaderEditor
 			{
 				m_globalShowPreview = ContainerGraph.ParentWindow.GlobalPreview;
 				m_sizeIsDirty = true;
+				ContainerGraph.ParentWindow.RequestRepaint();
 			}
 
 			// Generate Proper Preview Rect
@@ -1609,6 +1663,7 @@ namespace AmplifyShaderEditor
 			if( m_firstPreviewDraw )
 			{
 				m_firstPreviewDraw = false;
+				ContainerGraph.ParentWindow.RequestRepaint();
 				if( m_canExpand && ( m_showPreview || m_globalShowPreview ) )
 				{
 					if( m_autoLocation == PreviewLocation.TopCenter )
@@ -1694,7 +1749,7 @@ namespace AmplifyShaderEditor
 			DrawTitle( m_titlePos );
 
 			// Additional Tile
-			if( ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
+			if( m_hasSubtitle && ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
 				GUI.Label( m_addTitlePos, m_additionalContent, UIUtils.GetCustomStyle( CustomStyle.PropertyValuesTitle ) );
 
 			// Dropdown
@@ -1739,7 +1794,7 @@ namespace AmplifyShaderEditor
 						}
 						else
 						{
-							if( m_containerGraph.ParentWindow.GlobalShowInternalData && !m_inputPorts[ i ].IsConnected && UIUtils.InternalDataOnPort.fontSize > 1f && ( m_inputPorts[ i ].AutoDrawInternalData || ( m_autoDrawInternalPortData && m_useInternalPortData ) ) && m_inputPorts[ i ].DisplayInternalData.Length > 4 )
+							if( m_containerGraph.ParentWindow.GlobalShowInternalData && !m_inputPorts[ i ].IsConnected && UIUtils.InternalDataOnPort.fontSize > 1f && ( m_inputPorts[ i ].AutoDrawInternalData || ( m_autoDrawInternalPortData && m_useInternalPortData ) ) && m_inputPorts[ i ].DisplayInternalData.Length > 4 && m_inputPorts[ i ].DataType != WirePortDataType.OBJECT )
 							{
 								GUI.color = Constants.NodeBodyColor/* * new Color( 1f, 1f, 1f, 0.75f )*/;
 								Rect internalBox = m_inputPorts[ i ].LabelPosition;
@@ -1869,7 +1924,7 @@ namespace AmplifyShaderEditor
 			//GUI.Label( m_remainingBox, string.Empty, UIUtils.Box );
 		}
 
-		public bool DropdownEditing { get { return m_dropdownEditing; } set { m_dropdownEditing = value; } }
+		public bool DropdownEditing { get { return m_dropdownEditing; } set { m_dropdownEditing = value; PreviewIsDirty = true; } }
 		/// <summary>
 		/// Handles gui controls, runs before node layout
 		/// </summary>
@@ -1897,7 +1952,7 @@ namespace AmplifyShaderEditor
 				}
 				else if( m_dropdownEditing )
 				{
-					m_dropdownEditing = false;
+					DropdownEditing = false;
 				}
 			}
 
@@ -2042,7 +2097,6 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public virtual void AfterPreviewRefresh() { }
 
 		public bool SafeDraw( DrawInfo drawInfo )
 		{
@@ -2136,6 +2190,7 @@ namespace AmplifyShaderEditor
 							GUI.Label( link, WikiLinkStr, UIUtils.MainSkin.customStyles[ 52 ] );
 						}
 					}
+					ContainerGraph.ParentWindow.RequestRepaint();
 					return true;
 				}
 			}
@@ -2162,6 +2217,7 @@ namespace AmplifyShaderEditor
 			}
 			if( EditorGUI.EndChangeCheck() )
 			{
+				PreviewIsDirty = true;
 				//UIUtils.RecordObject(this);
 				//MarkForPreviewUpdate();
 				return true;
@@ -2397,10 +2453,7 @@ namespace AmplifyShaderEditor
 			return null;
 		}
 
-		public virtual void AfterDuplication( ParentNode original )
-		{
-
-		}
+		public virtual void AfterDuplication(){}
 
 		public override string ToString()
 		{
@@ -2435,7 +2488,7 @@ namespace AmplifyShaderEditor
 			{
 				if( outPort.DataType != WirePortDataType.OBJECT && outPort.DataType != inputPortType )
 				{
-					return UIUtils.CastPortType( ref dataCollector, m_currentPrecisionType, new NodeCastInfo( m_uniqueId, outputId ), null, outPort.DataType, inputPortType, outPort.LocalValue( dataCollector.PortCategory ) );
+					return UIUtils.CastPortType( ref dataCollector, CurrentPrecisionType, new NodeCastInfo( m_uniqueId, outputId ), null, outPort.DataType, inputPortType, outPort.LocalValue( dataCollector.PortCategory ) );
 				}
 				else
 				{
@@ -2448,14 +2501,77 @@ namespace AmplifyShaderEditor
 
 			if( outPort.DataType != WirePortDataType.OBJECT && outPort.DataType != inputPortType )
 			{
-				result = UIUtils.CastPortType( ref dataCollector, m_currentPrecisionType, new NodeCastInfo( m_uniqueId, outputId ), null, outPort.DataType, inputPortType, result );
+				result = UIUtils.CastPortType( ref dataCollector, CurrentPrecisionType, new NodeCastInfo( m_uniqueId, outputId ), null, outPort.DataType, inputPortType, result );
 			}
 			return result;
 		}
 
 		public virtual string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
+			if( dataCollector.IsSRP )
+			{
+				switch( dataCollector.CurrentSRPType )
+				{
+					case TemplateSRPType.HD: if(OnHDAction!=null) OnHDAction( outputId, ref dataCollector ); break;
+					case TemplateSRPType.Lightweight:if(OnLightweightAction != null) OnLightweightAction( outputId, ref dataCollector ); break;	
+				}
+			}
 			return string.Empty;
+		}
+
+		public string GenerateValueInVertex( ref MasterNodeDataCollector dataCollector, WirePortDataType dataType, string dataValue, string dataName, bool createInterpolator )
+		{
+
+			if( !dataCollector.IsFragmentCategory )
+				return dataValue;
+
+			//TEMPLATES
+			if( dataCollector.IsTemplate )
+			{
+				if( createInterpolator && dataCollector.TemplateDataCollectorInstance.HasCustomInterpolatedData( dataName ) )
+					return dataName;
+
+				MasterNodePortCategory category = dataCollector.PortCategory;
+				dataCollector.PortCategory = MasterNodePortCategory.Vertex;
+
+				dataCollector.PortCategory = category;
+
+				if( createInterpolator )
+				{
+					dataCollector.TemplateDataCollectorInstance.RegisterCustomInterpolatedData( dataName, dataType, CurrentPrecisionType, dataValue );
+				}
+				else
+				{
+					dataCollector.AddToVertexLocalVariables( -1, CurrentPrecisionType, dataType, dataName, dataValue );
+				}
+
+				return dataName;
+			}
+
+			//SURFACE 
+			{
+				if( dataCollector.TesselationActive )
+				{
+					UIUtils.ShowMessage( "Unable to use Vertex to Frag when Tessellation is active" );
+					return m_outputPorts[ 0 ].ErrorValue;
+				}
+
+				if( createInterpolator )
+					dataCollector.AddToInput( UniqueId, dataName, dataType, CurrentPrecisionType );
+
+				MasterNodePortCategory portCategory = dataCollector.PortCategory;
+				dataCollector.PortCategory = MasterNodePortCategory.Vertex;
+				if( createInterpolator )
+				{
+					dataCollector.AddLocalVariable( UniqueId, Constants.VertexShaderOutputStr + "." + dataName, dataValue + ";" );
+				}
+				else
+				{
+					dataCollector.AddLocalVariable( UniqueId, CurrentPrecisionType, dataType, dataName, dataValue );
+				}
+				dataCollector.PortCategory = portCategory;
+				return createInterpolator ? Constants.InputVarStr + "." + dataName : dataName;
+			}
 		}
 
 		public string GenerateInputInVertex( ref MasterNodeDataCollector dataCollector, int inputPortUniqueId, string varName, bool createInterpolator )
@@ -2489,11 +2605,11 @@ namespace AmplifyShaderEditor
 
 				if( createInterpolator )
 				{
-					dataCollector.TemplateDataCollectorInstance.RegisterCustomInterpolatedData( varName, inputPort.DataType, m_currentPrecisionType, data );
+					dataCollector.TemplateDataCollectorInstance.RegisterCustomInterpolatedData( varName, inputPort.DataType, CurrentPrecisionType, data );
 				}
 				else
 				{
-					dataCollector.AddToVertexLocalVariables( -1, m_currentPrecisionType, inputPort.DataType, varName, data );
+					dataCollector.AddToVertexLocalVariables( -1, CurrentPrecisionType, inputPort.DataType, varName, data );
 				}
 
 				return varName;
@@ -2508,7 +2624,7 @@ namespace AmplifyShaderEditor
 				}
 
 				if( createInterpolator )
-					dataCollector.AddToInput( UniqueId, varName, inputPort.DataType, m_currentPrecisionType );
+					dataCollector.AddToInput( UniqueId, varName, inputPort.DataType, CurrentPrecisionType );
 
 				MasterNodePortCategory portCategory = dataCollector.PortCategory;
 				dataCollector.PortCategory = MasterNodePortCategory.Vertex;
@@ -2524,7 +2640,7 @@ namespace AmplifyShaderEditor
 				}
 				else
 				{
-					dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, inputPort.DataType, varName, vertexVarValue );
+					dataCollector.AddLocalVariable( UniqueId, CurrentPrecisionType, inputPort.DataType, varName, vertexVarValue );
 				}
 
 				dataCollector.PortCategory = portCategory;
@@ -2576,7 +2692,7 @@ namespace AmplifyShaderEditor
 			}
 
 			bool vertexMode = dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation;
-			string localVar = port.ConfigOutputLocalValue( m_currentPrecisionType, value, customName, dataCollector.PortCategory );
+			string localVar = port.ConfigOutputLocalValue( CurrentPrecisionType, value, customName, dataCollector.PortCategory );
 
 			if( vertexMode )
 			{
@@ -2694,10 +2810,24 @@ namespace AmplifyShaderEditor
 				OnUniqueIDAssigned();
 			}
 		}
-
-		public void SetBaseUniqueId( int uniqueId )
+		public void SetBaseUniqueId( int uniqueId, bool setOnPorts = false )
 		{
 			m_uniqueId = uniqueId;
+			if( setOnPorts )
+			{
+				int inputCount = m_inputPorts.Count;
+				int outputCount = m_outputPorts.Count;
+
+				for( int inputIdx = 0; inputIdx < inputCount; inputIdx++ )
+				{
+					m_inputPorts[ inputIdx ].NodeId = uniqueId;
+				}
+
+				for( int outputIdx = 0; outputIdx < outputCount; outputIdx++ )
+				{
+					m_outputPorts[ outputIdx ].NodeId = uniqueId;
+				}
+			}
 		}
 
 		public string OutputId
@@ -2811,10 +2941,6 @@ namespace AmplifyShaderEditor
 			}
 			m_repopulateDictionaries = true;
 			m_sizeIsDirty = true;
-			if( m_currentPrecisionType == PrecisionType.Fixed )
-			{
-				m_currentPrecisionType = PrecisionType.Half;
-			}
 		}
 
 		public virtual void ReadFromDeprecated( ref string[] nodeParams, Type oldType = null ) { }
@@ -2838,9 +2964,18 @@ namespace AmplifyShaderEditor
 
 			if( UIUtils.CurrentShaderVersion() > 22 )
 			{
-				m_currentPrecisionType = (PrecisionType)Enum.Parse( typeof( PrecisionType ), GetCurrentParam( ref nodeParams ) );
-				if( m_currentPrecisionType == PrecisionType.Fixed )
-					m_currentPrecisionType = PrecisionType.Half;
+				string val = GetCurrentParam( ref nodeParams );
+				if( m_customPrecision )
+				{
+					if( val.Equals("Fixed") )
+						m_currentPrecisionType = PrecisionType.Half;
+					else
+					m_currentPrecisionType = (PrecisionType)Enum.Parse( typeof( PrecisionType ), val );
+				}
+				else
+				{
+					m_currentPrecisionType = PrecisionType.Inherit;
+				}
 			}
 
 			if( UIUtils.CurrentShaderVersion() > 5004 )
@@ -3121,10 +3256,18 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public void SetClippedTitle( string newText )
+		public virtual void SetClippedTitle( string newText, int maxSize = 170, string endString = "..." )
 		{
-			m_content.text = GenerateClippedTitle( newText );
+			m_content.text = GenerateClippedTitle( newText,maxSize,endString );
+			m_sizeIsDirty = true;
 		}
+		
+		public virtual void SetClippedAdditionalTitle( string newText, int maxSize = 170, string endString = "..." )
+		{
+			m_additionalContent.text = GenerateClippedTitle( newText, maxSize, endString );
+			m_sizeIsDirty = true;
+		}
+
 
 		public void SetTitleText( string newText )
 		{
@@ -3144,6 +3287,26 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public string GenerateErrorValue( int outputIdx = 0 )
+		{
+			switch( m_outputPorts[ outputIdx ].DataType )
+			{
+				case WirePortDataType.FLOAT2:
+				{
+					return "(0).xx";
+				}
+				case WirePortDataType.FLOAT3:
+				{
+					return "(0).xxx";
+				}
+				case WirePortDataType.FLOAT4:
+				case WirePortDataType.COLOR:
+				{
+					return "(0).xxxx";
+				}
+			}
+			return "0";
+		}
 
 		//Methods created to take into account new ports added on nodes newer versions
 		//This way we can convert connections from previous versions to newer ones and not brake shader graph
@@ -3173,7 +3336,7 @@ namespace AmplifyShaderEditor
 		public float TextLabelWidth { get { return m_textLabelWidth; } }
 		public bool IsMoving { get { return m_isMoving > 0; } }
 		public bool MovingInFrame { get { return m_movingInFrame; } set { m_movingInFrame = value; } }
-		public bool SizeIsDirty { get { return m_sizeIsDirty; } }
+		public bool SizeIsDirty { get { return m_sizeIsDirty; } set { m_sizeIsDirty = value; } }
 		public int Category { get { return m_category; } }
 		public int CommentaryParent
 		{
@@ -3213,11 +3376,46 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public bool RecursivePreviewUpdate()
+		{
+			for( int i = 0; i < InputPorts.Count; i++ )
+			{
+				ParentNode outNode = InputPorts[ i ].GetOutputNode();
+				if( outNode != null )
+				{
+					if( !ContainerGraph.ParentWindow.VisitedChanged.ContainsKey( outNode.UniqueId ) )
+					{
+						bool result = outNode.RecursivePreviewUpdate();
+						if( result )
+							PreviewIsDirty = true;
+					} else if( ContainerGraph.ParentWindow.VisitedChanged[ outNode.UniqueId ] )
+					{
+						PreviewIsDirty = true;
+					}
+				}
+			}
+			
+			bool needsUpdate = PreviewIsDirty;
+			RenderNodePreview();
+			if( !ContainerGraph.ParentWindow.VisitedChanged.ContainsKey( UniqueId ) )
+				ContainerGraph.ParentWindow.VisitedChanged.Add( UniqueId, needsUpdate );
+			return needsUpdate;
+		}
+
 		public virtual void RenderNodePreview()
 		{
 			//Runs at least one time
 			if( !HasPreviewShader || !m_initialized )
+			{
+				// nodes with no preview don't update at all
+				PreviewIsDirty = false;
 				return;
+			}
+
+			if( !PreviewIsDirty )
+				return;
+
+			//Debug.Log( "PREVIEW " + this );
 
 			SetPreviewInputs();
 
@@ -3239,7 +3437,7 @@ namespace AmplifyShaderEditor
 				if( i == 0 )
 				{
 					RenderTexture temp = RenderTexture.active;
-					RenderTexture beforeMask = RenderTexture.GetTemporary( 128, 128, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear );
+					RenderTexture beforeMask = RenderTexture.GetTemporary( PreviewWidth, PreviewHeight, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear );
 					RenderTexture.active = beforeMask;
 					Graphics.Blit( null, beforeMask, PreviewMaterial, m_previewMaterialPassId );
 
@@ -3292,6 +3490,8 @@ namespace AmplifyShaderEditor
 					RenderTexture.active = temp;
 				}
 			}
+
+			PreviewIsDirty = m_continuousPreviewRefresh;
 		}
 
 		protected void ShowTab( NodeMessageType type, string tooltip )
@@ -3362,7 +3562,7 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public string GenerateClippedTitle( string original )
+		public string GenerateClippedTitle( string original , int maxSize = 170, string endString = "..." )
 		{
 			if( UIUtils.UnZoomedNodeTitleStyle == null )
 				return original;
@@ -3375,7 +3575,6 @@ namespace AmplifyShaderEditor
 			{
 				content.text = original.Substring( 0, i );
 				Vector2 titleSize = UIUtils.UnZoomedNodeTitleStyle.CalcSize( content );
-				int maxSize = 170;
 				if( titleSize.x > maxSize )
 				{
 					addEllipsis = true;
@@ -3387,7 +3586,8 @@ namespace AmplifyShaderEditor
 				}
 			}
 			if( addEllipsis )
-				finalTitle += "...";
+				finalTitle += endString;
+
 			return finalTitle;
 		}
 
@@ -3395,7 +3595,8 @@ namespace AmplifyShaderEditor
 		public virtual void CalculateCustomGraphDepth() { }
 		public int GraphDepth { get { return m_graphDepth; } }
 
-		public PrecisionType CurrentPrecisionType { get { return m_currentPrecisionType; } }
+		public PrecisionType CurrentPrecisionType { get { return m_currentPrecisionType == PrecisionType.Inherit ? ContainerGraph.CurrentPrecision : m_currentPrecisionType; } }
+
 
 		public Material PreviewMaterial
 		{
@@ -3532,5 +3733,6 @@ namespace AmplifyShaderEditor
 		}
 		public bool Alive { get { return m_alive;} set { m_alive = value; } }
 		public string TypeName { get { if( m_nodeAttribs != null ) return m_nodeAttribs.Name;return GetType().ToString(); } }
+		public bool PreviewIsDirty { set { m_previewIsDirty = value; } get { return m_previewIsDirty; } }
 	}
 }
