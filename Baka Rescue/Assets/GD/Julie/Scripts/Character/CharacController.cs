@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CharacController : MonoBehaviour
 {
     [SerializeField] private int _speedCharac = 10;
