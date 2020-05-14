@@ -24,9 +24,9 @@ public class Collectibles : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         gameObject.SetActive(false);
-        if(_characController.CurrentHealth<100)
-        GetLifeBack(_lifeHealed);
-        
+        if (_characController.CurrentHealth < 100)
+            GetLifeBack(_lifeHealed);
+
     }
 
     private void GetLifeBack(int heal)
