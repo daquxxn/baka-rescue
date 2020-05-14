@@ -21,6 +21,7 @@ public class CharacController : MonoBehaviour
     [SerializeField] private Healthbar _healthBar = null;
 
     [SerializeField] private int _damageTaken = 20;
+    
 
 
     public int CurrentHealth
@@ -39,10 +40,10 @@ public class CharacController : MonoBehaviour
         { _maxHealth = value; }
     }
 
-    private EElementalType _eType = EElementalType.NONE;
+    private EElement _eType = EElement.NONE;
 
     #region Properties
-    public EElementalType Etype
+    public EElement Etype
     {
         get
         {
@@ -51,15 +52,15 @@ public class CharacController : MonoBehaviour
         set
         {
             _eType = value;
-            if (_eType==EElementalType.WATER)
+            if (_eType == EElement.WATER)
             {
 
             }
-            
+
         }
     }
     #endregion Properties
-    
+
     void Start()
     {
         GameLoopManager.Instance.GameLoop += GameLoop;
@@ -69,13 +70,10 @@ public class CharacController : MonoBehaviour
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
     }
-    
+
     void GameLoop()
     {
-        if(Input.GetButtonDown("damage"))
-            {
-                TakeDamage(_damageTaken);
-            }
+
     }
 
     private void Jump(bool jumpDir)
@@ -92,21 +90,21 @@ public class CharacController : MonoBehaviour
         if (newVelocity != Vector3.zero)
             _rb.velocity = newVelocity;
     }
-    
+
     private void Move(float horizontalDir)
     {
         Vector3 newVelocity = _rb.velocity;
         Vector3 newDirection = new Vector3(horizontalDir, 0, 0);
 
-        if(horizontalDir != 0)
+        if (horizontalDir != 0)
         {
             newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
             _charaTrans.transform.right = newDirection;
             _rb.velocity = newVelocity;
         }
     }
-    
-    
+
+
     private void GetInputs()
     {
         if (_isPlayerOne == true)
@@ -119,6 +117,28 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
         }
+    }
+    
+    bool invulnerable = false;
+    float iTime = 1.5f;
+    float iCounter = 0;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 12 && !invulnerable)
+        {
+            TakeDamage(_damageTaken);
+            invulnerable = true;
+        }
+        /* if (invulnerable == true)
+         {
+             iCounter += Time.deltaTime;
+             if (iCounter >= iTime)
+             {
+                 iTime = 0;
+                 invulnerable = false;
+             }
+         }*/
     }
 
     private void TakeDamage(int damage)
