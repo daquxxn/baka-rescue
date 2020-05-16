@@ -12,54 +12,17 @@ public class CharacController : MonoBehaviour
     private bool _isGrounded = false;
     [SerializeField] private float _rayDistance = 0;
     [SerializeField] private LayerMask _ground = 0;
+    [SerializeField] private LayerMask _enemy = 0;
+    [Header("lol")]
 
     [SerializeField] private bool _isPlayerOne = true;
-
-    [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private int _currentHealth;
-
-    [SerializeField] private Healthbar _healthBar = null;
-
-    [SerializeField] private int _damageTaken = 20;
     
+    
+    [SerializeField] private bool _invulnerable = true;
+    [SerializeField] private float _iTime = 1.5f;
+    [SerializeField] private float _iCounter = 0;
 
-
-    public int CurrentHealth
-    {
-        get
-        { return _currentHealth; }
-        set
-        { _currentHealth = value; }
-    }
-
-    public int MaxHealth
-    {
-        get
-        { return _maxHealth; }
-        set
-        { _maxHealth = value; }
-    }
-
-    private EElement _eType = EElement.NONE;
-
-    #region Properties
-    public EElement Etype
-    {
-        get
-        {
-            return _eType;
-        }
-        set
-        {
-            _eType = value;
-            if (_eType == EElement.WATER)
-            {
-
-            }
-
-        }
-    }
-    #endregion Properties
+    [SerializeField] private CharacHealth _characHealth = null;
 
     void Start()
     {
@@ -67,13 +30,20 @@ public class CharacController : MonoBehaviour
         PlayerManager.Instance.Charac = this;
         GetInputs();
 
-        _currentHealth = _maxHealth;
-        _healthBar.SetMaxHealth(_maxHealth);
     }
 
     void GameLoop()
     {
+        if(_invulnerable)
+        {
+            _iCounter += Time.deltaTime;
 
+            if(_iCounter >= _iTime)
+            {
+                _invulnerable = false;
+                _iCounter = 0;
+            }
+        }
     }
 
     private void Jump(bool jumpDir)
@@ -119,31 +89,32 @@ public class CharacController : MonoBehaviour
         }
     }
     
-    bool invulnerable = false;
-    float iTime = 1.5f;
-    float iCounter = 0;
+   
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 12 && !invulnerable)
+        if (collision.gameObject.layer == 12)
         {
-            TakeDamage(_damageTaken);
-            invulnerable = true;
+            BaseEnemy baseEnemy = collision.gameObject.GetComponent<BaseEnemy>();
+            if (baseEnemy != null && _invulnerable == false)
+            {
+                _characHealth.TakeDamage(baseEnemy.Damages);
+                _invulnerable = true;
+            }
         }
-        /* if (invulnerable == true)
-         {
-             iCounter += Time.deltaTime;
-             if (iCounter >= iTime)
-             {
-                 iTime = 0;
-                 invulnerable = false;
-             }
-         }*/
     }
 
-    private void TakeDamage(int damage)
+    private void OnTriggerEnter(Collider other)
     {
-        _currentHealth -= damage;
-        _healthBar.SetHealth(_currentHealth);
+        if (other.gameObject.tag == "Collectible")
+        {
+            Collectibles collectibles = other.gameObject.GetComponent<Collectibles>();
+            if(collectibles != null)
+            {
+                _characHealth.GetLifeBack(collectibles.LifeHealed);
+                Destroy(other.gameObject);
+            }
+        }
     }
+
 }

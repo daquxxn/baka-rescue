@@ -20,9 +20,10 @@ public class CameraPlayer : MonoBehaviour
     private void Start()
     {
         cam = GetComponent<Camera>();
+        GameLoopManager.Instance.LateGameLoop += Loop;
     }
 
-    void LateUpdate()
+    void Loop()
         {
         if (_targets.Count == 0)
             return;
