@@ -24,6 +24,8 @@ public class CharacController : MonoBehaviour
 
     [SerializeField] private CharacHealth _characHealth = null;
 
+    [SerializeField] private GameObject _thunderPrefab = null;
+
     void Start()
     {
         GameLoopManager.Instance.GameLoop += GameLoop;
@@ -46,14 +48,14 @@ public class CharacController : MonoBehaviour
         }
     }
 
-    private void Jump(bool jumpDir)
+    private void Jump(bool jumpNow)
     {
         Vector3 newVelocity = _rb.velocity;
         RaycastHit raycastHit;
 
         _isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, _rayDistance, _ground);
 
-        if (_isGrounded & jumpDir)
+        if (_isGrounded & jumpNow)
         {
             newVelocity.y = _jumpForce;
         }
@@ -74,6 +76,22 @@ public class CharacController : MonoBehaviour
         }
     }
 
+    private void SpellThunder(bool thunderNow)
+    {
+        if (thunderNow)
+        {
+           
+        }
+    }
+
+    private void SpellWater(bool waterNow)
+    {
+        if(waterNow)
+        {
+
+        }
+    }
+
 
     private void GetInputs()
     {
@@ -81,11 +99,13 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
+            InputManager.Instance.SpellThunder += SpellThunder;
         }
         else
         {
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
+            InputManager.Instance.SpellWater += SpellWater;
         }
     }
     

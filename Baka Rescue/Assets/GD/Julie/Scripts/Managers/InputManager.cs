@@ -68,6 +68,34 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
+    private event Action<bool> _spellWater = null;
+    public event Action<bool> SpellWater
+    {
+        add
+        {
+            _spellWater -= value;
+            _spellWater += value;
+        }
+        remove
+        {
+            _spellWater -= value;
+        }
+    }
+
+    private event Action<bool> _spellThunder = null;
+    public event Action<bool> SpellThunder
+    {
+        add
+        {
+            _spellThunder -= value;
+            _spellThunder += value;
+        }
+        remove
+        {
+            _spellThunder -= value;
+        }
+    }
+
     #endregion Events
 
     #region Methods
@@ -128,6 +156,16 @@ public class InputManager : Singleton<InputManager>
         if (_onJumpKeyTwo != null)
         {
             _onJumpKeyTwo(Input.GetButtonDown("Jump2"));
+        }
+
+        if(_spellWater != null)
+        {
+            _spellWater(Input.GetButtonDown("SpellWater"));
+        }
+
+        if (_spellThunder != null)
+        {
+            _spellThunder(Input.GetButtonDown("SpellThunder"));
         }
     }
 

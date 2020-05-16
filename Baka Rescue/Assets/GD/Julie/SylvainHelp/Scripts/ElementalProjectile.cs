@@ -11,6 +11,7 @@ public class ElementalProjectile : AElement
 
     private Vector3 _dir = Vector3.zero;
     private Rigidbody _rb = null;
+    
 
     private void Start()
     {
