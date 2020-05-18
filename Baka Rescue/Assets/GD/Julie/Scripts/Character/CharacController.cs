@@ -24,7 +24,12 @@ public class CharacController : MonoBehaviour
 
     [SerializeField] private CharacHealth _characHealth = null;
 
-    [SerializeField] private GameObject _thunderPrefab = null;
+    [SerializeField] private ElementalProjectile _thunderPrefab = null;
+    [SerializeField] private ElementalProjectile _waterPrefab = null;
+
+    [SerializeField] private Transform _projectileContainer = null;
+
+
 
     void Start()
     {
@@ -76,19 +81,31 @@ public class CharacController : MonoBehaviour
         }
     }
 
-    private void SpellThunder(bool thunderNow)
+    private void SpellThunder(Vector3 dirSpell)
     {
-        if (thunderNow)
+        ElementalProjectile elementalProjectile = Instantiate(_thunderPrefab, transform.position, Quaternion.identity, _projectileContainer);
+
+        if(dirSpell != Vector3.zero)
         {
-           
+            elementalProjectile.Init(dirSpell);
+        }
+       else
+        {
+            elementalProjectile.Init(transform.right);
         }
     }
 
-    private void SpellWater(bool waterNow)
+    private void SpellWater(Vector3 dirSpell)
     {
-        if(waterNow)
-        {
+        ElementalProjectile projectile = Instantiate(_waterPrefab, transform.position, Quaternion.identity, _projectileContainer);
 
+        if (dirSpell != Vector3.zero)
+        {
+            projectile.Init(dirSpell);
+        }
+        else
+        {
+            projectile.Init(transform.right);
         }
     }
 

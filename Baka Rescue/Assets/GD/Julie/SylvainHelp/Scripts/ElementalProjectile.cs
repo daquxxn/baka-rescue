@@ -15,7 +15,7 @@ public class ElementalProjectile : AElement
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+       
     }
 
     public override void ElementalReaction(EElement element)
@@ -28,8 +28,9 @@ public class ElementalProjectile : AElement
     // Can get more parameter life the projection force
     public void Init(Vector3 direction)
     {
+        _rb = GetComponent<Rigidbody>();
         _dir = direction;
-        _rb.AddForce(direction * _force, ForceMode.Impulse);
+        _rb.AddForce(direction * _force);
     }
 
     private void OnDestroy()
