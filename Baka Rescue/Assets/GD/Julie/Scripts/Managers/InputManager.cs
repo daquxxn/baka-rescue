@@ -68,8 +68,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<bool> _spellWater = null;
-    public event Action<bool> SpellWater
+    private event Action<Vector3> _spellWater = null;
+    public event Action<Vector3> SpellWater
     {
         add
         {
@@ -82,8 +82,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<bool> _spellThunder = null;
-    public event Action<bool> SpellThunder
+    private event Action<Vector3> _spellThunder = null;
+    public event Action<Vector3> SpellThunder
     {
         add
         {
@@ -158,15 +158,23 @@ public class InputManager : Singleton<InputManager>
             _onJumpKeyTwo(Input.GetButtonDown("Jump2"));
         }
 
-        if(_spellWater != null)
+        if(_spellWater != null && Input.GetButtonDown("SpellWater"))
         {
-            _spellWater(Input.GetButtonDown("SpellWater"));
+            float rightAnalogH = Input.GetAxis("RightAnalogH2");
+            float rightAnalogV = Input.GetAxis("RightAnalogV2");
+            Vector3 dirSpell = new Vector3(rightAnalogH, -rightAnalogV, 0);
+            _spellWater(dirSpell);
         }
 
-        if (_spellThunder != null)
+        if (_spellThunder != null && Input.GetButtonDown("SpellThunder"))
         {
-            _spellThunder(Input.GetButtonDown("SpellThunder"));
+            float rightAnalogH = Input.GetAxis("RightAnalogH");
+            float rightAnalogV = Input.GetAxis("RightAnalogV");
+            Vector3 dirSpell = new Vector3(rightAnalogH, -rightAnalogV, 0);
+            _spellThunder(dirSpell);
         }
+
+      
     }
 
     private void ResetInputs()
