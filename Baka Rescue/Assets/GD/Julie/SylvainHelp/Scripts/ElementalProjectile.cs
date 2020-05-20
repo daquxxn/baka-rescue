@@ -8,6 +8,7 @@ using UnityEngine;
 public class ElementalProjectile : AElement
 {
     [SerializeField] private float _force = 2;
+    [SerializeField] private float _secs = 2;
 
     private Vector3 _dir = Vector3.zero;
     private Rigidbody _rb = null;
@@ -31,6 +32,7 @@ public class ElementalProjectile : AElement
         _rb = GetComponent<Rigidbody>();
         _dir = direction;
         _rb.AddForce(direction * _force);
+        Destroy(gameObject, _secs);
     }
 
     private void OnDestroy()
