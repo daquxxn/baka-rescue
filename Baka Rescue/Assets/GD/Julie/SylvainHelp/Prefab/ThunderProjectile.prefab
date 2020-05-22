@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2875589534250712022}
   - component: {fileID: 2875589534250712043}
   - component: {fileID: 2875589534250712040}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2875589534737119340}
   - component: {fileID: 2875589534737119341}
   - component: {fileID: 6582598571466719851}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ThunderProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,6 +143,11 @@ MonoBehaviour:
   _element: 1
   _force: 1000
   _secs: 1
+  _elemSurfaceWater: {fileID: 4330383586789169537, guid: 061fc4a4f0a9bb2478531763f7ae3f4f,
+    type: 3}
+  _elemSurfaceFire: {fileID: 4330383586789169537, guid: 131018e9feba16843adfb44e8dee0d87,
+    type: 3}
+  _elemSurfaceThunder: {fileID: 0}
 --- !u!135 &6582598571466719851
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -165,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2875589535573957068}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
