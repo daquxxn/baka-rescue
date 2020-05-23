@@ -12,7 +12,7 @@ public class ElementalSurface : AElement
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when WATER touch FIRE surface
-                    // Eteind le feu
+                    Destroy(gameObject);
                 }
                 else if (_element == EElement.THUNDER)
                 {
