@@ -53,7 +53,7 @@ public class ElementalProjectile : AElement
         if (_element == EElement.FIRE)
         {
            Instantiate(_elemSurfaceFire, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+           Destroy(gameObject);
         }
     }
 
