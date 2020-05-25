@@ -106,5 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714861e8a2f4073459d004faeb009922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damages: 10
   _rotationSpeed: 20
   _trans: {fileID: 7665276423123659138}
+  _dir: -1
+  _clampRotation: 394
+  _firePrefab: {fileID: 8776099268470651285, guid: 7eae1a79e14f7cd4baf41cdff97c42a2,
+    type: 3}
+  _projectileContainer: {fileID: 0}
+  _iTime: 3
+  _iCounter: 0
