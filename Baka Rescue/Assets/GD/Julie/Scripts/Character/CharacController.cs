@@ -109,6 +109,16 @@ public class CharacController : MonoBehaviour
         }
     }
 
+    private void ShieldX1(bool shieldDir)
+    {
+
+    }
+
+    private void ShieldX2(bool shieldDir)
+    {
+
+    }
+
 
     private void GetInputs()
     {
@@ -117,12 +127,14 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellThunder += SpellThunder;
+            InputManager.Instance.ShieldX1 += ShieldX1;
         }
         else
         {
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
+            InputManager.Instance.ShieldX2 += ShieldX2;
         }
     }
     

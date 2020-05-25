@@ -26,6 +26,35 @@ public class InputManager : Singleton<InputManager>
             _moveX1 -= value;
         }
     }
+
+    private event Action<bool> _shieldX1 = null;
+    public event Action<bool> ShieldX1
+    {
+        add
+        {
+            _shieldX1 -= value;
+            _shieldX1 += value;
+        }
+        remove
+        {
+            _shieldX1 -= value;
+        }
+    }
+
+    private event Action<bool> _shieldX2 = null;
+    public event Action<bool> ShieldX2
+    {
+        add
+        {
+            _shieldX2 -= value;
+            _shieldX2 += value;
+        }
+        remove
+        {
+            _shieldX2 -= value;
+        }
+    }
+
     private event Action<float> _moveX2 = null;
     public event Action<float> MoveX2
     {
@@ -156,6 +185,16 @@ public class InputManager : Singleton<InputManager>
         if (_onJumpKeyTwo != null)
         {
             _onJumpKeyTwo(Input.GetButtonDown("Jump2"));
+        }
+
+        if(_shieldX1 != null)
+        {
+            _shieldX1(Input.GetButtonDown("Shield1"));
+        }
+
+        if (_shieldX2 != null)
+        {
+            _shieldX2(Input.GetButtonDown("Shield2"));
         }
 
         if(_spellWater != null && Input.GetButtonDown("SpellWater"))
