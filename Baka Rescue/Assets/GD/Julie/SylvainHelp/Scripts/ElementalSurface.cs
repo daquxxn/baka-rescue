@@ -12,29 +12,29 @@ public class ElementalSurface : AElement
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when WATER touch FIRE surface
-                    // Eteind le feu
+                    Destroy(gameObject);
                 }
                 else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when WATER touch THUNDER surface
-                    // propagation de l'elec
+                    // pass de surface l'électricité
                 }
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when WATER touch WATER surface
-                    // Bloc de glace ? 
+                    // mouillé + lgts 
                 }
                 break;
             case EElement.THUNDER:
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when THUNDER touch FIRE surface
-                    // Rien
+                    // rien
                 }
                 else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when THUNDER touch THUNDER surface
-                    //rien
+                    //stun + lgts
                 }
                 else if (_element == EElement.WATER)
                 {
@@ -46,7 +46,7 @@ public class ElementalSurface : AElement
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when FIRE touch FIRE surface
-                    // rien
+                    // mini explosion bonus apparence
                 }
                 else if (_element == EElement.THUNDER)
                 {
@@ -56,7 +56,7 @@ public class ElementalSurface : AElement
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when FIRE touch WATER surface
-                    // rien
+                    // l'éteind
                 }
                 break;
         }

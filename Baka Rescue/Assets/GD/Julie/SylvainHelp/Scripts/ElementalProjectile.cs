@@ -12,6 +12,10 @@ public class ElementalProjectile : AElement
 
     private Vector3 _dir = Vector3.zero;
     private Rigidbody _rb = null;
+
+    [SerializeField] private ElementalSurface _elemSurfaceWater;
+    [SerializeField] private ElementalSurface _elemSurfaceFire;
+    [SerializeField] private ElementalSurface _elemSurfaceThunder;
     
 
     private void Start()
@@ -39,5 +43,22 @@ public class ElementalProjectile : AElement
     {
         // IF _element == EElement.WATER
         // -> INSTANTIATE ELEMENTALSURFACE WATER
+
+        if (_element == EElement.WATER)
+        {
+           Instantiate(_elemSurfaceWater, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        if (_element == EElement.FIRE)
+        {
+           Instantiate(_elemSurfaceFire, transform.position, Quaternion.identity);
+           Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnDestroy();
     }
 }
