@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Fire
+  m_Shader: {fileID: -6465566751694194690, guid: 7ae1051feaba72c4ca4b36f8d80b1b66,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_546A9912:
+        m_Texture: {fileID: 2800000, guid: f03e0c4b8cc9ed24ba73fd4cfa0283f3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_5CF2DE63:
+        m_Texture: {fileID: 2800000, guid: c72fa26610dc5554b8186af80e280ce0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_E41766AF: 0.1
+    m_Colors:
+    - Color_7C67B479: {r: 1, g: 1, b: 1, a: 0}
