@@ -9,15 +9,19 @@ public class CharacHealth : MonoBehaviour
     private int _currentHealth;
 
     [SerializeField] private Healthbar _healthBar = null;
-
-    
+  
 
     public int CurrentHealth
     {
         get
-        { return _currentHealth; }
+        {
+            return _currentHealth;
+        }
         set
-        { _currentHealth = value; }
+        {
+            _currentHealth = value;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth); 
+        }
     }
 
     public int MaxHealth
@@ -29,20 +33,20 @@ public class CharacHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentHealth = _maxHealth;
+        CurrentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
     }
 
     
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
-        _healthBar.SetHealth(_currentHealth);
+        CurrentHealth -= damage;
+        _healthBar.SetHealth(CurrentHealth);
     }
     
     public void GetLifeBack(int heal)
     {
-        _currentHealth += heal;
-        _healthBar.SetHealth(_currentHealth);
+        CurrentHealth += heal;
+        _healthBar.SetHealth(CurrentHealth);
     }
 }

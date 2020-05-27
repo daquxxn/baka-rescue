@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca11a39fb3e7ed746a294ebc3c2da718, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,9 +91,10 @@ GameObject:
   - component: {fileID: 2666206970802405484}
   - component: {fileID: 2666206970802405475}
   - component: {fileID: 2666206970802405485}
+  - component: {fileID: 1268489052}
   m_Layer: 9
   m_Name: --Character1--
-  m_TagString: Untagged
+  m_TagString: Character2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,11 +164,32 @@ MonoBehaviour:
   _ground:
     serializedVersion: 2
     m_Bits: 256
+  _enemy:
+    serializedVersion: 2
+    m_Bits: 4096
   _isPlayerOne: 0
-  _maxHealth: 100
-  _currentHealth: 100
-  _healthBar: {fileID: 0}
-  _damageTaken: 20
+  _invulnerable: 1
+  _iTime: 5
+  _iCounter: 0
+  _characHealth: {fileID: 0}
+  _thunderPrefab: {fileID: 2875589534737119341, guid: 71e042bfe1d6ebc418b1d72d17c8d8a3,
+    type: 3}
+  _waterPrefab: {fileID: 8776099268470651285, guid: d1fbb1b5c4c741f49a72fedc7d57a128,
+    type: 3}
+  _projectileContainer: {fileID: 0}
+--- !u!114 &1268489052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2666206970802405474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff19c0a4d4a2d604faa633533d89d3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _element: 3
 --- !u!1 &2666206971036341976
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +201,6 @@ GameObject:
   - component: {fileID: 2666206971036341977}
   - component: {fileID: 2666206971036341796}
   - component: {fileID: 2666206971036341979}
-  - component: {fileID: 2666206971036341978}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -226,7 +247,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca11a39fb3e7ed746a294ebc3c2da718, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,16 +268,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2666206971036341978
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2666206971036341976}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

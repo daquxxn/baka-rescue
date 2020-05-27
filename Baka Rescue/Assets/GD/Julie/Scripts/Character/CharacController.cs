@@ -36,7 +36,27 @@ public class CharacController : MonoBehaviour
         GameLoopManager.Instance.GameLoop += GameLoop;
         PlayerManager.Instance.Charac = this;
         GetInputs();
+        _rb = GetComponent<Rigidbody>();
 
+    }
+
+    private void OnDestroy()
+    {
+        GameLoopManager.Instance.GameLoop -= GameLoop;
+        if (_isPlayerOne == true)
+        {
+            InputManager.Instance.MoveX1 -= Move;
+            InputManager.Instance.OnJumpKeyOne -= Jump;
+            InputManager.Instance.SpellThunder -= SpellThunder;
+            InputManager.Instance.ShieldX1 -= ShieldX1;
+        }
+        else
+        {
+            InputManager.Instance.MoveX2 -= Move;
+            InputManager.Instance.OnJumpKeyTwo -= Jump;
+            InputManager.Instance.SpellWater -= SpellWater;
+            InputManager.Instance.ShieldX2 -= ShieldX2;
+        }
     }
 
     void GameLoop()
@@ -87,11 +107,11 @@ public class CharacController : MonoBehaviour
 
         if(dirSpell != Vector3.zero)
         {
-            elementalProjectile.Init(dirSpell);
+            elementalProjectile.Init(dirSpell, tag);
         }
        else
         {
-            elementalProjectile.Init(transform.right);
+            elementalProjectile.Init(transform.right, tag);
         }
     }
 
@@ -101,11 +121,11 @@ public class CharacController : MonoBehaviour
 
         if (dirSpell != Vector3.zero)
         {
-            projectile.Init(dirSpell);
+            projectile.Init(dirSpell, tag);
         }
         else
         {
-            projectile.Init(transform.right);
+            projectile.Init(transform.right, tag);
         }
     }
 
@@ -163,6 +183,11 @@ public class CharacController : MonoBehaviour
                 _characHealth.GetLifeBack(collectibles.LifeHealed);
                 Destroy(other.gameObject);
             }
+        }
+
+        if(other.gameObject.layer == 13 && tag != other.tag)
+        {
+            Destroy(other.gameObject);
         }
     }
 

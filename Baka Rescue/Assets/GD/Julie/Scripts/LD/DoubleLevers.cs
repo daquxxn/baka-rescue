@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lever : AElement
+public class DoubleLevers : AElement
 {
     [SerializeField] private GameObject _wallLever = null;
 
@@ -10,8 +10,15 @@ public class Lever : AElement
     {
         switch (element)
         {
+            case EElement.WATER:
+                if (_element == EElement.NONE)
+                {
+                    _element = EElement.WATER;
+                }
+                break;
+
             case EElement.THUNDER:
-               if (_element == EElement.NONE)
+                if (_element == EElement.WATER)
                 {
                     Destroy(_wallLever);
                 }

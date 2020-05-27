@@ -13,10 +13,8 @@ public class ElementalProjectile : AElement
     private Vector3 _dir = Vector3.zero;
     private Rigidbody _rb = null;
 
-    [SerializeField] private ElementalSurface _elemSurfaceWater;
-    [SerializeField] private ElementalSurface _elemSurfaceFire;
-    [SerializeField] private ElementalSurface _elemSurfaceThunder;
-    
+    [SerializeField] private ElementalSurface _elemSurface;
+    private string _tag = null;
 
     private void Start()
     {
@@ -31,34 +29,35 @@ public class ElementalProjectile : AElement
     // Must be called by what instatiate projectile
     // Launch Projectile with AddForce
     // Can get more parameter life the projection force
-    public void Init(Vector3 direction)
+    public void Init(Vector3 direction, string tag)
     {
+        _tag = tag;
         _rb = GetComponent<Rigidbody>();
         _dir = direction;
         _rb.AddForce(direction * _force);
         Destroy(gameObject, _secs);
+
     }
 
-    private void OnDestroy()
+    private void CreateSurface()
     {
         // IF _element == EElement.WATER
         // -> INSTANTIATE ELEMENTALSURFACE WATER
-
-        if (_element == EElement.WATER)
+        
+        if(_element != EElement.THUNDER)
+           Instantiate(_elemSurface, transform.position, Quaternion.identity);
+    }
+    
+    private void OnTriggerEnter (Collider collision)
+    {
+        if(collision.gameObject.layer == 8)
         {
-           Instantiate(_elemSurfaceWater, transform.position, Quaternion.identity);
+            CreateSurface();
             Destroy(gameObject);
         }
-
-        if (_element == EElement.FIRE)
+    if(collision.gameObject.layer == 15)
         {
-           Instantiate(_elemSurfaceFire, transform.position, Quaternion.identity);
-           Destroy(gameObject);
+            Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        OnDestroy();
     }
 }

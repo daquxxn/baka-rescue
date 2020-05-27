@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 4453737967429695765}
   - component: {fileID: 3401636593429862567}
   - component: {fileID: 5550173115436842030}
-  m_Layer: 0
+  - component: {fileID: 2005219547}
+  - component: {fileID: 2005219543}
+  m_Layer: 8
   m_Name: Movable plateform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca11a39fb3e7ed746a294ebc3c2da718, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,9 +88,42 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4073278574709100641}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3164c8cc1de46a040aa3ec8ec4609420, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2005219547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073278574709100641}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.78552055, z: 1}
+  m_Center: {x: 0, y: 0.6935282, z: 0}
+--- !u!114 &2005219543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073278574709100641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f690c46f5aed8cd4eb7d0bddf360cbca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - {x: -8.5, y: 0, z: 0}
+  - {x: -20.5, y: 0, z: 0}
+  _pointNumber: 0
+  _tolerance: 0
+  _speed: 4
+  _delayTime: 2
+  _automatic: 1

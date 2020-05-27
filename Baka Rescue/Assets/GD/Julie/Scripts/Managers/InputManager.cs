@@ -7,6 +7,7 @@ using Zblah.Utils;
 public class InputManager : Singleton<InputManager>
 {
     #region Fields
+    [SerializeField] private float _deadZone = 0.25f;
     #endregion Fields
 
     #region Properties
@@ -202,6 +203,10 @@ public class InputManager : Singleton<InputManager>
             float rightAnalogH = Input.GetAxis("RightAnalogH2");
             float rightAnalogV = Input.GetAxis("RightAnalogV2");
             Vector3 dirSpell = new Vector3(rightAnalogH, -rightAnalogV, 0);
+            if(dirSpell.magnitude < _deadZone)
+            {
+                dirSpell = Vector3.zero;
+            }
             _spellWater(dirSpell);
         }
 
@@ -210,6 +215,10 @@ public class InputManager : Singleton<InputManager>
             float rightAnalogH = Input.GetAxis("RightAnalogH");
             float rightAnalogV = Input.GetAxis("RightAnalogV");
             Vector3 dirSpell = new Vector3(rightAnalogH, -rightAnalogV, 0);
+            if(dirSpell.magnitude < _deadZone)
+            {
+                dirSpell = Vector3.zero;
+            }
             _spellThunder(dirSpell);
         }
 
