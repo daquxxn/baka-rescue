@@ -10,7 +10,7 @@ public class DeathZone : MonoBehaviour
     {
         if(other.gameObject.layer == 9)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

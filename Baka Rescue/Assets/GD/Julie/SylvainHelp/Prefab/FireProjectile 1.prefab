@@ -4927,12 +4927,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _element: 2
   _force: 1000
-  _secs: 1
-  _elemSurfaceWater: {fileID: 4330383586789169537, guid: 061fc4a4f0a9bb2478531763f7ae3f4f,
+  _secs: 5
+  _elemSurface: {fileID: 4330383586789169537, guid: 131018e9feba16843adfb44e8dee0d87,
     type: 3}
-  _elemSurfaceFire: {fileID: 4330383586789169537, guid: 131018e9feba16843adfb44e8dee0d87,
-    type: 3}
-  _elemSurfaceThunder: {fileID: 0}
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0

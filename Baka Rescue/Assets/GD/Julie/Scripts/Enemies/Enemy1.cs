@@ -16,6 +16,8 @@ public class Enemy1 : BaseEnemy
     [SerializeField] private float _iTime = 1.5f;
     [SerializeField] private float _iCounter = 0;
 
+    [SerializeField] private Transform _bulletSpawner = null;
+
 
 
     private void Update()
@@ -44,9 +46,9 @@ public class Enemy1 : BaseEnemy
 
     private void FireProjectile(Vector3 dirSpell)
     {
-        ElementalProjectile elementalProjectile = Instantiate(_firePrefab, transform.position, transform.rotation, _projectileContainer);
+        ElementalProjectile elementalProjectile = Instantiate(_firePrefab, _bulletSpawner.position, transform.rotation, _projectileContainer);
         
-            elementalProjectile.Init(- elementalProjectile.transform.up);
+            elementalProjectile.Init(- elementalProjectile.transform.up, tag);
        
     }
 }

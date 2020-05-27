@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 394280735752618899}
   m_Layer: 13
   m_Name: WaterProjectile
-  m_TagString: Untagged
+  m_TagString: Character2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,13 +172,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _element: 0
-  _force: 1000
-  _secs: 1
-  _elemSurfaceWater: {fileID: 4330383586789169537, guid: 061fc4a4f0a9bb2478531763f7ae3f4f,
+  _force: 500
+  _secs: 5
+  _elemSurface: {fileID: 4330383586789169537, guid: 061fc4a4f0a9bb2478531763f7ae3f4f,
     type: 3}
-  _elemSurfaceFire: {fileID: 4330383586789169537, guid: 131018e9feba16843adfb44e8dee0d87,
-    type: 3}
-  _elemSurfaceThunder: {fileID: 0}
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0
