@@ -14,11 +14,11 @@ public class ElementalSurface : AElement
                     // do whatever you want to do when WATER touch FIRE surface
                     Destroy(gameObject);
                 }
-                else if (_element == EElement.THUNDER)
+                /*else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when WATER touch THUNDER surface
                     // pass de surface l'électricité
-                }
+                }*/
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when WATER touch WATER surface
@@ -31,11 +31,11 @@ public class ElementalSurface : AElement
                     // do whatever you want to do when THUNDER touch FIRE surface
                     // rien
                 }
-                else if (_element == EElement.THUNDER)
+               /* else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when THUNDER touch THUNDER surface
                     //stun + lgts
-                }
+                }*/
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when THUNDER touch WATER surface
@@ -48,11 +48,11 @@ public class ElementalSurface : AElement
                     // do whatever you want to do when FIRE touch FIRE surface
                     // mini explosion bonus apparence
                 }
-                else if (_element == EElement.THUNDER)
+                /*else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when FIRE touch THUNDER surface
                     //Rien
-                }
+                }*/
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when FIRE touch WATER surface

@@ -16,6 +16,7 @@ public class ElementalProjectile : AElement
     [SerializeField] private ElementalSurface _elemSurface;
     private string _tag = null;
 
+
     private void Start()
     {
        
@@ -43,9 +44,12 @@ public class ElementalProjectile : AElement
     {
         // IF _element == EElement.WATER
         // -> INSTANTIATE ELEMENTALSURFACE WATER
-        
-        if(_element != EElement.THUNDER)
-           Instantiate(_elemSurface, transform.position, Quaternion.identity);
+
+        if (_element != EElement.THUNDER)
+        {
+            Instantiate(_elemSurface, transform.position, Quaternion.identity);
+            Destroy(gameObject, _secs);
+        }
     }
     
     private void OnTriggerEnter (Collider collision)
