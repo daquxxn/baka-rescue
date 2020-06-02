@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class ElementalCharacter : AElement
 {
+    [SerializeField] CharacController _characController = null;
+    [SerializeField] private float _iTime = 1.5f;
+    [SerializeField] private float _iCounter = 0;
+
+    [SerializeField] private GameObject _waterSphere = null;
+
+    /*private void Update()
+    {
+        if (_characController.CanMove == false)
+        {
+            _iCounter += Time.deltaTime;
+
+            if (_iCounter >= _iTime)
+            {
+                _characController.CanMove = true;
+            }
+        }
+    }*/
 
     public override void ElementalReaction(EElement element)
     {
@@ -28,6 +46,7 @@ public class ElementalCharacter : AElement
                 else if (_element == EElement.NONE)
                 {
                    _element = EElement.WATER;
+                    _waterSphere.SetActive(true);
                 }
                 break;
             case EElement.THUNDER:
@@ -48,7 +67,9 @@ public class ElementalCharacter : AElement
                 }
                 else if (_element == EElement.NONE)
                 {
-                   _element = EElement.THUNDER;
+                    _element = EElement.THUNDER;
+                    _characController.CanMove = false;
+                    
                 }
                 break;
             case EElement.FIRE:
@@ -78,16 +99,16 @@ public class ElementalCharacter : AElement
 
     private void OnTriggerEnter(Collider collider)
     {
+        
         // Check if other is AElement
         AElement other = collider.GetComponent<AElement>();
         if (other != null)
         {
-            // React with other's element
-            ElementalReaction(other.Element);
-
-            // Destroy other if it's a Projectile
-            if (other is ElementalProjectile && tag != gameObject.tag)
-                Destroy(other.gameObject);
+            if (other.tag != gameObject.tag)
+            {
+                // React with other's element
+                ElementalReaction(other.Element);            
+            }
         }
     }
 }

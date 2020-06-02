@@ -13,5 +13,12 @@ public class BaseEnemy : MonoBehaviour
             return _damages;
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 13 && tag != other.tag)
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

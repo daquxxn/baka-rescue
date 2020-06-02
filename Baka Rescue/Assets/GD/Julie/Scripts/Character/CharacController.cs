@@ -29,6 +29,16 @@ public class CharacController : MonoBehaviour
 
     [SerializeField] private Transform _projectileContainer = null;
 
+    private bool _canMove = true;
+
+    public bool CanMove
+    {
+        get
+        { return _canMove; }
+        set
+        { _canMove = value; }
+    }
+
 
 
     void Start()
@@ -37,6 +47,7 @@ public class CharacController : MonoBehaviour
         PlayerManager.Instance.Charac = this;
         GetInputs();
         _rb = GetComponent<Rigidbody>();
+        _canMove = true;
 
     }
 
@@ -93,7 +104,7 @@ public class CharacController : MonoBehaviour
         Vector3 newVelocity = _rb.velocity;
         Vector3 newDirection = new Vector3(horizontalDir, 0, 0);
 
-        if (horizontalDir != 0)
+        if (horizontalDir != 0 & _canMove)
         {
             newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
             _charaTrans.transform.right = newDirection;

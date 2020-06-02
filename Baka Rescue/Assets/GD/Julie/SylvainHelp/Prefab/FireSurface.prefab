@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _element: 2
+  _elemSurface: {fileID: 4330383586789169537, guid: 61c682b2c30530f4eb68bda618810cd7,
+    type: 3}
 --- !u!65 &993926130
 BoxCollider:
   m_ObjectHideFlags: 0

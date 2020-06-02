@@ -37,4 +37,5 @@ public class Enemy2 : BaseEnemy
 
         return temp;
     }
+    
 }
