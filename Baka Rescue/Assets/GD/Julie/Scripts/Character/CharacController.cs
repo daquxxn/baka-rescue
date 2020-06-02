@@ -173,7 +173,7 @@ public class CharacController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 12)
+        if (collision.gameObject.layer == 12 )
         {
             BaseEnemy baseEnemy = collision.gameObject.GetComponent<BaseEnemy>();
             if (baseEnemy != null && _invulnerable == false)

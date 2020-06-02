@@ -15,6 +15,7 @@ public class ElementalProjectile : AElement
 
     [SerializeField] private ElementalSurface _elemSurface;
     private string _tag = null;
+    
 
 
     private void Start()
@@ -63,5 +64,6 @@ public class ElementalProjectile : AElement
         {
             Destroy(gameObject);
         }
+    
     }
 }
