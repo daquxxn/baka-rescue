@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3252361637748431195}
   - component: {fileID: 3252361637748431199}
   - component: {fileID: 3252361637748431198}
+  - component: {fileID: 1859317520}
   m_Layer: 12
   m_Name: Bettle
   m_TagString: Untagged
@@ -131,6 +132,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _maxDistanceFromWall: 1
+--- !u!114 &1859317520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252361637748431193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fedef8e96658948b61b205429424dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _element: 3
+  _waterSphere: {fileID: 8140074099739320952}
 --- !u!1 &3252361639145094872
 GameObject:
   m_ObjectHideFlags: 0
