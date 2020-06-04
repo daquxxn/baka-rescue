@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElementalSurface : AElement
 {
     [SerializeField] private ElementalSurface _elemSurface;
+ 
 
     public override void ElementalReaction(EElement element)
     {
@@ -42,7 +43,7 @@ public class ElementalSurface : AElement
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when THUNDER touch WATER surface
-                    Instantiate(_elemSurface, transform.position, Quaternion.identity);
+                    _element = EElement.THUNDER;
                 }
                 break;
             case EElement.FIRE:

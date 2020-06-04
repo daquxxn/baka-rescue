@@ -32,16 +32,21 @@ public class ElementalCharacter : AElement
                 {
                     // do whatever you want to do when WATER touch FIRE surface
                     _element = EElement.WATER;
+                    _waterSphere.SetActive(true);
+                    // devient immune au feu
                 }
                 else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when WATER touch THUNDER surface
                     _element = EElement.WATER;
+                    _waterSphere.SetActive(true);
+                    // devient immune au feu
                 }
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when WATER touch WATER surface
                     _element = EElement.WATER;
+                    _waterSphere.SetActive(true);
                 }
                 else if (_element == EElement.NONE)
                 {
@@ -68,7 +73,7 @@ public class ElementalCharacter : AElement
                 else if (_element == EElement.NONE)
                 {
                     _element = EElement.THUNDER;
-                    _characController.CanMove = false;
+                    _characController.Stun();
                     
                 }
                 break;
@@ -86,7 +91,7 @@ public class ElementalCharacter : AElement
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when FIRE touch WATER surface
-                    _element = EElement.FIRE;
+                    _element = EElement.NONE;
                 }
                 else if (_element == EElement.NONE)
                 {
@@ -104,10 +109,19 @@ public class ElementalCharacter : AElement
         AElement other = collider.GetComponent<AElement>();
         if (other != null)
         {
-            if (other.tag != gameObject.tag)
+            if (other is ElementalProjectile)
+            {
+                ElementalProjectile elemProj = other.GetComponent<ElementalProjectile>();
+                if (elemProj.InstanceID != gameObject.GetInstanceID())
+                {
+                    // React with other's element
+                    ElementalReaction(other.Element);
+                }
+            }
+            else
             {
                 // React with other's element
-                ElementalReaction(other.Element);            
+                ElementalReaction(other.Element);
             }
         }
     }

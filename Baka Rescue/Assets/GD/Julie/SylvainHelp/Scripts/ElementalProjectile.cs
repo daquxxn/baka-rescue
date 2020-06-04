@@ -14,12 +14,18 @@ public class ElementalProjectile : AElement
     private Rigidbody _rb = null;
 
     [SerializeField] private ElementalSurface _elemSurface;
-    private string _tag = null;
+    private int _instanceID = 0;
 
 
     [SerializeField] protected int _damages = 1;
 
-
+    public int InstanceID
+    {
+        get
+        {
+            return _instanceID;
+        }
+    }
 
     private void Start()
     {
@@ -34,9 +40,9 @@ public class ElementalProjectile : AElement
     // Must be called by what instatiate projectile
     // Launch Projectile with AddForce
     // Can get more parameter life the projection force
-    public void Init(Vector3 direction, string tag)
+    public void Init(Vector3 direction, int instanceID)
     {
-        _tag = tag;
+         _instanceID = instanceID;
         _rb = GetComponent<Rigidbody>();
         _dir = direction;
         _rb.AddForce(direction * _force);
@@ -66,7 +72,7 @@ public class ElementalProjectile : AElement
             CreateSurface();
             Destroy(gameObject);
         }
-    if(collision.gameObject.layer == 15)
+    if(collision.gameObject.layer == 15 && _element != EElement.WATER)
         {
             Destroy(gameObject);
         }

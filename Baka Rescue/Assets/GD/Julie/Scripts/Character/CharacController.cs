@@ -29,6 +29,11 @@ public class CharacController : MonoBehaviour
 
     [SerializeField] private Transform _projectileContainer = null;
 
+    private float _stunTimeStamp = 0f;
+    [SerializeField] private float _stunDuration = 2f;
+
+    private bool _isStun = false;
+
     private bool _canMove = true;
 
     public bool CanMove
@@ -39,7 +44,38 @@ public class CharacController : MonoBehaviour
         { _canMove = value; }
     }
 
+    public void Stun()
+    {
+        if (_isPlayerOne == true)
+        {
+            InputManager.Instance.MoveX1 -= Move;
+            InputManager.Instance.OnJumpKeyOne -= Jump;
+            InputManager.Instance.SpellThunder -= SpellThunder;
+        }
+        else
+        {
+            InputManager.Instance.MoveX2 -= Move;
+            InputManager.Instance.OnJumpKeyTwo -= Jump;
+            InputManager.Instance.SpellWater -= SpellWater;
+        }
+        _isStun = true;
+    }
 
+    private void UnStun()
+    {
+        if (_isPlayerOne == true)
+        {
+            InputManager.Instance.MoveX1 += Move;
+            InputManager.Instance.OnJumpKeyOne += Jump;
+            InputManager.Instance.SpellThunder += SpellThunder;
+        }
+        else
+        {
+            InputManager.Instance.MoveX2 += Move;
+            InputManager.Instance.OnJumpKeyTwo += Jump;
+            InputManager.Instance.SpellWater += SpellWater;
+        }
+    }
 
     void Start()
     {
@@ -82,6 +118,18 @@ public class CharacController : MonoBehaviour
                 _iCounter = 0;
             }
         }
+
+        if(_isStun)
+        {
+            _stunTimeStamp += Time.deltaTime;
+
+            if(_stunTimeStamp >= _stunDuration)
+            {
+                _isStun = false;
+                _stunTimeStamp = 0;
+                UnStun();
+            }
+        }
     }
 
     private void Jump(bool jumpNow)
@@ -118,11 +166,11 @@ public class CharacController : MonoBehaviour
 
         if(dirSpell != Vector3.zero)
         {
-            elementalProjectile.Init(dirSpell, tag);
+            elementalProjectile.Init(dirSpell, gameObject.GetInstanceID());
         }
        else
         {
-            elementalProjectile.Init(transform.right, tag);
+            elementalProjectile.Init(transform.right, gameObject.GetInstanceID());
         }
     }
 
@@ -132,11 +180,11 @@ public class CharacController : MonoBehaviour
 
         if (dirSpell != Vector3.zero)
         {
-            projectile.Init(dirSpell, tag);
+            projectile.Init(dirSpell, gameObject.GetInstanceID());
         }
         else
         {
-            projectile.Init(transform.right, tag);
+            projectile.Init(transform.right, gameObject.GetInstanceID());
         }
     }
 
@@ -195,8 +243,9 @@ public class CharacController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+        ElementalProjectile elemProj = other.GetComponent<ElementalProjectile>();
 
-        if(other.gameObject.layer == 13 && tag != other.tag)
+        if(elemProj != null && elemProj.InstanceID != gameObject.GetInstanceID())
         {
             Destroy(other.gameObject);
         }

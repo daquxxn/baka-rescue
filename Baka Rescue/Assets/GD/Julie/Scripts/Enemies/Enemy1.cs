@@ -48,7 +48,7 @@ public class Enemy1 : BaseEnemy
     {
         ElementalProjectile elementalProjectile = Instantiate(_firePrefab, _bulletSpawner.position, transform.rotation, _projectileContainer);
         
-            elementalProjectile.Init(- elementalProjectile.transform.up, tag);
+            elementalProjectile.Init(- elementalProjectile.transform.up, gameObject.GetInstanceID());
 
     }
     

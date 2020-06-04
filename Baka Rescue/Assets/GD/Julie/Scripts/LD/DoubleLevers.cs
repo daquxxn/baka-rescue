@@ -2,43 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleLevers : AElement
+public class DoubleLevers : MonoBehaviour
 {
     [SerializeField] private GameObject _wallLever = null;
+    [SerializeField] private ChildLever _childLever1 = null;
+    [SerializeField] private ChildLever _childLever2 = null;
 
-
-    public override void ElementalReaction(EElement element)
+    private void Update()
     {
-        switch (element)
+        if(_childLever1.IsElectrified == true && _childLever2.IsElectrified == true)
         {
-            case EElement.WATER:
-                if (_element == EElement.NONE)
-                {
-                    _element = EElement.WATER;
-                }
-                break;
-
-            case EElement.THUNDER:
-                if (_element == EElement.WATER)
-                {
-                    Destroy(_wallLever);
-                }
-                break;
-        }
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        // Check if other is AElement
-        AElement other = collider.GetComponent<AElement>();
-        if (other != null)
-        {
-            // React with other's element
-            ElementalReaction(other.Element);
-
-            // Destroy other if it's a Projectile
-            if (other is ElementalProjectile)
-                Destroy(other.gameObject);
+            Destroy(_wallLever);
         }
     }
 }

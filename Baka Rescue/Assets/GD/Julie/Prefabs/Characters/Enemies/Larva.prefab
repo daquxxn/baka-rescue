@@ -138,11 +138,11 @@ GameObject:
   - component: {fileID: 1040482851}
   m_Layer: 12
   m_Name: Larva
-  m_TagString: Untagged
+  m_TagString: ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7665276423123659138
 Transform:
   m_ObjectHideFlags: 0
