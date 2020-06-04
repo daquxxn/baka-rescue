@@ -5,10 +5,6 @@ using UnityEngine;
 public class DoubleLevers : AElement
 {
     [SerializeField] private GameObject _wallLever = null;
-    [SerializeField] private GameObject _waterSphere1 = null;
-    [SerializeField] private GameObject _waterSphere2 = null;
-    [SerializeField] private GameObject _lever1 = null;
-    [SerializeField] private GameObject _lever2 = null;
 
 
     public override void ElementalReaction(EElement element)

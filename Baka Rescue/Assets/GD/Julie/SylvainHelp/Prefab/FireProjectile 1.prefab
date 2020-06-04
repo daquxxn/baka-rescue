@@ -4930,6 +4930,7 @@ MonoBehaviour:
   _secs: 5
   _elemSurface: {fileID: 4330383586789169537, guid: 131018e9feba16843adfb44e8dee0d87,
     type: 3}
+  _damages: 1
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0

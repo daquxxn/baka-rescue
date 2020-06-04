@@ -31,17 +31,17 @@ public class ElementalCharacter : AElement
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when WATER touch FIRE surface
-                  // _element = EElement.NONE;
+                    _element = EElement.WATER;
                 }
                 else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when WATER touch THUNDER surface
-                    // pass de surface l'électricité
+                    _element = EElement.WATER;
                 }
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when WATER touch WATER surface
-                    // mouillé + lgts 
+                    _element = EElement.WATER;
                 }
                 else if (_element == EElement.NONE)
                 {
@@ -53,17 +53,17 @@ public class ElementalCharacter : AElement
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when THUNDER touch FIRE surface
-                    // rien
+                    _element = EElement.THUNDER;
                 }
                 else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when THUNDER touch THUNDER surface
-                    //stun + lgts
+                    _element = EElement.THUNDER;
                 }
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when THUNDER touch WATER surface
-                    //propagation de l'elec
+                    _element = EElement.THUNDER;
                 }
                 else if (_element == EElement.NONE)
                 {
@@ -76,21 +76,21 @@ public class ElementalCharacter : AElement
                 if (_element == EElement.FIRE)
                 {
                     // do whatever you want to do when FIRE touch FIRE surface
-                    // mini explosion bonus apparence
+                    _element = EElement.FIRE;
                 }
                 else if (_element == EElement.THUNDER)
                 {
                     // do whatever you want to do when FIRE touch THUNDER surface
-                    //Rien
+                    _element = EElement.FIRE;
                 }
                 else if (_element == EElement.WATER)
                 {
                     // do whatever you want to do when FIRE touch WATER surface
-                    // l'éteind
+                    _element = EElement.FIRE;
                 }
                 else if (_element == EElement.NONE)
                 {
-
+                    _element = EElement.FIRE;
                 }
                 break;
         }

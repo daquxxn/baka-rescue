@@ -168,12 +168,12 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.ShieldX2 += ShieldX2;
         }
     }
-    
-   
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 12 )
+        if (collision.gameObject.layer == 12)
         {
             BaseEnemy baseEnemy = collision.gameObject.GetComponent<BaseEnemy>();
             if (baseEnemy != null && _invulnerable == false)

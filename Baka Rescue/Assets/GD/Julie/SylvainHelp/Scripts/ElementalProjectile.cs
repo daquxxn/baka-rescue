@@ -15,7 +15,10 @@ public class ElementalProjectile : AElement
 
     [SerializeField] private ElementalSurface _elemSurface;
     private string _tag = null;
-    
+
+
+    [SerializeField] protected int _damages = 1;
+
 
 
     private void Start()
@@ -52,7 +55,10 @@ public class ElementalProjectile : AElement
             Destroy(gameObject, _secs);
         }
     }
+
+
     
+
     private void OnTriggerEnter (Collider collision)
     {
         if(collision.gameObject.layer == 8)
