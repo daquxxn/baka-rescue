@@ -4544,11 +4544,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectible
       objectReference: {fileID: 0}
-    - target: {fileID: 1483423634338296267, guid: 72ada4719f7bb0648a14f890641f56bc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1483423634338296266, guid: 72ada4719f7bb0648a14f890641f56bc,
         type: 3}
       propertyPath: m_LocalPosition.x
