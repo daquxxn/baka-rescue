@@ -76,6 +76,10 @@ public class ElementalProjectile : AElement
         {
             Destroy(gameObject);
         }
+    if(collision.gameObject.layer == 16)
+        {
+            Destroy(gameObject);
+        }
     
     }
 }
