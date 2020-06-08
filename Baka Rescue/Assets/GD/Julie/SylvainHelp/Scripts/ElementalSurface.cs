@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElementalSurface : AElement
 {
     [SerializeField] private ElementalSurface _elemSurface;
+    [SerializeField] private GameObject _elecFX;
  
 
     public override void ElementalReaction(EElement element)
@@ -44,6 +45,8 @@ public class ElementalSurface : AElement
                 {
                     // do whatever you want to do when THUNDER touch WATER surface
                     _element = EElement.THUNDER;
+                    _elecFX.SetActive(true);
+
                 }
                 break;
             case EElement.FIRE:
