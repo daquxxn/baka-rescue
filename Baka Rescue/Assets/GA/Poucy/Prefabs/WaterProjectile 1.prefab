@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a700b0538920f664eb0c4071bb7cbb4e, type: 2}
+  - {fileID: 2100000, guid: 71c3fca0280d795419a3a074719945a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,6 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _element: 0
   _force: 1000
+  _secs: 2
+  _elemSurface: {fileID: 0}
+  _damages: 1
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -254,6 +257,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: SizeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119191, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5f6e84121ccb69459ed301c87301526, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf558cac3b5c1947988030f164a4a0c, type: 3}
 --- !u!4 &2859227360294798035 stripped
