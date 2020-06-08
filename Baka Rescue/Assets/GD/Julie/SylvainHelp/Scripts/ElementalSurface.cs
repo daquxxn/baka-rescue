@@ -6,7 +6,14 @@ public class ElementalSurface : AElement
 {
     [SerializeField] private ElementalSurface _elemSurface;
     [SerializeField] private GameObject _elecFX;
- 
+
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
 
     public override void ElementalReaction(EElement element)
     {
@@ -38,6 +45,7 @@ public class ElementalSurface : AElement
                 }
                else if (_element == EElement.THUNDER)
                 {
+
                     // do whatever you want to do when THUNDER touch THUNDER surface
                     //stun + lgts
                 }
@@ -46,6 +54,7 @@ public class ElementalSurface : AElement
                     // do whatever you want to do when THUNDER touch WATER surface
                     _element = EElement.THUNDER;
                     _elecFX.SetActive(true);
+                    _audioSource.Play();
 
                 }
                 break;
@@ -65,6 +74,7 @@ public class ElementalSurface : AElement
                     // do whatever you want to do when FIRE touch WATER surface
                     // l'éteind
                 }
+                
                 break;
         }
     }
