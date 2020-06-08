@@ -8375,7 +8375,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23070
+  m_Name: pb_Mesh20452
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16039,7 +16039,7 @@ PrefabInstance:
     - target: {fileID: 645990013921833124, guid: 60bf791b79f974945a97883dbee2fd49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 645990013921833124, guid: 60bf791b79f974945a97883dbee2fd49,
         type: 3}
@@ -16101,6 +16101,14 @@ PrefabInstance:
     - target: {fileID: 2005219543, guid: 60bf791b79f974945a97883dbee2fd49, type: 3}
       propertyPath: _points.Array.data[1].z
       value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005219543, guid: 60bf791b79f974945a97883dbee2fd49, type: 3}
+      propertyPath: _points.Array.data[0].y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005219543, guid: 60bf791b79f974945a97883dbee2fd49, type: 3}
+      propertyPath: _points.Array.data[1].y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60bf791b79f974945a97883dbee2fd49, type: 3}
@@ -18050,7 +18058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016167862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 225.1, y: 5.5, z: -2}
+  m_LocalPosition: {x: 727.1, y: 5.5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1249891860}
@@ -18110,7 +18118,7 @@ PrefabInstance:
     - target: {fileID: 7482184388240331980, guid: b5ede1c53cd82cd47bf4fabad001d15a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7482184388240331980, guid: b5ede1c53cd82cd47bf4fabad001d15a,
         type: 3}
@@ -18186,6 +18194,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _points.Array.data[0].x
       value: 317
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153324396663704061, guid: b5ede1c53cd82cd47bf4fabad001d15a,
+        type: 3}
+      propertyPath: _points.Array.data[0].y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153324396663704061, guid: b5ede1c53cd82cd47bf4fabad001d15a,
+        type: 3}
+      propertyPath: _points.Array.data[1].y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ede1c53cd82cd47bf4fabad001d15a, type: 3}
