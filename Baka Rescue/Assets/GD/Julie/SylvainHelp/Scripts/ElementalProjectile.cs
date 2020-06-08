@@ -15,6 +15,7 @@ public class ElementalProjectile : AElement
 
     [SerializeField] private ElementalSurface _elemSurface;
     private int _instanceID = 0;
+    
 
 
     [SerializeField] protected int _damages = 1;
@@ -29,7 +30,6 @@ public class ElementalProjectile : AElement
 
     private void Start()
     {
-       
     }
 
     public override void ElementalReaction(EElement element)
