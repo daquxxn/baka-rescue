@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 4ded392ea95f1ff4a9c77768539e7d0d,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2087,7 +2087,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22766
+  m_Name: pb_Mesh59336
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2519,7 +2519,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23580
+  m_Name: pb_Mesh60188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3588,7 +3588,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23490
+  m_Name: pb_Mesh60098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4338,7 +4338,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22988
+  m_Name: pb_Mesh59568
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5469,7 +5469,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23530
+  m_Name: pb_Mesh60138
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18162,6 +18162,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 982633522015733459, guid: b5ede1c53cd82cd47bf4fabad001d15a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8153324396663704061, guid: b5ede1c53cd82cd47bf4fabad001d15a,
         type: 3}
       propertyPath: _points.Array.data[1].x
@@ -18181,11 +18186,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _points.Array.data[0].x
       value: 317
-      objectReference: {fileID: 0}
-    - target: {fileID: 982633522015733459, guid: b5ede1c53cd82cd47bf4fabad001d15a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ede1c53cd82cd47bf4fabad001d15a, type: 3}
@@ -32454,7 +32454,7 @@ GameObject:
   - component: {fileID: 1794768451}
   - component: {fileID: 1794768453}
   - component: {fileID: 1794768452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chemin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32482,7 +32482,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794768450}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3164c8cc1de46a040aa3ec8ec4609420, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 0a1bc6eaeff830e47ad919c12b35adaf, type: 2}
   m_EnableTreeColliders: 1
@@ -32580,7 +32580,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23184
+  m_Name: pb_Mesh59774
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33217,7 +33217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1907016358
 MeshCollider:
   m_ObjectHideFlags: 0
