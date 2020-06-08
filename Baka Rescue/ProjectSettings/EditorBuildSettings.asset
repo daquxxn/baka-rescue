@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/GD/Julie/Scenes/Start.unity
     guid: 3a588dc697c231743846b3305ef61ea5
   - enabled: 1
-    path: Assets/GD/Julie/Scenes/JulieSceneLabs.unity
-    guid: 007df7a9bc3ffec4a8b6af6a28bcb092
+    path: Assets/FINAL/Scene_Finale.unity
+    guid: c425ceadc792e354ea717e6075cc13b0
   m_configObjects: {}

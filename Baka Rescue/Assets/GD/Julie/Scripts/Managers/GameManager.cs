@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     protected override void Start()
     {
         base.Start();
-      // LoadScene("JulieSceneLabs");
+        LoadScene("Scene_Finale");
     }
 
     public void LoadScene(string sceneName)
