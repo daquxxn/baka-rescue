@@ -5,35 +5,45 @@ using UnityEngine;
 
 public class CharacController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private int _speedCharac = 10;
-    [SerializeField] private Transform _charaTrans = null;
-    [SerializeField] private Rigidbody _rb = null;
     [SerializeField] private int _jumpForce = 0;
     private bool _isGrounded = false;
     [SerializeField] private float _rayDistance = 0;
+
+    [Header("rb & trans")]
+    [SerializeField] private Transform _charaTrans = null;
+    [SerializeField] private Rigidbody _rb = null;
+   
+    [Header("Layers")]
     [SerializeField] private LayerMask _ground = 0;
     [SerializeField] private LayerMask _enemy = 0;
-    [Header("lol")]
-
+   
+    [Header("which player?")]
     [SerializeField] private bool _isPlayerOne = true;
     
-    
+    [Header("invunerability")]
     [SerializeField] private bool _invulnerable = true;
     [SerializeField] private float _iTime = 1.5f;
     [SerializeField] private float _iCounter = 0;
 
+    [Header("other scirpts")]
     [SerializeField] private CharacHealth _characHealth = null;
 
+    [Header("element prefabs")]
     [SerializeField] private ElementalProjectile _thunderPrefab = null;
     [SerializeField] private ElementalProjectile _waterPrefab = null;
 
+    [Header("container")]
     [SerializeField] private Transform _projectileContainer = null;
 
+    [Header("stun")]
     private float _stunTimeStamp = 0f;
     [SerializeField] private float _stunDuration = 2f;
 
-    private bool _isStun = false;
+    private AudioSource _walkAudio;
 
+    private bool _isStun = false;
     private bool _canMove = true;
 
     public bool CanMove
@@ -84,7 +94,7 @@ public class CharacController : MonoBehaviour
         GetInputs();
         _rb = GetComponent<Rigidbody>();
         _canMove = true;
-
+        _walkAudio = GetComponent<AudioSource>();
     }
 
     private void OnDestroy()
@@ -157,6 +167,11 @@ public class CharacController : MonoBehaviour
             newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
             _charaTrans.transform.right = newDirection;
             _rb.velocity = newVelocity;
+        }
+
+        if(horizontalDir != 0 & _canMove & _isGrounded)
+        {
+         //   _walkAudio.Play();
         }
     }
 

@@ -13,6 +13,6 @@ public class MovablePlateformTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        other.transform.parent = null;
+            other.transform.parent = null;
     }
 }

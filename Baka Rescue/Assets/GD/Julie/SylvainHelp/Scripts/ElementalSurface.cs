@@ -7,11 +7,11 @@ public class ElementalSurface : AElement
     [SerializeField] private ElementalSurface _elemSurface;
     [SerializeField] private GameObject _elecFX;
 
-    private AudioSource _audioSource;
-
+    private AudioSource _elecAudio;
+    
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _elecAudio = GetComponent<AudioSource>(); 
     }
 
 
@@ -53,8 +53,9 @@ public class ElementalSurface : AElement
                 {
                     // do whatever you want to do when THUNDER touch WATER surface
                     _element = EElement.THUNDER;
+                    _elecAudio.Play();
                     _elecFX.SetActive(true);
-                    _audioSource.Play();
+                    
 
                 }
                 break;
