@@ -30,6 +30,7 @@ public class ElementalProjectile : AElement
 
     private void Start()
     {
+       
     }
 
     public override void ElementalReaction(EElement element)
