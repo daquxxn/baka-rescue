@@ -81,12 +81,14 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellThunder += SpellThunder;
+            _stunFX.SetActive(false);
         }
         else
         {
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
+            _stunFX.SetActive(false);
         }
     }
 
