@@ -23,7 +23,7 @@ public class CharacController : MonoBehaviour
     [SerializeField] private bool _isPlayerOne = true;
     
     [Header("invunerability")]
-    [SerializeField] private bool _invulnerable = true;
+    [SerializeField] private bool _invulnerable = false;
     [SerializeField] private float _iTime = 1.5f;
     [SerializeField] private float _iCounter = 0;
 
@@ -103,6 +103,7 @@ public class CharacController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _canMove = true;
         _walkAudio = GetComponent<AudioSource>();
+        _invulnerable = false;
     }
 
     private void OnDestroy()
@@ -255,6 +256,8 @@ public class CharacController : MonoBehaviour
         }
     }
 
+   
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Collectible")
@@ -271,6 +274,17 @@ public class CharacController : MonoBehaviour
         if(elemProj != null && elemProj.InstanceID != gameObject.GetInstanceID())
         {
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.layer == 17)
+        {
+            DamageFireSurface dmgFire = other.GetComponent<DamageFireSurface>();
+            
+            if (dmgFire != null && _invulnerable == false)
+            {
+                _characHealth.TakeDamage(dmgFire.Damages);
+                _invulnerable = true;
+            }
         }
     }
 

@@ -16,9 +16,7 @@ public class ElementalProjectile : AElement
     [SerializeField] private ElementalSurface _elemSurface;
     private int _instanceID = 0;
     
-
-
-    [SerializeField] protected int _damages = 1;
+    
 
     public int InstanceID
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4330383585835297689}
   - component: {fileID: 4330383585835297694}
   - component: {fileID: 4330383585835297695}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4330383586346297039}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,8 +121,8 @@ GameObject:
   - component: {fileID: 4330383586789169536}
   - component: {fileID: 4330383586789169537}
   - component: {fileID: 993926130}
-  - component: {fileID: -7872813181692076121}
-  m_Layer: 14
+  - component: {fileID: 4769702822211852592}
+  m_Layer: 17
   m_Name: FireSurface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,102 +173,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5596222, y: 7.8962994, z: 1}
   m_Center: {x: 0.01162523, y: 3.4481497, z: 0}
---- !u!82 &-7872813181692076121
-AudioSource:
+--- !u!114 &4769702822211852592
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4330383586789169538}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d84f1b6a46214947864ae157e3e88e4, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 0.59
-  MinDistance: 0.3
-  MaxDistance: 0.4
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.097222224
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.599
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ea1dd2a5fbf004ea65e3b5e0971011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damages: 10
 --- !u!1 &8603235757106311048
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +197,7 @@ GameObject:
   - component: {fileID: 3668568434276136839}
   - component: {fileID: 478162571419715552}
   - component: {fileID: 4517442004204713103}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5029,6 +4946,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4330383586789169536}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 373001eec8f4cc041b945daff6dee132,
+        type: 3}
+      propertyPath: m_Name
+      value: SM_Flaque
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 373001eec8f4cc041b945daff6dee132,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: -5102530947620581811, guid: 373001eec8f4cc041b945daff6dee132,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 373001eec8f4cc041b945daff6dee132,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5083,11 +5015,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 373001eec8f4cc041b945daff6dee132,
-        type: 3}
-      propertyPath: m_Name
-      value: SM_Flaque
       objectReference: {fileID: 0}
     - target: {fileID: -3701727588016112575, guid: 373001eec8f4cc041b945daff6dee132,
         type: 3}
