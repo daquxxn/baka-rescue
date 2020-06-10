@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 8460072787963316912}
   - component: {fileID: 5194991722310809665}
   - component: {fileID: 5731344529794794800}
-  - component: {fileID: 6184933751734393521}
   m_Layer: 9
   m_Name: SphereWater
   m_TagString: Untagged
@@ -110,19 +109,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &6184933751734393521
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146858657354190101}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1383823889755484181
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +218,6 @@ GameObject:
   - component: {fileID: 4067121841421496237}
   - component: {fileID: 6354748394304573484}
   - component: {fileID: 6147275406895123242}
-  - component: {fileID: 7519053364926969189}
   m_Layer: 0
   m_Name: DoubleThunder (1)
   m_TagString: Untagged
@@ -301,19 +286,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7519053364926969189
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143074108252313435}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2282854005528738789
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +498,7 @@ MonoBehaviour:
   _projectileContainer: {fileID: 0}
   _stunDuration: 2
   _stunFX: {fileID: 0}
+  _thunderSphere: {fileID: 0}
 --- !u!114 &1268489052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,7 +609,6 @@ GameObject:
   - component: {fileID: 8555607164709362316}
   - component: {fileID: 8314044715557476541}
   - component: {fileID: 6336161056615808290}
-  - component: {fileID: 7204097220258624818}
   m_Layer: 0
   m_Name: DoubleThunder (2)
   m_TagString: Untagged
@@ -704,19 +676,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7204097220258624818
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3916143979277258249}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3965980808463217636
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +687,6 @@ GameObject:
   - component: {fileID: 5485386604016807291}
   - component: {fileID: 5521123757614652138}
   - component: {fileID: 7055739009497173004}
-  - component: {fileID: 3715994523160449478}
   m_Layer: 0
   m_Name: SphereThunder
   m_TagString: Untagged
@@ -796,19 +754,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3715994523160449478
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3965980808463217636}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4367566501324383218
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +765,6 @@ GameObject:
   - component: {fileID: 6234847285728061604}
   - component: {fileID: 5138640062937902210}
   - component: {fileID: 4602843336428191472}
-  - component: {fileID: 8064681799451399453}
   m_Layer: 9
   m_Name: SphereFire
   m_TagString: Untagged
@@ -888,19 +832,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8064681799451399453
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4367566501324383218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6555162554237031118
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +843,6 @@ GameObject:
   - component: {fileID: 8299887180022976161}
   - component: {fileID: 9159454549673094573}
   - component: {fileID: 6540982282917823172}
-  - component: {fileID: 1706723190770195502}
   m_Layer: 9
   m_Name: DoubleSphereWater
   m_TagString: Untagged
@@ -981,19 +911,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1706723190770195502
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6555162554237031118}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6921920517513413166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +922,6 @@ GameObject:
   - component: {fileID: 386951430835642607}
   - component: {fileID: 2885324932807540192}
   - component: {fileID: 3561840562608382724}
-  - component: {fileID: 3851491312849021058}
   m_Layer: 9
   m_Name: 'DoubleSphere '
   m_TagString: Untagged
@@ -1073,19 +989,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3851491312849021058
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6921920517513413166}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &595678302736645594
 PrefabInstance:
   m_ObjectHideFlags: 0
