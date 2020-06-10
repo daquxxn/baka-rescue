@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8776099266944580142}
   - component: {fileID: 8776099266944580115}
   - component: {fileID: 8776099266944580112}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71c3fca0280d795419a3a074719945a2, type: 2}
+  - {fileID: 2100000, guid: 3bb03b0ec25e4ce41855738beccfa3b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8776099267629766708}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,9 +122,9 @@ GameObject:
   - component: {fileID: 8776099268470651284}
   - component: {fileID: 8776099268470651285}
   - component: {fileID: 394280735752618899}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WaterProjectile 1
-  m_TagString: Untagged
+  m_TagString: Character1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,6 +202,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fontaine
       objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119189, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4018567857739119190, guid: 2cf558cac3b5c1947988030f164a4a0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -262,11 +267,71 @@ PrefabInstance:
       propertyPath: SizeModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.89294696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.9903989
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 65342
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018567857739119184, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4018567857739119191, guid: 2cf558cac3b5c1947988030f164a4a0c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f5f6e84121ccb69459ed301c87301526, type: 2}
+    - target: {fileID: 4018567857739119191, guid: 2cf558cac3b5c1947988030f164a4a0c,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf558cac3b5c1947988030f164a4a0c, type: 3}
 --- !u!4 &2859227360294798035 stripped
