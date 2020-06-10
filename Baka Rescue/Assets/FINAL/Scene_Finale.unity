@@ -6582,6 +6582,11 @@ PrefabInstance:
       propertyPath: _stunFX
       value: 
       objectReference: {fileID: 1681440265}
+    - target: {fileID: 2666206970802405485, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: _thunderSphere
+      value: 
+      objectReference: {fileID: 1138399360}
     - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
       propertyPath: _waterSphere
       value: 
@@ -20182,6 +20187,11 @@ PrefabInstance:
       propertyPath: _stunFX
       value: 
       objectReference: {fileID: 715810116}
+    - target: {fileID: 2666206970802405485, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: _thunderSphere
+      value: 
+      objectReference: {fileID: 554221460}
     - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
       propertyPath: _characController
       value: 
@@ -29824,7 +29834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1714489213
 Transform:
   m_ObjectHideFlags: 0

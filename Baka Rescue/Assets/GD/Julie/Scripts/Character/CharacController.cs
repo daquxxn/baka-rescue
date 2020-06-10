@@ -41,6 +41,7 @@ public class CharacController : MonoBehaviour
     private float _stunTimeStamp = 0f;
     [SerializeField] private float _stunDuration = 2f;
     [SerializeField] private GameObject _stunFX = null;
+    [SerializeField] private GameObject _thunderSphere = null;
 
     private AudioSource _walkAudio;
 
@@ -82,6 +83,7 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellThunder += SpellThunder;
             _stunFX.SetActive(false);
+            _thunderSphere.SetActive(true);
         }
         else
         {
@@ -89,6 +91,7 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
             _stunFX.SetActive(false);
+            _thunderSphere.SetActive(true);
         }
     }
 
