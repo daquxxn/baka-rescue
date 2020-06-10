@@ -1043,6 +1043,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &391294042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 876012161526563190, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666206971122013348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &395703857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,6 +1147,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b14247ebf9da378b817b7ced5e8c4011,
     type: 3}
   m_PrefabInstance: {fileID: 1492033300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &496652238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4367566501324383218, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666206971122013348}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &516785790
 GameObject:
@@ -2817,6 +2829,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d012fbcb12acb1b469d9bf17538496b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1219812334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3965980808463217636, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7663902932995464830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1230198248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 876012161526563190, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7663902932995464830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1251177835
 GameObject:
   m_ObjectHideFlags: 0
@@ -2870,6 +2894,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251177835}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1260287580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3965980808463217636, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666206971122013348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1288871635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4367566501324383218, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7663902932995464830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1343199509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,6 +3512,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b14247ebf9da378b817b7ced5e8c4011, type: 3}
+--- !u!1 &1521499824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2143074108252313435, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666206971122013348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1556871635
 Mesh:
   m_ObjectHideFlags: 0
@@ -3639,6 +3681,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1576763823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6555162554237031118, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666206971122013348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1631459001
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,6 +3844,12 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694940386}
   m_Enabled: 1
+--- !u!1 &1696502065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6555162554237031118, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7663902932995464830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1722878612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1146858657354190101, guid: 68dd3b262d8d69d468ebc442b9556cdd,
@@ -4003,6 +4057,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1898509012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2143074108252313435, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7663902932995464830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1908808641
 Mesh:
   m_ObjectHideFlags: 0
@@ -5254,6 +5314,26 @@ PrefabInstance:
       propertyPath: _waterSphere
       value: 
       objectReference: {fileID: 1722878612}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _waterSpheres
+      value: 
+      objectReference: {fileID: 1576763823}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _stunFX
+      value: 
+      objectReference: {fileID: 391294042}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _thunderSphere
+      value: 
+      objectReference: {fileID: 1260287580}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _thunderSpheres
+      value: 
+      objectReference: {fileID: 1521499824}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _fireSphere
+      value: 
+      objectReference: {fileID: 496652238}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
 --- !u!1001 &2970219725716687563
@@ -5802,6 +5882,26 @@ PrefabInstance:
       propertyPath: _waterSphere
       value: 
       objectReference: {fileID: 2121143387}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _waterSpheres
+      value: 
+      objectReference: {fileID: 1696502065}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _stunFX
+      value: 
+      objectReference: {fileID: 1230198248}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _thunderSphere
+      value: 
+      objectReference: {fileID: 1219812334}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _thunderSpheres
+      value: 
+      objectReference: {fileID: 1898509012}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _fireSphere
+      value: 
+      objectReference: {fileID: 1288871635}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
 --- !u!1001 &7665276423007814651

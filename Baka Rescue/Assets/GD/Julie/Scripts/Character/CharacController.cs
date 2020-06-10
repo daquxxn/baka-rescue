@@ -40,6 +40,7 @@ public class CharacController : MonoBehaviour
     [Header("stun")]
     private float _stunTimeStamp = 0f;
     [SerializeField] private float _stunDuration = 2f;
+    [SerializeField] private GameObject _stunFX = null;
 
     private AudioSource _walkAudio;
 
@@ -61,12 +62,14 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.MoveX1 -= Move;
             InputManager.Instance.OnJumpKeyOne -= Jump;
             InputManager.Instance.SpellThunder -= SpellThunder;
+            _stunFX.SetActive(true);
         }
         else
         {
             InputManager.Instance.MoveX2 -= Move;
             InputManager.Instance.OnJumpKeyTwo -= Jump;
             InputManager.Instance.SpellWater -= SpellWater;
+            _stunFX.SetActive(true);
         }
         _isStun = true;
     }

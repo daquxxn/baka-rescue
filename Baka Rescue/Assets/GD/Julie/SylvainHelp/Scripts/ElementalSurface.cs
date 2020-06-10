@@ -8,12 +8,13 @@ public class ElementalSurface : AElement
     [SerializeField] private GameObject _elecFX;
 
     private AudioSource _elecAudio;
-    
+
+
     private void Start()
     {
-        _elecAudio = GetComponent<AudioSource>(); 
+        _elecAudio = GetComponent<AudioSource>();
     }
-
+    
 
     public override void ElementalReaction(EElement element)
     {
@@ -55,7 +56,6 @@ public class ElementalSurface : AElement
                     _element = EElement.THUNDER;
                     _elecAudio.Play();
                     _elecFX.SetActive(true);
-                    
 
                 }
                 break;

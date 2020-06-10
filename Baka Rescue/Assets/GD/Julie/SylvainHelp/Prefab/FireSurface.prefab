@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 4330383586789169537}
   - component: {fileID: 993926130}
   - component: {fileID: -7872813181692076121}
-  - component: {fileID: 5451833427801625244}
   m_Layer: 14
   m_Name: FireSurface
   m_TagString: Untagged
@@ -269,18 +268,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5451833427801625244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4330383586789169538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794899337d0937a4bb0bf9988ba89c48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8603235757106311048
 GameObject:
   m_ObjectHideFlags: 0
