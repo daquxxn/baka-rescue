@@ -83,7 +83,7 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellThunder += SpellThunder;
             _stunFX.SetActive(false);
-            _thunderSphere.SetActive(true);
+           // _thunderSphere.SetActive(true);
         }
         else
         {
@@ -91,7 +91,7 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
             _stunFX.SetActive(false);
-            _thunderSphere.SetActive(true);
+           // _thunderSphere.SetActive(true);
         }
     }
 
