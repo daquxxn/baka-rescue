@@ -8,10 +8,18 @@ public class DoubleLevers : MonoBehaviour
     [SerializeField] private ChildLever _childLever1 = null;
     [SerializeField] private ChildLever _childLever2 = null;
 
+    private AudioSource _destroyLeverSound;
+
+    private void Start()
+    {
+        _destroyLeverSound = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if(_childLever1.IsElectrified == true && _childLever2.IsElectrified == true)
         {
+            _destroyLeverSound.Play();
             Destroy(_wallLever);
         }
     }

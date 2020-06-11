@@ -286,6 +286,17 @@ public class CharacController : MonoBehaviour
                 _invulnerable = true;
             }
         }
+
+        if (other.gameObject.layer == 18)
+        {
+            ElementalProjectile elemProject = other.GetComponent<ElementalProjectile>();
+            
+            if (elemProject != null && _invulnerable == false)
+            {
+                _characHealth.TakeDamage(elemProject.Damages);
+                _invulnerable = true;
+            }
+        }
     }
 
 }
