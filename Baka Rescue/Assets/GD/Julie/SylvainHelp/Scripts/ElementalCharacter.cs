@@ -15,18 +15,30 @@ public class ElementalCharacter : AElement
     [SerializeField] private GameObject _thunderSpheres = null;
     [SerializeField] private GameObject _fireSphere = null;
 
-    /*private void Update()
-    {
-        if (_characController.CanMove == false)
-        {
-            _iCounter += Time.deltaTime;
+    private bool _isElem = false;
+    private float _elemTimeStamp = 0f;
+    [SerializeField] private float _elemDuration = 2f;
 
-            if (_iCounter >= _iTime)
+    private void Update()
+    {
+       if(_isElem)
+        {
+            _elemTimeStamp += Time.deltaTime;
+            if(_elemTimeStamp >= _elemDuration)
             {
-                _characController.CanMove = true;
+                _isElem = false;
+                _elemTimeStamp = 0;
+                _element = EElement.NONE;
+
+                _waterSphere.SetActive(false);
+                _fireSphere.SetActive(false);
+                _thunderSpheres.SetActive(false);
+                _thunderSphere.SetActive(false);
+
+                _waterSpheres.SetActive(false);
             }
         }
-    }*/
+    }
 
     public override void ElementalReaction(EElement element)
     {
@@ -44,6 +56,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                    
                     _waterSpheres.SetActive(false);
+                    _isElem = true;
                 }
                 else if (_element == EElement.THUNDER)
                 {
@@ -58,6 +71,7 @@ public class ElementalCharacter : AElement
                     _waterSpheres.SetActive(false);
 
                     _characController.Stun();
+                    _isElem = true;
 
                 }
                 else if (_element == EElement.WATER)
@@ -71,7 +85,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                 
                     _waterSpheres.SetActive(true);
-
+                    _isElem = true;
                     //DEVIENT IMUNE AU FEU
                 }
                 else if (_element == EElement.NONE)
@@ -84,6 +98,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                    
                     _waterSpheres.SetActive(false);
+                    _isElem = true;
                 }
                 break;
             case EElement.THUNDER:
@@ -98,7 +113,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(true);
              
                     _waterSpheres.SetActive(false);
-
+                    _isElem = true;
                 }
                 else if (_element == EElement.THUNDER)
                 {
@@ -111,7 +126,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                   
                     _waterSpheres.SetActive(false);
-
+                    _isElem = true;
                     //je suis ralenti ? 
 
                 }
@@ -128,6 +143,7 @@ public class ElementalCharacter : AElement
                     _waterSpheres.SetActive(false);
 
                     _characController.Stun();
+                    _isElem = true;
                 }
                 else if (_element == EElement.NONE)
                 {
@@ -139,7 +155,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(true);
                     
                     _waterSpheres.SetActive(false);
-
+                    _isElem = true;
                 }
                 break;
             case EElement.FIRE:
@@ -154,7 +170,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                   
                     _waterSpheres.SetActive(false);
-
+                    _isElem = true;
                     //brulure = dégat !!
                 }
                 else if (_element == EElement.THUNDER)
@@ -168,7 +184,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                    
                     _waterSpheres.SetActive(false);
-
+                    _isElem = true;
                     //brulure = dégat !!
                 }
                 else if (_element == EElement.WATER)
@@ -182,7 +198,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                    
                     _waterSpheres.SetActive(false);
-
+                    _isElem = true;
                     //brulure = dégat !!
                 }
                 else if (_element == EElement.NONE)
@@ -195,7 +211,7 @@ public class ElementalCharacter : AElement
                     _thunderSphere.SetActive(false);
                 
                     _waterSpheres.SetActive(false);
-                    
+                    _isElem = true;
                     //brulure = dégat !!
                 }
                 break;
