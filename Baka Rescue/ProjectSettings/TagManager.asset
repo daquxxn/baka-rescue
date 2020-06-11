@@ -27,8 +27,8 @@ TagManager:
   - Surface
   - Lever
   - Wall
-  - 
-  - 
+  - SurfaceFire
+  - FireProjectile
   - 
   - 
   - 

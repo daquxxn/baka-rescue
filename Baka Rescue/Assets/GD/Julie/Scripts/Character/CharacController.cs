@@ -23,7 +23,7 @@ public class CharacController : MonoBehaviour
     [SerializeField] private bool _isPlayerOne = true;
     
     [Header("invunerability")]
-    [SerializeField] private bool _invulnerable = true;
+    [SerializeField] private bool _invulnerable = false;
     [SerializeField] private float _iTime = 1.5f;
     [SerializeField] private float _iCounter = 0;
 
@@ -41,6 +41,7 @@ public class CharacController : MonoBehaviour
     private float _stunTimeStamp = 0f;
     [SerializeField] private float _stunDuration = 2f;
     [SerializeField] private GameObject _stunFX = null;
+    [SerializeField] private GameObject _thunderSphere = null;
 
     private AudioSource _walkAudio;
 
@@ -82,6 +83,7 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellThunder += SpellThunder;
             _stunFX.SetActive(false);
+            _thunderSphere.SetActive(true);
         }
         else
         {
@@ -89,6 +91,7 @@ public class CharacController : MonoBehaviour
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
             _stunFX.SetActive(false);
+            _thunderSphere.SetActive(true);
         }
     }
 
@@ -100,6 +103,7 @@ public class CharacController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _canMove = true;
         _walkAudio = GetComponent<AudioSource>();
+        _invulnerable = false;
     }
 
     private void OnDestroy()
@@ -252,6 +256,8 @@ public class CharacController : MonoBehaviour
         }
     }
 
+   
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Collectible")
@@ -268,6 +274,28 @@ public class CharacController : MonoBehaviour
         if(elemProj != null && elemProj.InstanceID != gameObject.GetInstanceID())
         {
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.layer == 17)
+        {
+            DamageFireSurface dmgFire = other.GetComponent<DamageFireSurface>();
+            
+            if (dmgFire != null && _invulnerable == false)
+            {
+                _characHealth.TakeDamage(dmgFire.Damages);
+                _invulnerable = true;
+            }
+        }
+
+        if (other.gameObject.layer == 18)
+        {
+            ElementalProjectile elemProject = other.GetComponent<ElementalProjectile>();
+            
+            if (elemProject != null && _invulnerable == false)
+            {
+                _characHealth.TakeDamage(elemProject.Damages);
+                _invulnerable = true;
+            }
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6286173339450000657}
   - component: {fileID: 2020637104714763605}
   - component: {fileID: 2177939000013849440}
-  m_Layer: 13
+  m_Layer: 18
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4764,7 +4764,7 @@ GameObject:
   - component: {fileID: 8776099266944580142}
   - component: {fileID: 8776099266944580115}
   - component: {fileID: 8776099266944580112}
-  m_Layer: 13
+  m_Layer: 18
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4840,7 +4840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8776099267629766708}
-  m_Layer: 13
+  m_Layer: 18
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 8776099268470651284}
   - component: {fileID: 8776099268470651285}
   - component: {fileID: 394280735752618899}
-  m_Layer: 13
+  m_Layer: 18
   m_Name: FireProjectile 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ MonoBehaviour:
   _secs: 5
   _elemSurface: {fileID: 4330383586789169537, guid: 131018e9feba16843adfb44e8dee0d87,
     type: 3}
-  _damages: 1
+  _damages: 10
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0

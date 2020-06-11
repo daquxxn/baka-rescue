@@ -6,6 +6,13 @@ public class Lever : AElement
 {
     [SerializeField] private GameObject _wallLever = null;
 
+    private AudioSource _leverDestroySD;
+
+    private void Start()
+    {
+        _leverDestroySD = GetComponent<AudioSource>();
+    }
+
     public override void ElementalReaction(EElement element)
     {
         switch (element)
@@ -13,6 +20,7 @@ public class Lever : AElement
             case EElement.THUNDER:
                if (_element == EElement.NONE)
                 {
+                    _leverDestroySD.Play();
                     Destroy(_wallLever);
                 }
                 break;
