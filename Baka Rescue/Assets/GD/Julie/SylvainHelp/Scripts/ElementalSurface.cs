@@ -91,8 +91,8 @@ public class ElementalSurface : AElement
             ElementalReaction(other.Element);
 
             // Destroy other if it's a Projectile
-            if (other is ElementalProjectile)
-                Destroy(other.gameObject);
+          //  if (other is ElementalProjectile && other.gameObject.layer != 17)
+            //    Destroy(other.gameObject);
 
             
         }

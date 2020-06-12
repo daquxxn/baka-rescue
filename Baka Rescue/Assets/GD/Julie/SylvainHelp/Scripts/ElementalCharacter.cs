@@ -15,6 +15,8 @@ public class ElementalCharacter : AElement
     [SerializeField] private GameObject _thunderSpheres = null;
     [SerializeField] private GameObject _fireSphere = null;
 
+    [SerializeField] private GameObject _fxEclab = null;
+
     private bool _isElem = false;
     private float _elemTimeStamp = 0f;
     [SerializeField] private float _elemDuration = 2f;
@@ -54,7 +56,8 @@ public class ElementalCharacter : AElement
                     _fireSphere.SetActive(false);
                     _thunderSpheres.SetActive(false);
                     _thunderSphere.SetActive(false);
-                   
+                    _fxEclab.SetActive(true);
+
                     _waterSpheres.SetActive(false);
                     _isElem = true;
                 }
@@ -73,6 +76,9 @@ public class ElementalCharacter : AElement
                     _characController.Stun();
                     _isElem = true;
 
+                    _fxEclab.SetActive(true);
+
+
                 }
                 else if (_element == EElement.WATER)
                 {
@@ -86,6 +92,7 @@ public class ElementalCharacter : AElement
                 
                     _waterSpheres.SetActive(true);
                     _isElem = true;
+                    _fxEclab.SetActive(true);
                     //DEVIENT IMUNE AU FEU
                 }
                 else if (_element == EElement.NONE)
@@ -99,6 +106,7 @@ public class ElementalCharacter : AElement
                    
                     _waterSpheres.SetActive(false);
                     _isElem = true;
+                    _fxEclab.SetActive(true);
                 }
                 break;
             case EElement.THUNDER:
