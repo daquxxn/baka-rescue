@@ -178,6 +178,9 @@ MonoBehaviour:
   _elemSurface: {fileID: 4330383586789169537, guid: 061fc4a4f0a9bb2478531763f7ae3f4f,
     type: 3}
   _damages: 1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0

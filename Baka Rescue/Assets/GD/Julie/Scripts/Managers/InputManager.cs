@@ -146,13 +146,25 @@ public class InputManager : Singleton<InputManager>
     private void FixedGameLoop()
     {
         ResetInputs();
+        
+
+        if (_moveX1 != null)
+        {
+            _moveX1(Input.GetAxis("Horizontal"));
+        }
+
+        if (_moveX2 != null)
+        {
+            _moveX2(Input.GetAxis("Horizontal2"));
+        }
     }
 
     private void GameLoop()
     {
-        GetGamePadInputs();
+        
         GetMouseInputs();
         GetKeyboardInputs();
+        GetGamePadInputs();
     }
 
     private void GetMouseInputs()
@@ -168,15 +180,7 @@ public class InputManager : Singleton<InputManager>
     private void GetGamePadInputs()
     {
        
-        if (_moveX1 != null)
-        {
-            _moveX1(Input.GetAxis("Horizontal"));
-        }
-        
-        if (_moveX2 != null)
-        {
-            _moveX2(Input.GetAxis("Horizontal2"));
-        }
+      
 
         if (_onJumpKeyOne != null)
         {
@@ -207,6 +211,7 @@ public class InputManager : Singleton<InputManager>
             {
                 dirSpell = Vector3.zero;
             }
+            dirSpell.Normalize();
             _spellWater(dirSpell);
         }
 
@@ -219,6 +224,7 @@ public class InputManager : Singleton<InputManager>
             {
                 dirSpell = Vector3.zero;
             }
+            dirSpell.Normalize();
             _spellThunder(dirSpell);
         }
 

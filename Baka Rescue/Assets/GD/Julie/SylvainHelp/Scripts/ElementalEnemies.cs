@@ -100,6 +100,7 @@ private void OnTriggerEnter(Collider collider)
                 {
                     // React with other's element
                     ElementalReaction(other.Element);
+                    Destroy(elemProj.gameObject);
                 }
             }
             else

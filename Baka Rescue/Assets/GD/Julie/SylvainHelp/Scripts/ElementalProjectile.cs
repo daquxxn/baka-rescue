@@ -18,6 +18,8 @@ public class ElementalProjectile : AElement
 
     [SerializeField] private int _damages = 1;
 
+    [SerializeField] private LayerMask _groundLayer = 0;
+
     public int Damages
     {
         get
@@ -39,6 +41,11 @@ public class ElementalProjectile : AElement
     private void Start()
     {
        
+    }
+
+    private void Update()
+    {
+      
     }
 
     public override void ElementalReaction(EElement element)
@@ -66,8 +73,13 @@ public class ElementalProjectile : AElement
 
         if (_element != EElement.THUNDER)
         {
-            Instantiate(_elemSurface, transform.position, Quaternion.identity);
-            Destroy(gameObject, _secs);
+            RaycastHit hit;
+            
+            Physics.Raycast(transform.position + Vector3.up , Vector3.down, out hit, 5, _groundLayer);
+            if(hit.collider != null)
+            {
+                Instantiate(_elemSurface, hit.point, Quaternion.identity);
+            }
         }
     }
 

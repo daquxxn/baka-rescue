@@ -145,6 +145,9 @@ MonoBehaviour:
   _secs: 5
   _elemSurface: {fileID: 0}
   _damages: 1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!135 &6582598571466719851
 SphereCollider:
   m_ObjectHideFlags: 0

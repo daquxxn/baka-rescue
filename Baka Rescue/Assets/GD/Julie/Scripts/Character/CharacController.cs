@@ -173,7 +173,7 @@ public class CharacController : MonoBehaviour
 
         if (horizontalDir != 0 & _canMove)
         {
-            newVelocity.x = horizontalDir * _speedCharac * Time.deltaTime;
+            newVelocity.x = horizontalDir * _speedCharac * Time.fixedDeltaTime;
             _charaTrans.transform.right = newDirection;
             _rb.velocity = newVelocity;
         }

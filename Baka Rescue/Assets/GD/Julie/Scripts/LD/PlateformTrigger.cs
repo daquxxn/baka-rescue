@@ -8,6 +8,7 @@ public class PlateformTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.layer == 9)
         _plateform.NextPlateform();
     }
 }
