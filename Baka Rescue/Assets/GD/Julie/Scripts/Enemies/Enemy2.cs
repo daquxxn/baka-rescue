@@ -10,6 +10,7 @@ public class Enemy2 : BaseEnemy
     [SerializeField] private LayerMask _wallEnemies;
     [SerializeField] private float _maxDistanceFromWall = 0f;
 
+
     // Start is called before the first frame update
     void Start()
     {
