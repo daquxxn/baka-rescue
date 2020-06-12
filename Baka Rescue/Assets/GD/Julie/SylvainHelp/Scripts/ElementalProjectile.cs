@@ -101,6 +101,5 @@ public class ElementalProjectile : AElement
         {
             Destroy(gameObject);
         }
-    
     }
 }

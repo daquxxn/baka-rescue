@@ -13,5 +13,5 @@ public class BaseEnemy : MonoBehaviour
             return _damages;
         }
     }
-    
+
 }
