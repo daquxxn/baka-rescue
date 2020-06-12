@@ -43,6 +43,8 @@ public class CharacController : MonoBehaviour
     [SerializeField] private GameObject _stunFX = null;
     [SerializeField] private GameObject _thunderSphere = null;
 
+    [SerializeField] private ElementalCharacter _elemCharac;
+
     private AudioSource _walkAudio;
 
     private bool _isStun = false;
@@ -280,7 +282,7 @@ public class CharacController : MonoBehaviour
         {
             DamageFireSurface dmgFire = other.GetComponent<DamageFireSurface>();
             
-            if (dmgFire != null && _invulnerable == false)
+            if (dmgFire != null && _invulnerable == false && _elemCharac.IsImune == false)
             {
                 _characHealth.TakeDamage(dmgFire.Damages);
                 _invulnerable = true;
@@ -291,7 +293,7 @@ public class CharacController : MonoBehaviour
         {
             ElementalProjectile elemProject = other.GetComponent<ElementalProjectile>();
             
-            if (elemProject != null && _invulnerable == false)
+           if (elemProject != null && _invulnerable == false && _elemCharac.IsImune == false)
             {
                 _characHealth.TakeDamage(elemProject.Damages);
                 _invulnerable = true;

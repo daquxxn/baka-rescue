@@ -21,6 +21,16 @@ public class ElementalCharacter : AElement
     private float _elemTimeStamp = 0f;
     [SerializeField] private float _elemDuration = 2f;
 
+    private bool _isImune = false;
+
+    public bool IsImune
+    {
+        get
+        {
+            return _isImune;
+        }
+    }
+
     private void Update()
     {
        if(_isElem)
@@ -38,6 +48,8 @@ public class ElementalCharacter : AElement
                 _thunderSphere.SetActive(false);
 
                 _waterSpheres.SetActive(false);
+
+                _isImune = false;
             }
         }
     }
@@ -93,6 +105,8 @@ public class ElementalCharacter : AElement
                     _waterSpheres.SetActive(true);
                     _isElem = true;
                     _fxEclab.SetActive(true);
+
+                    _isImune = true;
                     //DEVIENT IMUNE AU FEU
                 }
                 else if (_element == EElement.NONE)

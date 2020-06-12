@@ -11463,6 +11463,16 @@ PrefabInstance:
       propertyPath: _speedCharac
       value: 380
       objectReference: {fileID: 0}
+    - target: {fileID: 2666206970802405485, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: elemCharac
+      value: 
+      objectReference: {fileID: 420539988}
+    - target: {fileID: 2666206970802405485, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: _elemCharac
+      value: 
+      objectReference: {fileID: 420539988}
     - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
       propertyPath: _waterSphere
       value: 
@@ -11495,6 +11505,10 @@ PrefabInstance:
       propertyPath: _fxEclab
       value: 
       objectReference: {fileID: 1821630930}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _elemDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6184933751734393521, guid: 68dd3b262d8d69d468ebc442b9556cdd,
         type: 3}
       propertyPath: m_IsTrigger
@@ -11502,6 +11516,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+--- !u!114 &420539988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 420539987}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff19c0a4d4a2d604faa633533d89d3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &426855878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25616,6 +25642,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &918845515 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1201274462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff19c0a4d4a2d604faa633533d89d3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &921144510
 Mesh:
   m_ObjectHideFlags: 0
@@ -36983,6 +37021,16 @@ PrefabInstance:
       propertyPath: _speedCharac
       value: 380
       objectReference: {fileID: 0}
+    - target: {fileID: 2666206970802405485, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: elemCharac
+      value: 
+      objectReference: {fileID: 420539988}
+    - target: {fileID: 2666206970802405485, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: _elemCharac
+      value: 
+      objectReference: {fileID: 918845515}
     - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
       propertyPath: _characController
       value: 
@@ -37011,6 +37059,10 @@ PrefabInstance:
       propertyPath: _fxEclab
       value: 
       objectReference: {fileID: 2059261294}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _elemDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6184933751734393521, guid: 68dd3b262d8d69d468ebc442b9556cdd,
         type: 3}
       propertyPath: m_IsTrigger
