@@ -5,6 +5,8 @@ using UnityEngine;
 public class Lever : AElement
 {
     [SerializeField] private GameObject _wallLever = null;
+    [SerializeField] private Transform _lucioles = null;
+    [SerializeField] private Transform _posLevier  = null;
 
     private AudioSource _leverDestroySD;
 
@@ -21,6 +23,8 @@ public class Lever : AElement
                if (_element == EElement.NONE)
                 {
                     _leverDestroySD.Play();
+                    float step = 10 * Time.deltaTime;
+                    transform.position = Vector3.MoveTowards(_posLevier.position, _lucioles.position, step);
                     Destroy(_wallLever);
                 }
                 break;

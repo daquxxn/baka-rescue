@@ -33,6 +33,8 @@ Transform:
   m_LocalScale: {x: 1, y: 2.2064, z: 1}
   m_Children:
   - {fileID: 2515002489576926741}
+  - {fileID: 7836838858678242016}
+  - {fileID: 7519218401019077655}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _element: 3
   _wallLever: {fileID: 2515002489576926740}
+  _lucioles: {fileID: 0}
+  _posLevier: {fileID: 0}
 --- !u!82 &1927304509074115496
 AudioSource:
   m_ObjectHideFlags: 0
@@ -234,8 +238,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.5, y: 0.94, z: 0}
   m_LocalScale: {x: 1, y: 2.7193618, z: 2}
-  m_Children:
-  - {fileID: 7836838858678242016}
+  m_Children: []
   m_Father: {fileID: 2515002488624286640}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -298,6 +301,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2908932135545063544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7519218401019077655}
+  m_Layer: 16
+  m_Name: Pos_levier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7519218401019077655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2908932135545063544}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.10000038, y: -0.10967369, z: 0}
+  m_LocalScale: {x: 1, y: 2.7193618, z: 2}
+  m_Children: []
+  m_Father: {fileID: 2515002488624286640}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7865102318468191519
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +343,7 @@ GameObject:
   - component: {fileID: 8332066958521699462}
   - component: {fileID: 1662210687702792792}
   m_Layer: 16
-  m_Name: Particle System
+  m_Name: lucioles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,11 +357,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7865102318468191519}
   m_LocalRotation: {x: -0.44597915, y: -0.4739153, z: 0.552942, w: 0.5203481}
-  m_LocalPosition: {x: 0, y: 0, z: -0.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 8.88, y: 0.93999994, z: -1.08}
+  m_LocalScale: {x: 2.7130313, y: 1.9767357, z: 1.0295961}
   m_Children: []
-  m_Father: {fileID: 2515002489576926741}
-  m_RootOrder: 0
+  m_Father: {fileID: 2515002488624286640}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 3.4380002, y: -81.18201, z: 90.533005}
 --- !u!198 &8332066958521699462
 ParticleSystem:
@@ -413,7 +446,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0.35
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -520,7 +553,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.9795611, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -964,8 +997,8 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Rotation: {x: -0, y: 0, z: 0}
+    m_Scale: {x: 0.19211575, y: 1, z: 0.20366563}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1163,7 +1196,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.35
+      scalar: 6.45
       minScalar: 10
       maxCurve:
         serializedVersion: 2
