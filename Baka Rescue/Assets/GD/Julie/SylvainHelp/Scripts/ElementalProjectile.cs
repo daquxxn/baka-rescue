@@ -22,6 +22,8 @@ public class ElementalProjectile : AElement
 
     [SerializeField] private Transform _surfaceContainer = null;
 
+    private AudioSource _eauTir;
+
     public int Damages
     {
         get
@@ -42,7 +44,7 @@ public class ElementalProjectile : AElement
 
     private void Start()
     {
-       
+       _eauTir = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -64,6 +66,7 @@ public class ElementalProjectile : AElement
         _rb = GetComponent<Rigidbody>();
         _dir = direction;
         _rb.AddForce(direction * _force);
+        _eauTir.Play();
         Destroy(gameObject, _secs);
 
     }

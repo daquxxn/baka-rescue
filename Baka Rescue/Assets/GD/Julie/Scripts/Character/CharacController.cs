@@ -188,7 +188,7 @@ public class CharacController : MonoBehaviour
         {
          //   _walkAudio.Play();
         }
-            anim.Play("Base Layer.run");
+           // anim.Play("Base Layer.run");
     }
 
     private void SpellThunder(Vector3 dirSpell)
