@@ -66,7 +66,6 @@ public class ElementalProjectile : AElement
         _rb = GetComponent<Rigidbody>();
         _dir = direction;
         _rb.AddForce(direction * _force);
-        _eauTir.Play();
         Destroy(gameObject, _secs);
 
     }
