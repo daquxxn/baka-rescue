@@ -180,7 +180,8 @@ MonoBehaviour:
   _damages: 10
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 262400
+    m_Bits: 256
+  _surfaceContainer: {fileID: 0}
 --- !u!135 &394280735752618899
 SphereCollider:
   m_ObjectHideFlags: 0
