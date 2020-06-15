@@ -100,6 +100,7 @@ public class ElementalProjectile : AElement
         }
     if(collision.gameObject.layer == 15 && _element != EElement.WATER)
         {
+            
             Destroy(gameObject);
         }
     if(collision.gameObject.layer == 16)
