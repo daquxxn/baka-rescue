@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5863409318085634622}
   - component: {fileID: 5371567269452035906}
   - component: {fileID: 5282546017553527611}
+  - component: {fileID: 33986874340347671}
   m_Layer: 0
   m_Name: sm_champi_low
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &33986874340347671
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282976343962820113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 8158262046123534396, guid: 336b7af42de1a7241af8861010ba32ac, type: 3}
 --- !u!1 &4040804108148986353
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,9 +116,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4040804108148986353}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 77.96, y: 6.1803007, z: -0.8413602}
-  m_LocalScale: {x: 0.8404511, y: 0.8404511, z: 0.8404511}
+  m_LocalScale: {x: 0.8191493, y: 0.8191493, z: 0.81914914}
   m_Children:
   - {fileID: 5863409318085634622}
   m_Father: {fileID: 0}

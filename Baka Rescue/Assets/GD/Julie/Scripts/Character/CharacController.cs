@@ -50,7 +50,7 @@ public class CharacController : MonoBehaviour
     private bool _isStun = false;
     private bool _canMove = true;
 
-    private Animator anim;
+    [SerializeField] private Animator anim;
 
     public bool CanMove
     {
@@ -109,7 +109,7 @@ public class CharacController : MonoBehaviour
         _walkAudio = GetComponent<AudioSource>();
         _invulnerable = false;
 
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -182,6 +182,11 @@ public class CharacController : MonoBehaviour
             newVelocity.x = horizontalDir * _speedCharac * Time.fixedDeltaTime;
             _charaTrans.transform.right = newDirection;
             _rb.velocity = newVelocity;
+            anim.SetBool("IsRunning", true);
+        }
+        else
+        {
+            anim.SetBool("IsRunning", false);
         }
 
         if(horizontalDir != 0 & _canMove & _isGrounded)
@@ -189,6 +194,10 @@ public class CharacController : MonoBehaviour
          //   _walkAudio.Play();
         }
            // anim.Play("Base Layer.run");
+
+        if (!_isGrounded)
+            anim.SetBool("IsRunning", false);
+
     }
 
     private void SpellThunder(Vector3 dirSpell)
