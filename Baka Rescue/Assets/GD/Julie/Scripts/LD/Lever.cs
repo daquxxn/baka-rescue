@@ -7,6 +7,9 @@ public class Lever : AElement
     [SerializeField] private GameObject _wallLever = null;
     [SerializeField] private Transform _lucioles = null;
     [SerializeField] private Transform _posLevier  = null;
+    [SerializeField] private GameObject _fruitElec  = null;
+    [SerializeField] private GameObject _fruitPasElec  = null;
+    private bool _isElectrified = false;
 
     private AudioSource _leverDestroySD;
 
@@ -15,6 +18,14 @@ public class Lever : AElement
         _leverDestroySD = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if (_isElectrified)
+        {
+            float step = 10 * Time.deltaTime;
+            _lucioles.transform.position = Vector3.MoveTowards(_lucioles.position, _posLevier.position, step);
+        }
+    }
     public override void ElementalReaction(EElement element)
     {
         switch (element)
@@ -23,9 +34,11 @@ public class Lever : AElement
                if (_element == EElement.NONE)
                 {
                     _leverDestroySD.Play();
-                    float step = 10 * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(_posLevier.position, _lucioles.position, step);
+                    _isElectrified = true;
                     Destroy(_wallLever);
+                    _fruitPasElec.gameObject.SetActive(false);
+                    _fruitElec.gameObject.SetActive(true);
+
                 }
                 break;
         }

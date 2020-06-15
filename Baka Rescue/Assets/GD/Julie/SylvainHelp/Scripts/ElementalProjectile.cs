@@ -20,6 +20,10 @@ public class ElementalProjectile : AElement
 
     [SerializeField] private LayerMask _groundLayer = 0;
 
+    [SerializeField] private Transform _surfaceContainer = null;
+
+    private AudioSource _eauTir;
+
     public int Damages
     {
         get
@@ -40,7 +44,7 @@ public class ElementalProjectile : AElement
 
     private void Start()
     {
-       
+       _eauTir = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -78,7 +82,7 @@ public class ElementalProjectile : AElement
             Physics.Raycast(transform.position + Vector3.up , Vector3.down, out hit, 5, _groundLayer);
             if(hit.collider != null)
             {
-                Instantiate(_elemSurface, hit.point, Quaternion.identity);
+                Instantiate(_elemSurface, hit.point, Quaternion.identity, _surfaceContainer);
             }
         }
     }

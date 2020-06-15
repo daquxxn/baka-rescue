@@ -50,6 +50,8 @@ public class CharacController : MonoBehaviour
     private bool _isStun = false;
     private bool _canMove = true;
 
+    private Animator anim;
+
     public bool CanMove
     {
         get
@@ -106,6 +108,8 @@ public class CharacController : MonoBehaviour
         _canMove = true;
         _walkAudio = GetComponent<AudioSource>();
         _invulnerable = false;
+
+        anim = GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -184,6 +188,7 @@ public class CharacController : MonoBehaviour
         {
          //   _walkAudio.Play();
         }
+           // anim.Play("Base Layer.run");
     }
 
     private void SpellThunder(Vector3 dirSpell)
