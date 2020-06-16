@@ -55,7 +55,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.1
+    value: 0
   intensityX:
     overrideState: 0
     value: 1
@@ -212,10 +212,10 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 1, y: 1, z: 1, w: 0}
+    value: {x: 0.91358924, y: 0.9260603, z: 1, w: 0}
   gamma:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.77866185, y: 0.8065817, z: 1, w: 0}
   gain:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
@@ -1437,7 +1437,7 @@ MonoBehaviour:
     value: 1
   shutterAngle:
     overrideState: 0
-    value: 270
+    value: 197
   sampleCount:
     overrideState: 0
     value: 10
@@ -1458,37 +1458,37 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 0
+    value: 0.77
   color:
-    overrideState: 0
+    overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
-    overrideState: 0
+    overrideState: 1
     value: 1
   noiseFilterTolerance:
-    overrideState: 0
+    overrideState: 1
     value: 0
   blurTolerance:
-    overrideState: 0
+    overrideState: 1
     value: -4.6
   upsampleTolerance:
-    overrideState: 0
+    overrideState: 1
     value: -12
   thicknessModifier:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 6.95
   directLightingStrength:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.654
   radius:
-    overrideState: 0
+    overrideState: 1
     value: 0.25
   quality:
-    overrideState: 0
+    overrideState: 1
     value: 2
 --- !u!114 &-3210839335832323473
 MonoBehaviour:
@@ -1508,7 +1508,7 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 0
-    value: 10
+    value: 53.39
   aperture:
     overrideState: 0
     value: 5.6
@@ -1657,8 +1657,8 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 6
   threshold:
     overrideState: 0
     value: 1
