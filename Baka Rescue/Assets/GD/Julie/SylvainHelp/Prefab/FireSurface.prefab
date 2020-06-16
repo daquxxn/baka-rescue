@@ -172,8 +172,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5596222, y: 7.8962994, z: 1}
-  m_Center: {x: 0.01162523, y: 3.4481497, z: 0}
+  m_Size: {x: 2.4222932, y: 8.302281, z: 2.1268501}
+  m_Center: {x: 0.12942696, y: 3.2451587, z: 0.04188299}
 --- !u!114 &4769702822211852592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,11 +194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4330383586346297039}
     m_Modifications:
-    - target: {fileID: 9178459073201828151, guid: 16a2ef606e24f9041b8d0b20d32c48a7,
-        type: 3}
-      propertyPath: m_Name
-      value: FireFlamme
-      objectReference: {fileID: 0}
     - target: {fileID: 9178459073201828148, guid: 16a2ef606e24f9041b8d0b20d32c48a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -253,6 +248,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178459073201828151, guid: 16a2ef606e24f9041b8d0b20d32c48a7,
+        type: 3}
+      propertyPath: m_Name
+      value: FireFlamme
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16a2ef606e24f9041b8d0b20d32c48a7, type: 3}
@@ -334,16 +334,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: -3701727588016112575, guid: 373001eec8f4cc041b945daff6dee132,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: acecd489294a29c49aa582eeb37ef36f, type: 2}
     - target: {fileID: -5102530947620581811, guid: 373001eec8f4cc041b945daff6dee132,
         type: 3}
       propertyPath: m_Layer
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: -3701727588016112575, guid: 373001eec8f4cc041b945daff6dee132,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: acecd489294a29c49aa582eeb37ef36f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 373001eec8f4cc041b945daff6dee132, type: 3}
 --- !u!4 &3795208094682507535 stripped
@@ -359,11 +359,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4330383586346297039}
     m_Modifications:
-    - target: {fileID: 4479114503679271697, guid: 6b1132f64fd5d4247abc8874f0e916c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Eclaboussure feu
-      objectReference: {fileID: 0}
     - target: {fileID: 4479114503679271692, guid: 6b1132f64fd5d4247abc8874f0e916c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -418,6 +413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479114503679271697, guid: 6b1132f64fd5d4247abc8874f0e916c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Eclaboussure feu
       objectReference: {fileID: 0}
     - target: {fileID: 4479114503679271695, guid: 6b1132f64fd5d4247abc8874f0e916c7,
         type: 3}
