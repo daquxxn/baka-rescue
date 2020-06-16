@@ -7,6 +7,19 @@ public class CharacController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private int _speedCharac = 10;
+
+    public int SpeedCharac
+    {
+        get
+        {
+            return _speedCharac;
+         }
+
+        set
+        {
+            _speedCharac = value;
+        }
+    }
     [SerializeField] private int _jumpForce = 0;
     private bool _isGrounded = false;
     [SerializeField] private float _rayDistance = 0;

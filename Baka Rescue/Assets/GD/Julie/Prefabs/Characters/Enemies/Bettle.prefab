@@ -126,12 +126,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damages: 40
-  _moveSpeed: 4
+  _moveSpeed: 0
   _moveDir: {x: 0, y: 0, z: 0}
   _wallEnemies:
     serializedVersion: 2
     m_Bits: 2048
   _maxDistanceFromWall: 1
+  _stunDuration: 2
+  _stunFX: {fileID: 0}
 --- !u!114 &1859317520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _element: 3
   _waterSphere: {fileID: 8140074099739320952}
+  _enemy2: {fileID: 3252361637748431198}
+  _enemy1: {fileID: 7665276423123659137, guid: 9b1496cd5a67d54458da7de14def7959, type: 3}
 --- !u!1 &8140074099739320952
 GameObject:
   m_ObjectHideFlags: 0
