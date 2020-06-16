@@ -6,6 +6,8 @@ public class ElementalEnemies : AElement
 {
 
     [SerializeField] private GameObject _waterSphere = null;
+    [SerializeField] Enemy2 _enemy2 = null;
+    [SerializeField] Enemy1 _enemy1 = null;
 
     public override void ElementalReaction(EElement element)
 {
@@ -22,6 +24,8 @@ public class ElementalEnemies : AElement
             {
                 // do whatever you want to do when WATER touch THUNDER surface
                 _element = EElement.WATER;
+                    _enemy2.Stun();
+                    _enemy1.Stun();
                     _waterSphere.SetActive(true);
                 }
             else if (_element == EElement.WATER)
@@ -52,8 +56,9 @@ public class ElementalEnemies : AElement
             else if (_element == EElement.WATER)
             {
                     // do whatever you want to do when THUNDER touch WATER surface
-                    Destroy(gameObject);
-            }
+                    _enemy2.Stun();
+                    _enemy1.Stun();
+                }
             else if (_element == EElement.NONE)
             {
                 _element = EElement.THUNDER;

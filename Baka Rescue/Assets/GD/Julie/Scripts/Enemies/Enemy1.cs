@@ -18,6 +18,12 @@ public class Enemy1 : BaseEnemy
 
     [SerializeField] private Transform _bulletSpawner = null;
 
+    [Header("stun")]
+    private float _stunTimeStamp = 0f;
+    [SerializeField] private float _stunDuration = 2f;
+    [SerializeField] private GameObject _stunFX = null;
+    [SerializeField] private bool _isStun = false;
+
 
 
     private void Update()
@@ -36,12 +42,36 @@ public class Enemy1 : BaseEnemy
 
         _iCounter += Time.deltaTime;
 
-        if (_iCounter >= _iTime)
+        if (_iCounter >= _iTime && _isStun == false)
         {
             FireProjectile(dirSpell); ;
             _iCounter = 0;
         }
-        
+
+        if (_isStun)
+        {
+            _stunTimeStamp += Time.deltaTime;
+
+            if (_stunTimeStamp >= _stunDuration)
+            {
+                _isStun = false;
+                _stunTimeStamp = 0;
+                UnStun();
+            }
+        }
+
+    }
+
+    public void Stun()
+    {
+        _rotationSpeed = 0;
+        _isStun = true;
+    }
+
+    public void UnStun()
+    {
+        _rotationSpeed = 20;
+        _isStun = false;
     }
 
     private void FireProjectile(Vector3 dirSpell)

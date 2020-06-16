@@ -243,6 +243,9 @@ MonoBehaviour:
   _iTime: 3
   _iCounter: 0
   _bulletSpawner: {fileID: 2807214228410718286}
+  _stunDuration: 2
+  _stunFX: {fileID: 0}
+  _isStun: 0
 --- !u!114 &1040482851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _element: 3
   _waterSphere: {fileID: 5734991636816375940}
+  _enemy2: {fileID: 3252361637748431198, guid: 857aafa0f466e744f8cbc51b59742374, type: 3}
+  _enemy1: {fileID: 7665276423123659137}
 --- !u!1001 &6900268292123363252
 PrefabInstance:
   m_ObjectHideFlags: 0
