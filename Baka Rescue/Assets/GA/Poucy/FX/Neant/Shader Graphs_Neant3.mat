@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BOULE 1 flaque OK 1
-  m_Shader: {fileID: -6465566751694194690, guid: c441b78250a0e884d948055b40f555a5,
+  m_Name: Shader Graphs_Neant3
+  m_Shader: {fileID: -6465566751694194690, guid: fd7c58393367b8d44b0a559b2f1f64a9,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,9 +21,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_7ED0760D: 5
-    - Vector1_AE4FF29D: 3
-    - Vector1_F6A855CD: 10
+    - Vector1_2599C21E: 20
+    - Vector1_31468DBA: 2
+    - Vector1_C5678926: 0.5
     m_Colors:
-    - Color_79827102: {r: 0, g: 0.07877487, b: 2.2827218, a: 0}
-    - Color_DAB6E4F6: {r: 0.49113718, g: 1.8626546, b: 2.4214203, a: 0}
+    - Color_5E4B3B5: {r: 32, g: 0, b: 1.505882, a: 0}
+    - Vector2_6C1991F7: {r: 0.1, g: -0.5, b: 0, a: 0}
+    - Vector2_CC932EFF: {r: 0, g: 0.5, b: 0, a: 0}
