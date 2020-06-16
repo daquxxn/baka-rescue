@@ -2615,6 +2615,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7663902932995464830}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &969396110 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8352875316010765108, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666206971122013348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1001444905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1483423634338296266, guid: 72ada4719f7bb0648a14f890641f56bc,
@@ -3073,6 +3079,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140757830}
   m_Mesh: {fileID: 648381975}
+--- !u!198 &1161512652 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8352875316010765108, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7663902932995464830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1172239653
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,6 +5873,20 @@ PrefabInstance:
       propertyPath: _thunderSphere
       value: 
       objectReference: {fileID: 1260287580}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _fxEclab
+      value: 
+      objectReference: {fileID: 969396110}
+    - target: {fileID: 8352875316010765098, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352875316010765108, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
 --- !u!1001 &2970219725716687563
@@ -6463,6 +6489,20 @@ PrefabInstance:
       propertyPath: _fireSphere
       value: 
       objectReference: {fileID: 1288871635}
+    - target: {fileID: 1268489052, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
+      propertyPath: _fxEclab
+      value: 
+      objectReference: {fileID: 1161512652}
+    - target: {fileID: 8352875316010765098, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352875316010765108, guid: 68dd3b262d8d69d468ebc442b9556cdd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68dd3b262d8d69d468ebc442b9556cdd, type: 3}
 --- !u!1001 &7665276423007814651
