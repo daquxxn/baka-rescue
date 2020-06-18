@@ -17,11 +17,13 @@ public class ElementalCharacter : AElement
 
     [SerializeField] private ParticleSystem _fxEclab = null;
 
+    [SerializeField] private GameObject _fxElec = null;
+
     private bool _isElem = false;
     private float _elemTimeStamp = 0f;
     [SerializeField] private float _elemDuration = 2f;
 
-    private bool _isNotFast = true;
+    private bool _isFast = false;
     private float _fastTimeStamp = 0f;
     [SerializeField] private float _fastDuration = 3f;
 
@@ -56,16 +58,18 @@ public class ElementalCharacter : AElement
                 _isImune = false;
             }
         }
-
-       if(_isNotFast)
+       if(_isFast)
         {
             _fastTimeStamp += Time.deltaTime;
             if(_fastTimeStamp >= _fastDuration)
             {
-                _isNotFast = false;
+                _characController.SpeedCharac = 380;
+                _isFast = false;
                 _fastTimeStamp = 0;
+                _fxElec.SetActive(false);
             }
         }
+
     }
 
     public override void ElementalReaction(EElement element)
@@ -163,13 +167,11 @@ public class ElementalCharacter : AElement
                   
                     _waterSpheres.SetActive(false);
                     _isElem = true;
-                    if(_isNotFast)
-                    {
-                        _characController.SpeedCharac = 700;
-                        _isNotFast = false;
-                    }
-                 
 
+                    _isFast = true;
+                    _fxElec.SetActive(true);
+                    _characController.SpeedCharac = 700;
+                    
                 }
                 else if (_element == EElement.WATER)
                 {
