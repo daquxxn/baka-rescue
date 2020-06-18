@@ -48,7 +48,7 @@ public class Lever : AElement
     {
         // Check if other is AElement
         AElement other = collider.GetComponent<AElement>();
-        if (other != null)
+        if (other != null && other.Element != EElement.WATER)
         {
             // React with other's element
             ElementalReaction(other.Element);

@@ -24,6 +24,8 @@ public class ElementalProjectile : AElement
 
     private AudioSource _eauTir;
 
+    private bool _hasCreatedSurf = false;
+
     public int Damages
     {
         get
@@ -80,9 +82,10 @@ public class ElementalProjectile : AElement
             RaycastHit hit;
             
             Physics.Raycast(transform.position + Vector3.up , Vector3.down, out hit, 5, _groundLayer);
-            if(hit.collider != null)
+            if(hit.collider != null && _hasCreatedSurf == false)
             {
                 Instantiate(_elemSurface, hit.point, Quaternion.identity, _surfaceContainer);
+                _hasCreatedSurf = true;
                 //_eauTir.Play();
             }
         }
@@ -100,8 +103,10 @@ public class ElementalProjectile : AElement
         }
     if(collision.gameObject.layer == 15 && _element != EElement.WATER)
         {
-            
-            Destroy(gameObject);
+            if (collision.tag != "DoubleLever")
+            {
+                Destroy(gameObject);
+            }
         }
     if(collision.gameObject.layer == 16)
         {

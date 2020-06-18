@@ -5,30 +5,21 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    [SerializeField] private Slider _SliderHB = null;
-    [SerializeField] private Gradient _gradient;
-    [SerializeField] private Image _fill;
+    [SerializeField] private RectTransform _fill;
+    private Vector3 _emptyPos;
+    private Vector3 _fullPos;
 
-    public Slider SliderHB
+    private void Start()
     {
-        get
-        { return _SliderHB; }
-        set
-        { _SliderHB = value; }
+        //le 0.15 a enlever apres nouvelles assets
+        _emptyPos = transform.position - new Vector3(_fill.rect.width*0.15f, 0, 0);
+        _fullPos = transform.position;
     }
 
-    public void SetMaxHealth(int health)
+    public void UpdateBar(int health, int maxHealth)
     {
-        _SliderHB.maxValue = health;
-        _SliderHB.value = health;
-        
+        float perc = (float)health/(float)maxHealth;
+        _fill.transform.position = Vector3.Lerp(_emptyPos, _fullPos, perc);
 
-        _fill.color = _gradient.Evaluate(1f);
-    }
-
-    public void SetHealth(int health)
-    {
-        _SliderHB.value = health;
-        _fill.color = _gradient.Evaluate(_SliderHB.normalizedValue);
     }
 }

@@ -8,8 +8,13 @@ public class MovablePlateformTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.transform.parent = _parent;
+        ElementalProjectile elemProj = other.GetComponent<ElementalProjectile>();
+        if (elemProj == null)
+        {
+            other.transform.parent = _parent;
+        }
     }
+   
 
     private void OnTriggerExit(Collider other)
     {

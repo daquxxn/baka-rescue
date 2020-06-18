@@ -9,6 +9,7 @@ TagManager:
   - Character2
   - Fire
   - ennemy
+  - DoubleLever
   layers:
   - Default
   - TransparentFX

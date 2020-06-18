@@ -35,7 +35,6 @@ public class CharacHealth : MonoBehaviour
     void Start()
     {
         CurrentHealth = _maxHealth;
-        _healthBar.SetMaxHealth(_maxHealth);
     }
 
     private void Update()
@@ -50,12 +49,12 @@ public class CharacHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
-        _healthBar.SetHealth(CurrentHealth);
+        _healthBar.UpdateBar(CurrentHealth, MaxHealth);
     }
     
     public void GetLifeBack(int heal)
     {
         CurrentHealth += heal;
-        _healthBar.SetHealth(CurrentHealth);
+        _healthBar.UpdateBar(CurrentHealth, MaxHealth);
     }
 }
