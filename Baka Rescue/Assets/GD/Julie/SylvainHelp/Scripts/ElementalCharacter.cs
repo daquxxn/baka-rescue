@@ -21,6 +21,10 @@ public class ElementalCharacter : AElement
     private float _elemTimeStamp = 0f;
     [SerializeField] private float _elemDuration = 2f;
 
+    private bool _isNotFast = true;
+    private float _fastTimeStamp = 0f;
+    [SerializeField] private float _fastDuration = 3f;
+
     private bool _isImune = false;
 
     public bool IsImune
@@ -50,6 +54,16 @@ public class ElementalCharacter : AElement
                 _waterSpheres.SetActive(false);
 
                 _isImune = false;
+            }
+        }
+
+       if(_isNotFast)
+        {
+            _fastTimeStamp += Time.deltaTime;
+            if(_fastTimeStamp >= _fastDuration)
+            {
+                _isNotFast = false;
+                _fastTimeStamp = 0;
             }
         }
     }
@@ -149,8 +163,12 @@ public class ElementalCharacter : AElement
                   
                     _waterSpheres.SetActive(false);
                     _isElem = true;
-                    _characController.SpeedCharac = 700;
-                    //j'accelere
+                    if(_isNotFast)
+                    {
+                        _characController.SpeedCharac = 700;
+                        _isNotFast = false;
+                    }
+                 
 
                 }
                 else if (_element == EElement.WATER)
