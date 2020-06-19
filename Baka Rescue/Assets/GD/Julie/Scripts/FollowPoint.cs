@@ -9,11 +9,10 @@ public class FollowPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameLoopManager.Instance.GameLoop += Loop;
     }
 
     // Update is called once per frame
-    void Loop()
+    void Update ()
     {
         transform.position = _toFollow.transform.position;
     }
