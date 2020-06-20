@@ -62,12 +62,14 @@ public class Enemy2 : BaseEnemy
     {
         _isStun = true;
         _moveSpeed = 0;
+        _stunFX.SetActive(true);
     }
 
     public void UnStun()
     {
         _isStun = false;
         _moveSpeed = 4;
+        _stunFX.SetActive(false);
     }
     
 }

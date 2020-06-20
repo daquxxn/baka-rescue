@@ -66,12 +66,14 @@ public class Enemy1 : BaseEnemy
     {
         _rotationSpeed = 0;
         _isStun = true;
+        _stunFX.SetActive(true);
     }
 
     public void UnStun()
     {
         _rotationSpeed = 20;
         _isStun = false;
+        _stunFX.SetActive(false);
     }
 
     private void FireProjectile(Vector3 dirSpell)
