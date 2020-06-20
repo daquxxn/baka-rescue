@@ -15,19 +15,16 @@ public class DoubleLevers : MonoBehaviour
     [SerializeField] private GameObject _fruitPasElec1 = null;
     [SerializeField] private GameObject _fruitPasElec2 = null;
 
-
-    private AudioSource _destroyLeverSound;
+    
 
     private void Start()
     {
-        _destroyLeverSound = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if(_childLever1.IsElectrified == true && _childLever2.IsElectrified == true)
         {
-            _destroyLeverSound.Play();
             Destroy(_wallLever);
            float step = 10 * Time.deltaTime;
            _lucioles.transform.position = Vector3.MoveTowards(_lucioles.position, _posLevier.position, step);

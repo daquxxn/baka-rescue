@@ -10,12 +10,10 @@ public class Lever : AElement
     [SerializeField] private GameObject _fruitElec  = null;
     [SerializeField] private GameObject _fruitPasElec  = null;
     private bool _isElectrified = false;
-
-    private AudioSource _leverDestroySD;
+    
 
     private void Start()
     {
-        _leverDestroySD = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -33,7 +31,6 @@ public class Lever : AElement
             case EElement.THUNDER:
                if (_element == EElement.NONE)
                 {
-                    _leverDestroySD.Play();
                     _isElectrified = true;
                     Destroy(_wallLever);
                     _fruitPasElec.gameObject.SetActive(false);

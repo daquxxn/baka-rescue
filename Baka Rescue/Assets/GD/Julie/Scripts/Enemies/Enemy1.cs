@@ -24,7 +24,13 @@ public class Enemy1 : BaseEnemy
     [SerializeField] private GameObject _stunFX = null;
     [SerializeField] private bool _isStun = false;
 
+    private AudioSource _audio;
 
+
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -82,6 +88,7 @@ public class Enemy1 : BaseEnemy
         
             elementalProjectile.Init(- elementalProjectile.transform.up, gameObject.GetInstanceID());
 
+        _audio.Play();
     }
     
 }
