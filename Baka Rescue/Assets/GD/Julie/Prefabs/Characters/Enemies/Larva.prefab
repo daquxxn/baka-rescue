@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damages: 10
-  _rotationSpeed: 20
+  _rotationSpeed: 0
   _trans: {fileID: 7665276423123659138}
   _dir: -1
   _clampRotation: 394
@@ -444,7 +444,7 @@ MonoBehaviour:
   _bulletSpawner: {fileID: 2807214228410718286}
   _stunDuration: 4
   _stunFX: {fileID: 6720211597145504407}
-  _isStun: 0
+  _isStun: 1
 --- !u!114 &1040482851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,11 +729,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7665276423123659138}
     m_Modifications:
-    - target: {fileID: 1698473809041733058, guid: 9688a5e71b115c84a920a272852d7277,
-        type: 3}
-      propertyPath: m_Name
-      value: lavre (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2434592757972092881, guid: 9688a5e71b115c84a920a272852d7277,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -804,6 +799,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.07118092
       objectReference: {fileID: 0}
+    - target: {fileID: 1698473809041733058, guid: 9688a5e71b115c84a920a272852d7277,
+        type: 3}
+      propertyPath: m_Name
+      value: lavre (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9688a5e71b115c84a920a272852d7277, type: 3}
 --- !u!4 &3494957540396264711 stripped
@@ -819,11 +819,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5567150240244659383}
     m_Modifications:
-    - target: {fileID: 4622777485986002037, guid: 6692cc8f07d331742a5219a14b16fa10,
-        type: 3}
-      propertyPath: m_Name
-      value: Eclaboussure
-      objectReference: {fileID: 0}
     - target: {fileID: 4622777485986002024, guid: 6692cc8f07d331742a5219a14b16fa10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -884,6 +879,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4622777485986002037, guid: 6692cc8f07d331742a5219a14b16fa10,
+        type: 3}
+      propertyPath: m_Name
+      value: Eclaboussure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6692cc8f07d331742a5219a14b16fa10, type: 3}
 --- !u!4 &8703566981658418958 stripped
@@ -905,16 +905,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7665276423123659138}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: ab91e4ada7540344d868cd422ad53d05,
-        type: 3}
-      propertyPath: m_Name
-      value: lavre
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: ab91e4ada7540344d868cd422ad53d05,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ab91e4ada7540344d868cd422ad53d05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -985,6 +975,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.07118092
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ab91e4ada7540344d868cd422ad53d05,
+        type: 3}
+      propertyPath: m_Name
+      value: lavre
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ab91e4ada7540344d868cd422ad53d05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1067625672304791984, guid: ab91e4ada7540344d868cd422ad53d05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ab91e4ada7540344d868cd422ad53d05, type: 3}
@@ -1001,16 +1001,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5567150240244659383}
     m_Modifications:
-    - target: {fileID: 3618724245804688430, guid: 2c36ec77e11e24a45a7da5c4a76db057,
-        type: 3}
-      propertyPath: m_Name
-      value: Etourdissement02
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618724245804688430, guid: 2c36ec77e11e24a45a7da5c4a76db057,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3618724245804688429, guid: 2c36ec77e11e24a45a7da5c4a76db057,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1065,6 +1055,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618724245804688430, guid: 2c36ec77e11e24a45a7da5c4a76db057,
+        type: 3}
+      propertyPath: m_Name
+      value: Etourdissement02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618724245804688430, guid: 2c36ec77e11e24a45a7da5c4a76db057,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3618724245804688428, guid: 2c36ec77e11e24a45a7da5c4a76db057,
         type: 3}
