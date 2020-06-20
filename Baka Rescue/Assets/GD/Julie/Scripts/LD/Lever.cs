@@ -33,9 +33,8 @@ public class Lever : AElement
                 {
                     _isElectrified = true;
                     Destroy(_wallLever);
-                    _fruitPasElec.gameObject.SetActive(false);
-                    _fruitElec.gameObject.SetActive(true);
-
+                   _fruitElec.gameObject.SetActive(true);
+                   _fruitPasElec.gameObject.SetActive(false);
                 }
                 break;
         }
@@ -52,7 +51,7 @@ public class Lever : AElement
 
             // Destroy other if it's a Projectile
             if (other is ElementalProjectile)
-                Destroy(other.gameObject);
+             Destroy(other.gameObject);
         }
     }
 }
