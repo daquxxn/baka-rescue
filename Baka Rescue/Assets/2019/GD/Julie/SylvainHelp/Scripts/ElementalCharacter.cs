@@ -106,7 +106,7 @@ public class ElementalCharacter : AElement
                     _characController.Stun();
                     _isElem = true;
 
-                    _fxEclab.Play();
+                 //   _fxEclab.Play();
 
 
                 }
@@ -122,7 +122,7 @@ public class ElementalCharacter : AElement
                 
                     _waterSpheres.SetActive(true);
                     _isElem = true;
-                    _fxEclab.Play();
+                  //  _fxEclab.Play();
 
                     _isImune = true;
                     //DEVIENT IMUNE AU FEU
@@ -138,7 +138,7 @@ public class ElementalCharacter : AElement
                    
                     _waterSpheres.SetActive(false);
                     _isElem = true;
-                    _fxEclab.Play();
+                    //.Play();
                 }
                 break;
             case EElement.THUNDER:

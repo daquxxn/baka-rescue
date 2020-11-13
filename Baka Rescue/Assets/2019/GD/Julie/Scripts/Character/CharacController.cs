@@ -34,6 +34,9 @@ public class CharacController : MonoBehaviour
    
     [Header("which player?")]
     [SerializeField] private bool _isPlayerOne = true;
+
+    public bool IsPlayerOne
+    { get { return _isPlayerOne; } }
     
     [Header("invunerability")]
     [SerializeField] private bool _invulnerable = false;
@@ -54,9 +57,11 @@ public class CharacController : MonoBehaviour
     private float _stunTimeStamp = 0f;
     [SerializeField] private float _stunDuration = 2f;
     [SerializeField] private GameObject _stunFX = null;
-    [SerializeField] private GameObject _thunderSphere = null;
+    [SerializeField] private GameObject _fireSphere = null;
+    [SerializeField] private GameObject _waterSphere = null;
 
     [SerializeField] private ElementalCharacter _elemCharac;
+    
 
     private AudioSource _walkAudio;
 
@@ -65,8 +70,23 @@ public class CharacController : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
-    [SerializeField] private bool _isOnFire = false;
-    [SerializeField] private bool _isWetty = false;
+    private bool _isFire = false;
+    private bool _isWater = false;
+
+    public bool IsFire
+    {
+        get { return _isFire; }
+    }
+
+    public bool IsWater
+    {
+        get { return _isWater; }
+    }
+
+    [SerializeField] private Collider _coll = null;
+    private float _transTimeStamp = 0f;
+    [SerializeField] private float _transDuration = 2f;
+
 
     public bool CanMove
     {
@@ -82,7 +102,7 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 -= Move;
             InputManager.Instance.OnJumpKeyOne -= Jump;
-            InputManager.Instance.SpellFire -= SpelFire;
+            InputManager.Instance.SpellFire -= SpellFire;
             _stunFX.SetActive(true);
         }
         else
@@ -101,7 +121,7 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
-            InputManager.Instance.SpellFire += SpelFire;
+            InputManager.Instance.SpellFire += SpellFire;
             _stunFX.SetActive(false);
            // _thunderSphere.SetActive(true);
         }
@@ -124,6 +144,8 @@ public class CharacController : MonoBehaviour
         _canMove = true;
         _walkAudio = GetComponent<AudioSource>();
         _invulnerable = false;
+        
+        
 
         //anim = GetComponent<Animator>();
     }
@@ -135,13 +157,15 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 -= Move;
             InputManager.Instance.OnJumpKeyOne -= Jump;
-            InputManager.Instance.SpellFire -= SpelFire;
+            InputManager.Instance.SpellFire -= SpellFire;
+            InputManager.Instance.TransFire -= TransFire;
         }
         else
         {
             InputManager.Instance.MoveX2 -= Move;
             InputManager.Instance.OnJumpKeyTwo -= Jump;
             InputManager.Instance.SpellWater -= SpellWater;
+            InputManager.Instance.TransWater -= TransWater;
         }
     }
 
@@ -167,6 +191,32 @@ public class CharacController : MonoBehaviour
                 _isStun = false;
                 _stunTimeStamp = 0;
                 UnStun();
+            }
+        }
+
+        if(_isFire)
+        {
+            _transTimeStamp += Time.deltaTime;
+
+            if (_transTimeStamp >= _transDuration)
+            {
+                _isFire = false;
+                _transTimeStamp = 0;
+                gameObject.layer = 9;
+                _fireSphere.SetActive(false);
+            }
+        }
+
+        if (_isWater)
+        {
+            _transTimeStamp += Time.deltaTime;
+
+            if (_transTimeStamp >= _transDuration)
+            {
+                _isWater = false;
+                _transTimeStamp = 0;
+                gameObject.layer = 9;
+                _waterSphere.SetActive(false);
             }
         }
     }
@@ -214,7 +264,7 @@ public class CharacController : MonoBehaviour
 
     }
 
-    private void SpelFire(Vector3 dirSpell)
+    private void SpellFire(Vector3 dirSpell)
     {
         ElementalProjectile elementalProjectile = Instantiate(_fireProjectile, transform.position, Quaternion.identity, _projectileContainer);
 
@@ -242,16 +292,28 @@ public class CharacController : MonoBehaviour
         }
     }
 
-    private void ShieldX1(bool shieldDir)
+    private void TransFire(bool fireNow)
     {
+        if (fireNow == true)
+        {
+            gameObject.layer = 21;
+            _isFire = true;
+            _fireSphere.SetActive(true);
+        }
 
     }
 
-    private void ShieldX2(bool shieldDir)
+    private void TransWater(bool waterNow)
     {
-
+        if (waterNow == true )
+        {
+             gameObject.layer = 21;
+            _isWater = true;
+            _waterSphere.SetActive(true);
+            
+        }
     }
-
+    
 
     private void GetInputs()
     {
@@ -259,17 +321,33 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
-            InputManager.Instance.SpellFire += SpelFire;
+            InputManager.Instance.SpellFire += SpellFire;
+            InputManager.Instance.TransFire += TransFire;
         }
         else
         {
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
+            InputManager.Instance.TransWater += TransWater;
         }
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 21 && _isFire == true)
+        {
+            _coll.enabled = !_coll.enabled;
+            Debug.Log("bitch wtf feu");
+        }
 
+        if (collision.gameObject.layer == 21 && _isWater == true)
+        {
+            _coll.enabled = !_coll.enabled;
+
+            Debug.Log("bitch wtf eau");
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -282,12 +360,16 @@ public class CharacController : MonoBehaviour
                 _invulnerable = true;
             }
         }
-    }
+      
 
-   
+    }
+    
+
 
     private void OnTriggerEnter(Collider other)
     {
+      
+
         if (other.gameObject.tag == "Collectible")
         {
             Collectibles collectibles = other.gameObject.GetComponent<Collectibles>();

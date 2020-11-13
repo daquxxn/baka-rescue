@@ -10,6 +10,7 @@ TagManager:
   - Fire
   - ennemy
   - DoubleLever
+  - AirVent
   layers:
   - Default
   - TransparentFX
@@ -31,8 +32,8 @@ TagManager:
   - SurfaceFire
   - FireProjectile
   - FXapastrobloom
-  - 
-  - 
+  - AirVent
+  - NoSolidPlayer
   - 
   - 
   - 

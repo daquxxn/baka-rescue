@@ -101,8 +101,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<Vector3> _transFire = null;
-    public event Action<Vector3> TransFire
+    private event Action<bool> _transFire = null;
+    public event Action<bool> TransFire
     {
         add
         {
@@ -115,8 +115,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<Vector3> _transWater = null;
-    public event Action<Vector3> TransWater
+    private event Action<bool> _transWater = null;
+    public event Action<bool> TransWater
     {
         add
         {
@@ -221,6 +221,16 @@ public class InputManager : Singleton<InputManager>
             }
             dirSpell.Normalize();
             _spellFire(dirSpell);
+        }
+
+        if(_transFire != null)
+        {
+            _transFire(Input.GetButtonDown("TransfoFire"));
+        }
+
+        if (_transWater != null)
+        {
+            _transWater(Input.GetButtonDown("TransfoWater"));
         }
 
       
