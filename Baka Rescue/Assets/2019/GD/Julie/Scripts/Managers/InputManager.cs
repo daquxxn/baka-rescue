@@ -28,33 +28,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<bool> _shieldX1 = null;
-    public event Action<bool> ShieldX1
-    {
-        add
-        {
-            _shieldX1 -= value;
-            _shieldX1 += value;
-        }
-        remove
-        {
-            _shieldX1 -= value;
-        }
-    }
-
-    private event Action<bool> _shieldX2 = null;
-    public event Action<bool> ShieldX2
-    {
-        add
-        {
-            _shieldX2 -= value;
-            _shieldX2 += value;
-        }
-        remove
-        {
-            _shieldX2 -= value;
-        }
-    }
+  
+    
 
     private event Action<float> _moveX2 = null;
     public event Action<float> MoveX2
@@ -112,17 +87,45 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<Vector3> _spellThunder = null;
-    public event Action<Vector3> SpellThunder
+    private event Action<Vector3> _spellFire = null;
+    public event Action<Vector3> SpellFire
     {
         add
         {
-            _spellThunder -= value;
-            _spellThunder += value;
+            _spellFire -= value;
+            _spellFire += value;
         }
         remove
         {
-            _spellThunder -= value;
+            _spellFire -= value;
+        }
+    }
+
+    private event Action<Vector3> _transFire = null;
+    public event Action<Vector3> TransFire
+    {
+        add
+        {
+            _transFire -= value;
+            _transFire += value;
+        }
+        remove
+        {
+            _transFire -= value;
+        }
+    }
+
+    private event Action<Vector3> _transWater = null;
+    public event Action<Vector3> TransWater
+    {
+        add
+        {
+            _transWater -= value;
+            _transWater += value;
+        }
+        remove
+        {
+            _transWater -= value;
         }
     }
 
@@ -192,15 +195,7 @@ public class InputManager : Singleton<InputManager>
             _onJumpKeyTwo(Input.GetButtonDown("Jump2"));
         }
 
-        if(_shieldX1 != null)
-        {
-            _shieldX1(Input.GetButtonDown("Shield1"));
-        }
-
-        if (_shieldX2 != null)
-        {
-            _shieldX2(Input.GetButtonDown("Shield2"));
-        }
+        
 
         if(_spellWater != null && Input.GetButtonDown("SpellWater"))
         {
@@ -215,7 +210,7 @@ public class InputManager : Singleton<InputManager>
             _spellWater(dirSpell);
         }
 
-        if (_spellThunder != null && Input.GetButtonDown("SpellThunder"))
+        if (_spellFire != null && Input.GetButtonDown("SpellFire"))
         {
             float rightAnalogH = Input.GetAxis("RightAnalogH");
             float rightAnalogV = Input.GetAxis("RightAnalogV");
@@ -225,7 +220,7 @@ public class InputManager : Singleton<InputManager>
                 dirSpell = Vector3.zero;
             }
             dirSpell.Normalize();
-            _spellThunder(dirSpell);
+            _spellFire(dirSpell);
         }
 
       

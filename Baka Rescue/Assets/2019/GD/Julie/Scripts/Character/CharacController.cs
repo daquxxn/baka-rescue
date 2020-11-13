@@ -44,7 +44,7 @@ public class CharacController : MonoBehaviour
     [SerializeField] private CharacHealth _characHealth = null;
 
     [Header("element prefabs")]
-    [SerializeField] private ElementalProjectile _thunderPrefab = null;
+    [SerializeField] private ElementalProjectile _fireProjectile = null;
     [SerializeField] private ElementalProjectile _waterPrefab = null;
 
     [Header("container")]
@@ -65,6 +65,9 @@ public class CharacController : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
+    [SerializeField] private bool _isOnFire = false;
+    [SerializeField] private bool _isWetty = false;
+
     public bool CanMove
     {
         get
@@ -79,7 +82,7 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 -= Move;
             InputManager.Instance.OnJumpKeyOne -= Jump;
-            InputManager.Instance.SpellThunder -= SpellThunder;
+            InputManager.Instance.SpellFire -= SpelFire;
             _stunFX.SetActive(true);
         }
         else
@@ -98,7 +101,7 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
-            InputManager.Instance.SpellThunder += SpellThunder;
+            InputManager.Instance.SpellFire += SpelFire;
             _stunFX.SetActive(false);
            // _thunderSphere.SetActive(true);
         }
@@ -132,15 +135,13 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 -= Move;
             InputManager.Instance.OnJumpKeyOne -= Jump;
-            InputManager.Instance.SpellThunder -= SpellThunder;
-            InputManager.Instance.ShieldX1 -= ShieldX1;
+            InputManager.Instance.SpellFire -= SpelFire;
         }
         else
         {
             InputManager.Instance.MoveX2 -= Move;
             InputManager.Instance.OnJumpKeyTwo -= Jump;
             InputManager.Instance.SpellWater -= SpellWater;
-            InputManager.Instance.ShieldX2 -= ShieldX2;
         }
     }
 
@@ -213,9 +214,9 @@ public class CharacController : MonoBehaviour
 
     }
 
-    private void SpellThunder(Vector3 dirSpell)
+    private void SpelFire(Vector3 dirSpell)
     {
-        ElementalProjectile elementalProjectile = Instantiate(_thunderPrefab, transform.position, Quaternion.identity, _projectileContainer);
+        ElementalProjectile elementalProjectile = Instantiate(_fireProjectile, transform.position, Quaternion.identity, _projectileContainer);
 
         if(dirSpell != Vector3.zero)
         {
@@ -258,15 +259,13 @@ public class CharacController : MonoBehaviour
         {
             InputManager.Instance.MoveX1 += Move;
             InputManager.Instance.OnJumpKeyOne += Jump;
-            InputManager.Instance.SpellThunder += SpellThunder;
-            InputManager.Instance.ShieldX1 += ShieldX1;
+            InputManager.Instance.SpellFire += SpelFire;
         }
         else
         {
             InputManager.Instance.MoveX2 += Move;
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
-            InputManager.Instance.ShieldX2 += ShieldX2;
         }
     }
 

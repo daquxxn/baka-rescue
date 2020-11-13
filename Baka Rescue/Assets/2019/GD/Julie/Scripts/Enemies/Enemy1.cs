@@ -34,15 +34,15 @@ public class Enemy1 : BaseEnemy
 
     private void Update()
     {
-        if(_dir == 1 && _trans.rotation.x >= _clampRotation/1000)
+        if(_dir == 1 && _trans.rotation.z >= _clampRotation/1000)
          {
              _dir = -1;
          }
-         else if(_trans.rotation.x <= -_clampRotation/1000)
+         else if(_trans.rotation.z <= -_clampRotation/1000)
          {
              _dir = 1;
          }
-        _trans.transform.Rotate(Vector3.right * (_rotationSpeed * _dir * Time.deltaTime));
+        _trans.transform.Rotate(Vector3.down * (_rotationSpeed * _dir * Time.deltaTime));
 
         Vector3 dirSpell = - transform.eulerAngles;
 
