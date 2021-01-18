@@ -84,7 +84,7 @@ public class ElementalProjectile : AElement
             Physics.Raycast(transform.position + Vector3.up , Vector3.down, out hit, 5, _groundLayer);
             if(hit.collider != null && _hasCreatedSurf == false)
             {
-                Instantiate(_elemSurface, hit.point, Quaternion.identity, _surfaceContainer);
+                //Instantiate(_elemSurface, hit.point, Quaternion.identity, _surfaceContainer);
                 _hasCreatedSurf = true;
                 //_eauTir.Play();
             }
