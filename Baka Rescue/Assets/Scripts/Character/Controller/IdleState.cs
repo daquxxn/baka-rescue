@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class IdleState : ACharacterState
 {
@@ -34,12 +35,26 @@ public class IdleState : ACharacterState
     #region Events
     private void LinkEvents()
     {
-        //InputManager.Instance.JumpButtonPressed += Jump;
+        if (_controller.IsPlayerOne)
+        {
+            InputManager.Instance.OnJumpKeyOne += Jump;
+        }
+        else
+        {
+            InputManager.Instance.OnJumpKeyTwo += Jump;
+        }
     }
 
     private void UnlinkEvents()
     {
-        //InputManager.Instance.JumpButtonPressed -= Jump;
+        if (_controller.IsPlayerOne)
+        {
+            InputManager.Instance.OnJumpKeyOne -= Jump;
+        }
+        else
+        {
+            InputManager.Instance.OnJumpKeyTwo -= Jump;
+        }
     }
     #endregion Events
     #endregion Methods

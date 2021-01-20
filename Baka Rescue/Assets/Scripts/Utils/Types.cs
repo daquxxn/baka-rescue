@@ -13,5 +13,6 @@
         JUMP,
         PAUSE,
         FALL,
+        STEAM,
         NONE
     };

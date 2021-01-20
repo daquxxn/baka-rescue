@@ -8,9 +8,14 @@ public class InputManager : Singleton<InputManager>
 {
     #region Fields
     [SerializeField] private float _deadZone = 0.25f;
+    private Vector3 _moveDir1 = Vector3.zero;
+    private Vector3 _moveDir2 = Vector3.zero;
     #endregion Fields
 
     #region Properties
+    //normalized = touche le joystick marche direct
+    public Vector3 MoveDir1 => _moveDir1.normalized;
+    public Vector3 MoveDir2 => _moveDir2.normalized;
     #endregion Properties
 
     #region Events
@@ -45,8 +50,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<bool> _onJumpKeyOne = null;
-    public event Action<bool> OnJumpKeyOne
+    private event Action _onJumpKeyOne = null;
+    public event Action OnJumpKeyOne
     {
         add
         {
@@ -59,8 +64,8 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    private event Action<bool> _onJumpKeyTwo = null;
-    public event Action<bool> OnJumpKeyTwo
+    private event Action _onJumpKeyTwo = null;
+    public event Action OnJumpKeyTwo
     {
         add
         {
@@ -151,15 +156,6 @@ public class InputManager : Singleton<InputManager>
         ResetInputs();
         
 
-        if (_moveX1 != null)
-        {
-            _moveX1(Input.GetAxis("Horizontal"));
-        }
-
-        if (_moveX2 != null)
-        {
-            _moveX2(Input.GetAxis("Horizontal2"));
-        }
     }
 
     private void GameLoop()
@@ -182,17 +178,23 @@ public class InputManager : Singleton<InputManager>
 
     private void GetGamePadInputs()
     {
-       
-      
 
-        if (_onJumpKeyOne != null)
+        _moveDir1.x = Input.GetAxis("Horizontal1");
+        //_moveDir1.y = Input.GetAxis("Vertical1");
+        _moveDir2.x = Input.GetAxis("Horizontal2");
+        //_moveDir2.y = Input.GetAxis("Vertical2");
+
+        if (Input.GetButtonDown("Jump"))
         {
-            _onJumpKeyOne(Input.GetButtonDown("Jump"));
+            if(_onJumpKeyOne != null)
+            _onJumpKeyOne();
+
         }
 
-        if (_onJumpKeyTwo != null)
+        if (Input.GetButtonDown("Jump2"))
         {
-            _onJumpKeyTwo(Input.GetButtonDown("Jump2"));
+            if(_onJumpKeyTwo != null)
+            _onJumpKeyTwo();
         }
 
         

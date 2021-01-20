@@ -1,10 +1,12 @@
-﻿
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : ACharacterState
+public class SteamState : ACharacterState
 {
+
     #region Fields
-    private bool _hasJumped = false;
+    private float _timeStamp = 0f;
     #endregion Fields
 
     #region Properties
@@ -13,32 +15,40 @@ public class JumpState : ACharacterState
     #region Methods
     public override void EnterState()
     {
-        _controller.Jump();
         LinkEvents();
+        _timeStamp = 0f;
     }
 
     public override void UpdateState()
     {
-        _controller.AirControl();
-        if (_controller.RB.velocity.y > 0 && !_hasJumped)
-            _hasJumped = true;
-        if (_controller.RB.velocity.y <= 0 && _hasJumped)
-            _controller.ChangeState(ECharacterState.FALL);
+        _timeStamp += Time.deltaTime;
+        if(_timeStamp >= _controller.SteamTime)
+        {
+            DisableSteam();
+        }
+        _controller.SteamMove();
     }
 
     public override void ExitState()
     {
-        _hasJumped = false;
         UnlinkEvents();
+        _timeStamp = 0f;
+    }
+
+    private void DisableSteam()
+    {
+        _controller.ChangeState(ECharacterState.FALL);
     }
 
     #region Events
     private void LinkEvents()
     {
+        
     }
 
     private void UnlinkEvents()
     {
+        
     }
     #endregion Events
     #endregion Methods

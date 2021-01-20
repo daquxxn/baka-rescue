@@ -101,14 +101,14 @@ public class CharacController : MonoBehaviour
         if (_isPlayerOne == true)
         {
             InputManager.Instance.MoveX1 -= Move;
-            InputManager.Instance.OnJumpKeyOne -= Jump;
+        //    InputManager.Instance.OnJumpKeyOne -= Jump;
             InputManager.Instance.SpellFire -= SpellFire;
             _stunFX.SetActive(true);
         }
         else
         {
             InputManager.Instance.MoveX2 -= Move;
-            InputManager.Instance.OnJumpKeyTwo -= Jump;
+        //    InputManager.Instance.OnJumpKeyTwo -= Jump;
             InputManager.Instance.SpellWater -= SpellWater;
             _stunFX.SetActive(true);
         }
@@ -120,7 +120,7 @@ public class CharacController : MonoBehaviour
         if (_isPlayerOne == true)
         {
             InputManager.Instance.MoveX1 += Move;
-            InputManager.Instance.OnJumpKeyOne += Jump;
+        //    InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellFire += SpellFire;
             _stunFX.SetActive(false);
            // _thunderSphere.SetActive(true);
@@ -128,7 +128,7 @@ public class CharacController : MonoBehaviour
         else
         {
             InputManager.Instance.MoveX2 += Move;
-            InputManager.Instance.OnJumpKeyTwo += Jump;
+           // InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
             _stunFX.SetActive(false);
            // _thunderSphere.SetActive(true);
@@ -156,14 +156,14 @@ public class CharacController : MonoBehaviour
         if (_isPlayerOne == true)
         {
             InputManager.Instance.MoveX1 -= Move;
-            InputManager.Instance.OnJumpKeyOne -= Jump;
+            //InputManager.Instance.OnJumpKeyOne -= Jump;
             InputManager.Instance.SpellFire -= SpellFire;
             InputManager.Instance.TransFire -= TransFire;
         }
         else
         {
             InputManager.Instance.MoveX2 -= Move;
-            InputManager.Instance.OnJumpKeyTwo -= Jump;
+            //InputManager.Instance.OnJumpKeyTwo -= Jump;
             InputManager.Instance.SpellWater -= SpellWater;
             InputManager.Instance.TransWater -= TransWater;
         }
@@ -320,14 +320,14 @@ public class CharacController : MonoBehaviour
         if (_isPlayerOne == true)
         {
             InputManager.Instance.MoveX1 += Move;
-            InputManager.Instance.OnJumpKeyOne += Jump;
+            //InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellFire += SpellFire;
             InputManager.Instance.TransFire += TransFire;
         }
         else
         {
             InputManager.Instance.MoveX2 += Move;
-            InputManager.Instance.OnJumpKeyTwo += Jump;
+           // InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += SpellWater;
             InputManager.Instance.TransWater += TransWater;
         }

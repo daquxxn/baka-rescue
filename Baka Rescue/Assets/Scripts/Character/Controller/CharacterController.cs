@@ -17,10 +17,12 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Rigidbody _rb = null;
     [SerializeField] private LayerMask _groundLayer = 0;
     [Header("Speed")]
-    [SerializeField] private float _jumpForce = 100f;
+    [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private float _walkSpeed = 100f;
     [SerializeField] private float _airControlForce = 100f;
     [SerializeField] private float _groundedThreshold = 1;
+    [SerializeField] private float _steamUpSpeed = 100f;
+    [SerializeField] private float _steamXSpeed = 100f;
 
     private bool _isGrounded = false;
     #endregion Physics
@@ -28,6 +30,11 @@ public class CharacterController : MonoBehaviour
     #region Inputs
     private Vector3 _moveDir = Vector3.zero;
     #endregion Inputs
+
+    [SerializeField] private bool _isPlayerOne = false;
+
+    [SerializeField] private float _steamTime = 2f;
+    
     #endregion Fields
 
     #region Properties
@@ -47,6 +54,10 @@ public class CharacterController : MonoBehaviour
     #region Inputs
     public Vector3 MoveDir => _moveDir;
     #endregion Inputs
+
+    public bool IsPlayerOne => _isPlayerOne;
+    public float SteamTime => _steamTime;
+
     #endregion Properties
 
     #region Methods
@@ -56,7 +67,7 @@ public class CharacterController : MonoBehaviour
         _characterStates = new Dictionary<ECharacterState, ACharacterState>();
         GameLoopManager.Instance.GameLoop += GameLoop;
         GameLoopManager.Instance.FixedGameLoop += FixedGameLoop;
-      //  CharacterManager.Instance.Controllers.Add(this);
+       // PlayerManager.Instance.Controllers.Add(this);
         InitializeDictionary();
         ChangeState(ECharacterState.IDLE, true);
     }
@@ -79,21 +90,48 @@ public class CharacterController : MonoBehaviour
         instance.Initialize(ECharacterState.FALL, this);
         _characterStates.Add(ECharacterState.FALL, instance);
 
+        instance = new SteamState() as SteamState;
+        instance.Initialize(ECharacterState.STEAM, this);
+        _characterStates.Add(ECharacterState.STEAM, instance);
+
     }
 
     private void GameLoop()
     {
         _isGrounded = Physics.Raycast(transform.position, Vector3.down,
             _groundedThreshold, _groundLayer);
-       // _moveDir = InputManager.Instance.MoveDir;
-        if (_moveDir.x > 0)
+       
+        if (_isPlayerOne)
         {
-            transform.forward = Vector3.right;
-        }
-        if (_moveDir.x < 0)
+            _moveDir = InputManager.Instance.MoveDir1;
+            if (_moveDir.x > 0)
+            {
+                transform.forward = Vector3.forward;
+            }
+            if (_moveDir.x < 0)
+            {
+                transform.forward = Vector3.back;
+            }
+        }   
+        else
         {
-            transform.forward = Vector3.left;
+            _moveDir = InputManager.Instance.MoveDir2;
+            if (_moveDir.x > 0)
+            {
+                transform.forward = Vector3.forward;
+            }
+            if (_moveDir.x < 0)
+            {
+                transform.forward = Vector3.back;
+            }
         }
+
+        //dans un ontrigger enter elem contraire ; si je suis dans mon elem : change state steam
+        if(Input.GetKeyDown(KeyCode.Space))
+            {
+                TransformToSteam();
+            }
+
     }
 
     private void FixedGameLoop()
@@ -112,9 +150,15 @@ public class CharacterController : MonoBehaviour
         }
         _currentStateType = nextState;
         CurrentState.EnterState();
-        Debug.Log("Transition from " + LastState + " to " + _currentStateType);
-        Debug.Log("From " + gameObject.name);
+        //Debug.Log("Transition from " + LastState + " to " + _currentStateType);
+        //Debug.Log("From " + gameObject.name);
     }
+
+    public void TransformToSteam()
+    {
+        ChangeState(ECharacterState.STEAM);
+    }
+
     #endregion StateMachine
     
     #region Physics
@@ -138,6 +182,14 @@ public class CharacterController : MonoBehaviour
     {
         Vector3 newVelocity = _rb.velocity;
         newVelocity.x = _moveDir.x * _walkSpeed * Time.deltaTime;
+        _rb.velocity = newVelocity;
+    }
+
+    public void SteamMove()
+    {
+        Vector3 newVelocity = _rb.velocity;
+        newVelocity.y = _steamUpSpeed * Time.deltaTime;
+        newVelocity.x = _moveDir.x * _steamXSpeed * Time.deltaTime;
         _rb.velocity = newVelocity;
     }
     #endregion Physics
