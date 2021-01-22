@@ -34,7 +34,12 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private bool _isPlayerOne = false;
 
     [SerializeField] private float _steamTime = 2f;
-    
+
+    [SerializeField] private ElementalProjectile _firePrefab = null;
+    [SerializeField] private ElementalProjectile _waterPrefab = null;
+
+    [SerializeField] private Transform _projectileContainer = null;
+
     #endregion Fields
 
     #region Properties
@@ -70,6 +75,8 @@ public class CharacterController : MonoBehaviour
        // PlayerManager.Instance.Controllers.Add(this);
         InitializeDictionary();
         ChangeState(ECharacterState.IDLE, true);
+
+        GetInputs();
     }
 
     private void InitializeDictionary()
@@ -159,8 +166,41 @@ public class CharacterController : MonoBehaviour
         ChangeState(ECharacterState.STEAM);
     }
 
+    //A RECODER EN STATE MACHINE 
+
+    private void SpellFire(Vector3 dirSpell)
+    {
+        ElementalProjectile elementalProjectile = Instantiate(_firePrefab, transform.position, Quaternion.identity, _projectileContainer);
+
+        if (dirSpell != Vector3.zero)
+        {
+            elementalProjectile.Init(dirSpell, gameObject.GetInstanceID());
+        }
+        else
+        {
+            elementalProjectile.Init(transform.right, gameObject.GetInstanceID());
+        }
+    }
+
+    //A RECODER EN STATE MACHINE 
+
+
+    private void SpellWater(Vector3 dirSpell)
+    {
+        ElementalProjectile projectile = Instantiate(_waterPrefab, transform.position, Quaternion.identity, _projectileContainer);
+
+        if (dirSpell != Vector3.zero)
+        {
+            projectile.Init(dirSpell, gameObject.GetInstanceID());
+        }
+        else
+        {
+            projectile.Init(transform.right, gameObject.GetInstanceID());
+        }
+    }
+
     #endregion StateMachine
-    
+
     #region Physics
     public void Jump()
     {
@@ -195,6 +235,18 @@ public class CharacterController : MonoBehaviour
     #endregion Physics
 
     #region Inputs
+
+    private void GetInputs()
+    {
+        if (_isPlayerOne == true)
+        {
+            InputManager.Instance.SpellFire += SpellFire;
+        }
+        else
+        {
+            InputManager.Instance.SpellWater += SpellWater;
+        }
+    }
     #endregion Inputs
     #endregion Methods
 }

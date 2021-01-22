@@ -831,7 +831,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2463,7 +2463,7 @@ Terrain:
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 11435539b1f8eed48b17d2b8ef6c90c5, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -2712,7 +2712,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2804,7 +2804,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3367,7 +3367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3510,6 +3510,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -7.66
       objectReference: {fileID: 0}
+    - target: {fileID: 2355368968576522480, guid: 4935a14a05812644d8c6c0e7c29a6be8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
     - target: {fileID: 2355368967404748122, guid: 4935a14a05812644d8c6c0e7c29a6be8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3525,6 +3530,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.18
       objectReference: {fileID: 0}
+    - target: {fileID: 2355368967404748124, guid: 4935a14a05812644d8c6c0e7c29a6be8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
     - target: {fileID: 7642968816015996760, guid: 4935a14a05812644d8c6c0e7c29a6be8,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -3984,6 +3994,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
+    - target: {fileID: 3335259796702336946, guid: 8bad3d1c452a8b94f859f0f971966301,
+        type: 3}
+      propertyPath: _waterPrefab
+      value: 
+      objectReference: {fileID: -7518238904455144578, guid: 88daf5745edee7d45a942fa22d254d24,
+        type: 3}
+    - target: {fileID: 3335259796702336946, guid: 8bad3d1c452a8b94f859f0f971966301,
+        type: 3}
+      propertyPath: _firePrefab
+      value: 
+      objectReference: {fileID: 8776099268470651285, guid: 7eae1a79e14f7cd4baf41cdff97c42a2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bad3d1c452a8b94f859f0f971966301, type: 3}
 --- !u!1001 &4638072065969186199
@@ -4058,5 +4080,23 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 48f3d2a0dddf0a94fa0061948bd6d975, type: 2}
+    - target: {fileID: 6850299362060522949, guid: 77cea5b85de466a4d88e380a7e255312,
+        type: 3}
+      propertyPath: _firePrefab
+      value: 
+      objectReference: {fileID: 8776099268470651285, guid: 7eae1a79e14f7cd4baf41cdff97c42a2,
+        type: 3}
+    - target: {fileID: 6850299362060522949, guid: 77cea5b85de466a4d88e380a7e255312,
+        type: 3}
+      propertyPath: _waterPrefab
+      value: 
+      objectReference: {fileID: -7518238904455144578, guid: 88daf5745edee7d45a942fa22d254d24,
+        type: 3}
+    - target: {fileID: 7304267833980383553, guid: 77cea5b85de466a4d88e380a7e255312,
+        type: 3}
+      propertyPath: _waterPrefab
+      value: 
+      objectReference: {fileID: -7518238904455144578, guid: 88daf5745edee7d45a942fa22d254d24,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77cea5b85de466a4d88e380a7e255312, type: 3}
