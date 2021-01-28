@@ -39,7 +39,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private ElementalProjectile _waterPrefab = null;
 
     [SerializeField] private Transform _projectileContainer = null;
-
+    
     #endregion Fields
 
     #region Properties
@@ -107,8 +107,8 @@ public class CharacterController : MonoBehaviour
     {
         _isGrounded = Physics.Raycast(transform.position, Vector3.down,
             _groundedThreshold, _groundLayer);
-       // Debug.Log(_isGrounded);
-       // Debug.DrawLine(transform.position, Vector3.down, Color.red);
+
+        Debug.Log(_isGrounded + gameObject.name);
        
         if (_isPlayerOne)
         {
@@ -208,6 +208,7 @@ public class CharacterController : MonoBehaviour
     {
         _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         _isGrounded = false;
+        
     }
 
     public void AirControl()
