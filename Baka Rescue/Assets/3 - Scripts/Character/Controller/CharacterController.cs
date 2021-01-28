@@ -107,6 +107,8 @@ public class CharacterController : MonoBehaviour
     {
         _isGrounded = Physics.Raycast(transform.position, Vector3.down,
             _groundedThreshold, _groundLayer);
+       // Debug.Log(_isGrounded);
+       // Debug.DrawLine(transform.position, Vector3.down, Color.red);
        
         if (_isPlayerOne)
         {
