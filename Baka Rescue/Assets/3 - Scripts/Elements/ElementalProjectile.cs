@@ -98,7 +98,7 @@ public class ElementalProjectile : AElement
     {
         if(collision.gameObject.layer == 8)
         {
-            CreateSurface();
+            //CreateSurface();
             Destroy(gameObject);
         }
     if(collision.gameObject.layer == 15 && _element != EElement.WATER)

@@ -9,7 +9,7 @@ public class Lever : AElement
     [SerializeField] private Transform _posLevier  = null;
     [SerializeField] private GameObject _fruitElec  = null;
     [SerializeField] private GameObject _fruitPasElec  = null;*/
-    private bool _isElectrified = false;
+    private bool _isFired = false;
     private bool _isWatered = false;
 
     [SerializeField] private bool _isFireLever = false;
@@ -36,11 +36,22 @@ public class Lever : AElement
             case EElement.FIRE:
                if (_element == EElement.NONE && _isFireLever == true)
                 {
-                    _isElectrified = true;
+                    _isFired = true;
                     Destroy(_wallLever);
                   // _fruitElec.gameObject.SetActive(true);
                  //  _fruitPasElec.gameObject.SetActive(false);
                 }
+
+                if (_element == EElement.NONE && _isSteamLever == true)
+                {
+                    _element = EElement.FIRE;
+                }
+
+                if (_element == EElement.WATER && _isSteamLever == true)
+                {
+                    Destroy(_wallLever);
+                }
+
                 break;
 
             case EElement.WATER:
@@ -51,7 +62,19 @@ public class Lever : AElement
                   // _fruitElec.gameObject.SetActive(true);
                  //  _fruitPasElec.gameObject.SetActive(false);
                 }
+
+                if (_element == EElement.NONE && _isSteamLever == true)
+                {
+                    _element = EElement.WATER;
+                }
+
+                if (_element == EElement.FIRE && _isSteamLever == true)
+                {
+                    Destroy(_wallLever);
+                }
+
                 break;
+
         }
     }
 

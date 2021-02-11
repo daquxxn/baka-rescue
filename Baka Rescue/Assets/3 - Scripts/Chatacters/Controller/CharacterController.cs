@@ -166,7 +166,7 @@ public class CharacterController : MonoBehaviour
         ChangeState(ECharacterState.STEAM);
     }
 
-    //A RECODER EN STATE MACHINE 
+    
 
     public void SpellFire(Vector3 dirSpell)
     {

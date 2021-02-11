@@ -351,15 +351,15 @@ public class CharacController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 12)
-        {
-            BaseEnemy baseEnemy = collision.gameObject.GetComponent<BaseEnemy>();
-            if (baseEnemy != null && _invulnerable == false)
+      //  if (collision.gameObject.layer == 12)
+        //{
+         //   BaseEnemy baseEnemy = collision.gameObject.GetComponent<BaseEnemy>();
+          /*  if (baseEnemy != null && _invulnerable == false)
             {
                // _characHealth.TakeDamage(baseEnemy.Damages);
                 _invulnerable = true;
             }
-        }
+        }*/
       
 
     }
@@ -388,13 +388,13 @@ public class CharacController : MonoBehaviour
 
         if (other.gameObject.layer == 17)
         {
-            DamageFireSurface dmgFire = other.GetComponent<DamageFireSurface>();
-            
+       //     DamageFireSurface dmgFire = other.GetComponent<DamageFireSurface>();
+            /*
             if (dmgFire != null && _invulnerable == false && _elemCharac.IsImune == false)
             {
                // _characHealth.TakeDamage(dmgFire.Damages);
                 _invulnerable = true;
-            }
+            }*/
         }
 
         if (other.gameObject.layer == 18)
