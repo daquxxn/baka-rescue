@@ -30,10 +30,26 @@ public class FallState : ACharacterState
     #region Events
     private void LinkEvents()
     {
+        if (_controller.IsPlayerOne)
+        {
+            InputManager.Instance.SpellFire += _controller.SpellFire;
+        }
+        else
+        {
+            InputManager.Instance.SpellWater += _controller.SpellWater;
+        }
     }
 
     private void UnlinkEvents()
     {
+        if (_controller.IsPlayerOne)
+        {
+            InputManager.Instance.SpellFire -= _controller.SpellFire;
+        }
+        else
+        {
+            InputManager.Instance.SpellWater -= _controller.SpellWater;
+        }
     }
     #endregion Events
     #endregion Methods

@@ -38,10 +38,12 @@ public class IdleState : ACharacterState
         if (_controller.IsPlayerOne)
         {
             InputManager.Instance.OnJumpKeyOne += Jump;
+            InputManager.Instance.SpellFire += _controller.SpellFire;
         }
         else
         {
             InputManager.Instance.OnJumpKeyTwo += Jump;
+            InputManager.Instance.SpellWater += _controller.SpellWater;
         }
     }
 
@@ -50,10 +52,12 @@ public class IdleState : ACharacterState
         if (_controller.IsPlayerOne)
         {
             InputManager.Instance.OnJumpKeyOne -= Jump;
+            InputManager.Instance.SpellFire -= _controller.SpellFire;
         }
         else
         {
             InputManager.Instance.OnJumpKeyTwo -= Jump;
+            InputManager.Instance.SpellWater -= _controller.SpellWater;
         }
     }
     #endregion Events
