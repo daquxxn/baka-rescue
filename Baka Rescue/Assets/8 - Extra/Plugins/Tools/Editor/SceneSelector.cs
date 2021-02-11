@@ -11,7 +11,7 @@
 
     public class SceneSelector : EditorWindow
 {
-        private const string _scenesFolderPath = "Assets/2020/Scenes/";
+        private const string _scenesFolderPath = "Assets/1- Scenes/";
         private const string _assetPath = "Assets/Resources/";
         private const string _openedSceneFileName = "Utilities/OpenedScenes.txt";
         private Vector2 _scrollPos = Vector2.zero;
@@ -93,7 +93,7 @@
                     if (!scene.IsValid())
                         GUI.backgroundColor = Color.grey;
                     else
-                        GUI.backgroundColor = Color.black;
+                        GUI.backgroundColor = new Color(200, 200, 200);
                     if (GUILayout.Button(Path.GetFileNameWithoutExtension(scenePaths[i]), GUILayout.Height(40), GUILayout.Width(250)))
                     {
                         EditorSceneManager.OpenScene(scenePaths[i], OpenSceneMode.AdditiveWithoutLoading);
@@ -106,8 +106,8 @@
                 }
                 else
                 {
-                    GUI.backgroundColor = Color.black;
-                    if (GUILayout.Button(Path.GetFileNameWithoutExtension(scenePaths[i]), GUILayout.Height(40), GUILayout.Width(250)))
+                    GUI.backgroundColor = new Color(200, 200, 200);
+                if (GUILayout.Button(Path.GetFileNameWithoutExtension(scenePaths[i]), GUILayout.Height(40), GUILayout.Width(250)))
                     {
                     }
                     GUI.backgroundColor = Color.green;
@@ -148,7 +148,7 @@
                         if (!scene.IsValid())
                             GUI.backgroundColor = Color.grey;
                         else
-                            GUI.backgroundColor = Color.black;
+                            GUI.backgroundColor = new Color(200, 200, 200); ;
                         if (GUILayout.Button(Path.GetFileNameWithoutExtension(filePaths[i]), GUILayout.Height(40), GUILayout.Width(250)))
                         {
                             EditorSceneManager.OpenScene(filePaths[i], OpenSceneMode.AdditiveWithoutLoading);
@@ -161,7 +161,7 @@
                     }
                     else
                     {
-                        GUI.backgroundColor = Color.black;
+                        GUI.backgroundColor = new Color(200, 200, 200); ;
                         if (GUILayout.Button(Path.GetFileNameWithoutExtension(filePaths[i]), GUILayout.Height(40), GUILayout.Width(250)))
                         {
                         }

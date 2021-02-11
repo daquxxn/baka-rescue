@@ -75,8 +75,6 @@ public class CharacterController : MonoBehaviour
        // PlayerManager.Instance.Controllers.Add(this);
         InitializeDictionary();
         ChangeState(ECharacterState.IDLE, true);
-
-        GetInputs();
     }
 
     private void InitializeDictionary()
@@ -170,7 +168,7 @@ public class CharacterController : MonoBehaviour
 
     //A RECODER EN STATE MACHINE 
 
-    private void SpellFire(Vector3 dirSpell)
+    public void SpellFire(Vector3 dirSpell)
     {
         ElementalProjectile elementalProjectile = Instantiate(_firePrefab, transform.position, Quaternion.identity, _projectileContainer);
 
@@ -187,7 +185,7 @@ public class CharacterController : MonoBehaviour
     //A RECODER EN STATE MACHINE 
 
 
-    private void SpellWater(Vector3 dirSpell)
+    public void SpellWater(Vector3 dirSpell)
     {
         ElementalProjectile projectile = Instantiate(_waterPrefab, transform.position, Quaternion.identity, _projectileContainer);
 
@@ -239,17 +237,6 @@ public class CharacterController : MonoBehaviour
 
     #region Inputs
 
-    private void GetInputs()
-    {
-        if (_isPlayerOne == true)
-        {
-            InputManager.Instance.SpellFire += SpellFire;
-        }
-        else
-        {
-            InputManager.Instance.SpellWater += SpellWater;
-        }
-    }
     #endregion Inputs
     #endregion Methods
 }
