@@ -17,6 +17,7 @@ public class SteamState : ACharacterState
     {
         LinkEvents();
         _timeStamp = 0f;
+        _controller.gameObject.layer = 21;
     }
 
     public override void UpdateState()
@@ -33,6 +34,7 @@ public class SteamState : ACharacterState
     {
         UnlinkEvents();
         _timeStamp = 0f;
+        _controller.gameObject.layer = 9;
     }
 
     private void DisableSteam()

@@ -39,11 +39,13 @@ public class WalkState : ACharacterState
         {
             InputManager.Instance.OnJumpKeyOne += Jump;
             InputManager.Instance.SpellFire += _controller.SpellFire;
+            InputManager.Instance.TransFire += _controller.TransFire;
         }
         else
         {
             InputManager.Instance.OnJumpKeyTwo += Jump;
             InputManager.Instance.SpellWater += _controller.SpellWater;
+            InputManager.Instance.TransWater += _controller.TransWater;
         }
     }
 
@@ -53,11 +55,13 @@ public class WalkState : ACharacterState
         {
             InputManager.Instance.OnJumpKeyOne -= Jump;
             InputManager.Instance.SpellFire -= _controller.SpellFire;
+            InputManager.Instance.TransFire -= _controller.TransFire;
         }
         else
         {
             InputManager.Instance.OnJumpKeyTwo -= Jump;
             InputManager.Instance.SpellWater -= _controller.SpellWater;
+            InputManager.Instance.TransWater -= _controller.TransWater;
         }
     }
     #endregion Events

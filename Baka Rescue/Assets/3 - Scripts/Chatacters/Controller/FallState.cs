@@ -33,10 +33,12 @@ public class FallState : ACharacterState
         if (_controller.IsPlayerOne)
         {
             InputManager.Instance.SpellFire += _controller.SpellFire;
+            InputManager.Instance.TransFire += _controller.TransFire;
         }
         else
         {
             InputManager.Instance.SpellWater += _controller.SpellWater;
+            InputManager.Instance.TransWater += _controller.TransWater;
         }
     }
 
@@ -45,10 +47,12 @@ public class FallState : ACharacterState
         if (_controller.IsPlayerOne)
         {
             InputManager.Instance.SpellFire -= _controller.SpellFire;
+            InputManager.Instance.TransFire -= _controller.TransFire;
         }
         else
         {
             InputManager.Instance.SpellWater -= _controller.SpellWater;
+            InputManager.Instance.TransWater -= _controller.TransWater;
         }
     }
     #endregion Events

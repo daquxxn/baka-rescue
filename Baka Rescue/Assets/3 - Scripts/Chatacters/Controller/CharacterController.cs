@@ -24,6 +24,12 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _steamUpSpeed = 100f;
     [SerializeField] private float _steamXSpeed = 100f;
 
+    private bool _isFire = false;
+    private bool _isWater = false;
+
+    [SerializeField] private GameObject _fireSphere = null;
+    [SerializeField] private GameObject _waterSphere = null;
+
     private bool _isGrounded = false;
     #endregion Physics
 
@@ -39,7 +45,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private ElementalProjectile _waterPrefab = null;
 
     [SerializeField] private Transform _projectileContainer = null;
-    
+
+    private float _transTimeStamp = 0f;
+    [SerializeField] private float _transDuration = 2f;
+
     #endregion Fields
 
     #region Properties
@@ -54,6 +63,17 @@ public class CharacterController : MonoBehaviour
     #region Physics
     public Rigidbody RB => _rb;
     public bool IsGrounded => _isGrounded;
+
+
+    public bool IsFire
+    {
+        get { return _isFire; }
+    }
+
+    public bool IsWater
+    {
+        get { return _isWater; }
+    }
     #endregion Physics
 
     #region Inputs
@@ -115,8 +135,34 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        Debug.Log(_isGrounded + gameObject.name);
-       
+        if (_isFire)
+        {
+            _transTimeStamp += Time.deltaTime;
+
+            if (_transTimeStamp >= _transDuration)
+            {
+                _isFire = false;
+                _transTimeStamp = 0;
+                gameObject.layer = 9;
+                _fireSphere.SetActive(false);
+            }
+        }
+
+        if (_isWater)
+        {
+            _transTimeStamp += Time.deltaTime;
+
+            if (_transTimeStamp >= _transDuration)
+            {
+                _isWater = false;
+                _transTimeStamp = 0;
+                gameObject.layer = 9;
+                _waterSphere.SetActive(false);
+            }
+        }
+
+        // Debug.Log(_isGrounded + gameObject.name);
+
         if (_isPlayerOne)
         {
             _moveDir = InputManager.Instance.MoveDir1;
@@ -128,6 +174,7 @@ public class CharacterController : MonoBehaviour
             {
                 transform.forward = Vector3.back;
             }
+
         }   
         else
         {
@@ -242,6 +289,28 @@ public class CharacterController : MonoBehaviour
         newVelocity.y = _steamUpSpeed * Time.deltaTime;
         newVelocity.x = _moveDir.x * _steamXSpeed * Time.deltaTime;
         _rb.velocity = newVelocity;
+    }
+
+    public void TransFire(bool fireNow)
+    {
+        if (fireNow == true)
+        {
+            gameObject.layer = 21;
+            _isFire = true;
+            _fireSphere.SetActive(true);
+        }
+
+    }
+
+    public void TransWater(bool waterNow)
+    {
+        if (waterNow == true)
+        {
+            gameObject.layer = 21;
+            _isWater = true;
+            _waterSphere.SetActive(true);
+
+        }
     }
     #endregion Physics
 

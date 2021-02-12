@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class Collectible : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText = null;
-    public int _score = 0;
+    private int _score = 0;
+    Collider _coll;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _coll = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -27,8 +28,9 @@ public class Collectible : MonoBehaviour
     {
         if(other.gameObject.layer == 13)
         {
-            _score += 1;
-            //Destroy(gameObject);
+            _score = _score + 1;
+            _coll.enabled = false;
+
         }
     }
 }
