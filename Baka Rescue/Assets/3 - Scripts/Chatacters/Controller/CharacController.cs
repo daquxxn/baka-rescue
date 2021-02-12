@@ -372,12 +372,12 @@ public class CharacController : MonoBehaviour
 
         if (other.gameObject.tag == "Collectible")
         {
-            Collectibles collectibles = other.gameObject.GetComponent<Collectibles>();
-            if(collectibles != null)
+            //Collectibles collectibles = other.gameObject.GetComponent<Collectibles>();
+          /*  if(collectibles != null)
             {
                // _characHealth.GetLifeBack(collectibles.LifeHealed);
                 Destroy(other.gameObject);
-            }
+            }*/
         }
         ElementalProjectile elemProj = other.GetComponent<ElementalProjectile>();
 

@@ -103,8 +103,17 @@ public class CharacterController : MonoBehaviour
 
     private void GameLoop()
     {
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down,
-            _groundedThreshold, _groundLayer);
+        RaycastHit hit;
+        _isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, _groundedThreshold, _groundLayer);
+
+        if(hit.collider != null && (InputManager.Instance.MoveDir1 != Vector3.zero || InputManager.Instance.MoveDir2 != Vector3.zero))
+        {
+            GroundSurface surface = hit.collider.GetComponent<GroundSurface>();
+            if(surface != null)
+            {
+                AudioManager.Instance.PlayStepSound(surface.StepSurface);
+            }
+        }
 
         Debug.Log(_isGrounded + gameObject.name);
        
@@ -188,6 +197,7 @@ public class CharacterController : MonoBehaviour
     public void SpellWater(Vector3 dirSpell)
     {
         ElementalProjectile projectile = Instantiate(_waterPrefab, transform.position, Quaternion.identity, _projectileContainer);
+        AudioManager.Instance.PlayRandomSFX("WATERSHOOT");
 
         if (dirSpell != Vector3.zero)
         {
