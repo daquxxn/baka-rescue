@@ -14,9 +14,18 @@ public class MovablePlateform : MonoBehaviour
 
     private float _delayStart = 0f;
 
-    [SerializeField] private bool _automatic = true;
-
-    
+    private bool _automatic = false;
+    public bool Automatic
+    {
+        get
+        {
+            return _automatic;
+        }
+        set
+        {
+            _automatic = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

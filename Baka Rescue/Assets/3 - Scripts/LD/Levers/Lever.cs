@@ -16,6 +16,7 @@ public class Lever : AElement
     [SerializeField] private bool _isWaterLever = false;
     [SerializeField] private bool _isSteamLever = false;
 
+    [SerializeField] private MovablePlateform _movplat = null;
 
     private void Start()
     {
@@ -37,9 +38,10 @@ public class Lever : AElement
                if (_element == EElement.NONE && _isFireLever == true)
                 {
                     _isFired = true;
+                    _movplat.Automatic = true;
                     Destroy(_wallLever);
                   // _fruitElec.gameObject.SetActive(true);
-                 //  _fruitPasElec.gameObject.SetActive(false);
+                  //  _fruitPasElec.gameObject.SetActive(false);
                 }
 
                 if (_element == EElement.NONE && _isSteamLever == true)
@@ -50,6 +52,7 @@ public class Lever : AElement
                 if (_element == EElement.WATER && _isSteamLever == true)
                 {
                     Destroy(_wallLever);
+                    _movplat.Automatic = true;
                 }
 
                 break;
@@ -59,8 +62,9 @@ public class Lever : AElement
                 {
                     _isWatered = true;
                     Destroy(_wallLever);
-                  // _fruitElec.gameObject.SetActive(true);
-                 //  _fruitPasElec.gameObject.SetActive(false);
+                    _movplat.Automatic = true;
+                    // _fruitElec.gameObject.SetActive(true);
+                    //  _fruitPasElec.gameObject.SetActive(false);
                 }
 
                 if (_element == EElement.NONE && _isSteamLever == true)
@@ -71,6 +75,7 @@ public class Lever : AElement
                 if (_element == EElement.FIRE && _isSteamLever == true)
                 {
                     Destroy(_wallLever);
+                    _movplat.Automatic = true;
                 }
 
                 break;

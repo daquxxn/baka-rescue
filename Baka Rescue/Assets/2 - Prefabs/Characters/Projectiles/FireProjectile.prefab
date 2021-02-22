@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &-2580938328111505789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 3792782124387272710}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3219774065384257052}
+  m_Layer: 0
+  m_Name: SmokeTrailBoule (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3219774065384257052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 3792782124387272710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: -2580938328111505789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2614443580760241979}
+  m_Father: {fileID: 8776099267629766708}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6546923916990955624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 3792782124387272710}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2614443580760241979}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2614443580760241979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1219056763778481981, guid: 9d811f44f559f854db3792c8a864211e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3792782124387272710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6546923916990955624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3219774065384257052}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8776099266944580143
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8776099266944580142}
-  - {fileID: 2614443580760241979}
+  - {fileID: 3219774065384257052}
   m_Father: {fileID: 8776099268470651287}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -124,8 +186,8 @@ GameObject:
   - component: {fileID: 8776099268470651285}
   - component: {fileID: 394280735752618899}
   m_Layer: 13
-  m_Name: FireProjectile 1
-  m_TagString: Character1
+  m_Name: FireProjectile
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,9 +336,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d811f44f559f854db3792c8a864211e, type: 3}
---- !u!4 &2614443580760241979 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1219056763778481981, guid: 9d811f44f559f854db3792c8a864211e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3792782124387272710}
-  m_PrefabAsset: {fileID: 0}

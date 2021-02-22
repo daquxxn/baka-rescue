@@ -190,11 +190,24 @@ public class CharacterController : MonoBehaviour
         }
 
         //dans un ontrigger enter elem contraire ; si je suis dans mon elem : change state steam
-        if(Input.GetKeyDown(KeyCode.Space))
+        /*if(Input.GetKeyDown(KeyCode.Space))
+            {
+                TransformToSteam();
+            }*/
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+            if (_isFire && _isPlayerOne && other.CompareTag("Water"))
             {
                 TransformToSteam();
             }
-
+            else if (_isWater && !_isPlayerOne && other.CompareTag("Fire"))
+            {
+                TransformToSteam();
+            }
+        
     }
 
     private void FixedGameLoop()

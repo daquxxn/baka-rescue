@@ -11,6 +11,7 @@ TagManager:
   - ennemy
   - DoubleLever
   - AirVent
+  - Water
   layers:
   - Default
   - TransparentFX

@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Collectible : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _scoreText = null;
-    private int _score = 0;
     Collider _coll;
+    [SerializeField] private Score _score = null;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +17,7 @@ public class Collectible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _scoreText.text = "" + _score;
+        
     }
 
     //si on tire sur le collectible; avec eau ou feu : +1 au "score"
@@ -28,9 +26,9 @@ public class Collectible : MonoBehaviour
     {
         if(other.gameObject.layer == 13)
         {
-            _score = _score + 1;
+            _score.ScoreColl++;
+           // Debug.Log(_score);
             _coll.enabled = false;
-
         }
     }
 }
