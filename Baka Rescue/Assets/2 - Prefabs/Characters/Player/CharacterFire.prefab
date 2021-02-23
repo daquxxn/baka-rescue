@@ -411,7 +411,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _jumpForce: 10
-  _walkSpeed: 100
+  _walkSpeed: 500
   _airControlForce: 100
   _groundedThreshold: 1.4
   _steamUpSpeed: 100
@@ -424,6 +424,7 @@ MonoBehaviour:
     type: 3}
   _waterPrefab: {fileID: 0}
   _projectileContainer: {fileID: 0}
+  _transDuration: 2
 --- !u!114 &1442813250278273846
 MonoBehaviour:
   m_ObjectHideFlags: 0

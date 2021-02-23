@@ -14,7 +14,7 @@ public class MovablePlateform : MonoBehaviour
 
     private float _delayStart = 0f;
 
-    private bool _automatic = false;
+    public bool _automatic = false;
     public bool Automatic
     {
         get
